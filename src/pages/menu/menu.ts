@@ -25,10 +25,10 @@ export class MenuPage {
   @ViewChild(Nav) nav : Nav;
 
   pages : PageInterface[]=[
-    {title : 'Shopping', pageName:'TabsPage',tabComponent:ShoppingPage,index:0,icon:'home'},
-    {title : 'Promotion', pageName:'TabsPage',tabComponent:PromotionPage,index:0,icon:'pricetags'},
-    {title : 'Cart', pageName:'SpecialPage',index:0,icon:'cart'},
-    {title : 'Profile', pageName:'TabsPage',tabComponent:ProfilePage,index:0,icon:'person'}
+    {title : 'Shopping', pageName:'Shopping',tabComponent:ShoppingPage,index:0,icon:'home'},
+    {title : 'Promotion', pageName:'Promotion',tabComponent:PromotionPage,index:1,icon:'pricetags'},
+    {title : 'Cartlist', pageName:'Cart',index:2,icon:'cart'},
+    {title : 'Profile', pageName:'Profile',tabComponent:ProfilePage,index:3,icon:'person'}
   ];
   constructor(public navCtrl: NavController) {  }
 
