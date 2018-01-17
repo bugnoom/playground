@@ -1,3 +1,4 @@
+import { KeysPipe } from './../pipes/loopipe/loopipe';
 import { PromotionPage } from './../pages/promotion/promotion';
 import { ProfilePage } from './../pages/profile/profile';
 import { BrowserModule } from '@angular/platform-browser';
@@ -24,7 +25,8 @@ import { ShoppingPage } from '../pages/shopping/shopping';
     ProfilePage,
     PromotionPage,
     TabsPage,
-    ShoppingPage
+    ShoppingPage,
+    KeysPipe
 
   ],
   imports: [

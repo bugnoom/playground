@@ -1,14 +1,73 @@
 <ion-header>
-    <ion-navbar>
-      <ion-buttons start>
-        <button ion-button menuToggle>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-      </ion-buttons>
-      <ion-title>Special</ion-title>
-    </ion-navbar>
-  </ion-header>
-   
-  <ion-content padding>
-    This page has no tabs!
-  </ion-content>
+    </ion-buttons>
+    <ion-title mode="ios">Playground</ion-title>
+    <ion-buttons right>
+      <button ion-button menuToggle>
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides class="bannerslider" autoplay="5000" loop="true">
+    <ion-slide *ngFor="let slide of slides">
+      {{slide.h1}}
+    </ion-slide>
+  </ion-slides>
+
+  <ion-item>
+    <ion-scroll scrollX style="height:80px;margin-top:-10px">
+      <div class="scroll-item">
+        <ion-col col-33 *ngFor="let category of categorys">
+          <div class="acard acard-1" (click)="openCategory(category.id)">
+            <img src="assets/imgs/logo.png" height="40" width="40">
+            <p style="font-size: 0.8em;">{{category.category}}</p>
+          </div>
+        </ion-col>
+      </div>
+    </ion-scroll>
+  </ion-item>
+
+  <ion-grid>
+    <ion-row *ngFor="let row of grid">
+      <ion-col width-50 *ngFor="let key of row  ">
+        <ion-card *ngIf="key">
+          <div (click)="openCategory(key.product_id)" style="text-decoration: none; color:#000;">
+
+            <img src="{{key.product_img}}" width="90%" />
+            <div class="card-title">{{key.product_name}}</div>
+            <div class="card-subtitle" right>{{key.prodcut_price}}</div>
+          </div>
+            <ion-grid style="border:1px solid #ccc;padding:3px !important;min-height:36px;">
+              <ion-row>
+                <ion-col class="bt">
+                  <ion-icon name="heart-outline"></ion-icon>
+                </ion-col>
+                <ion-col class="bt">
+                  <div (click)="presentActionSheet()">
+                    <ion-icon name="md-share" md="md-share"></ion-icon>
+                  </div>
+                </ion-col>
+                <ion-col class="bt last">
+                  
+                  <ion-icon name="cart-outline" md="md-cart"></ion-icon>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-grid>
+
+
+</ion-content>

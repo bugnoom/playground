@@ -1,9 +1,11 @@
+import { LoginPage } from './../login/login';
 import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, Nav } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { ShoppingPage } from '../shopping/shopping';
 import { PromotionPage } from '../promotion/promotion';
-import { ProfilePage } from '../profile/profile';
+
+import { CartlistPage } from '../cartlist/cartlist';
 
 
 export interface PageInterface{
@@ -27,8 +29,8 @@ export class MenuPage {
   pages : PageInterface[]=[
     {title : 'Shopping', pageName:'Shopping',tabComponent:ShoppingPage,index:0,icon:'home'},
     {title : 'Promotion', pageName:'Promotion',tabComponent:PromotionPage,index:1,icon:'pricetags'},
-    {title : 'Cartlist', pageName:'Cart',index:2,icon:'cart'},
-    {title : 'Profile', pageName:'Profile',tabComponent:ProfilePage,index:3,icon:'person'}
+    {title : 'Cartlist', pageName:'Cart',tabComponent:CartlistPage,index:2,icon:'cart'},
+    {title : 'Profile', pageName:'Profile',tabComponent:LoginPage,index:3,icon:'person'}
   ];
   constructor(public navCtrl: NavController) {  }
 
@@ -41,15 +43,15 @@ export class MenuPage {
     }
 
     //the active child nav 
-    if(this.nav.getActiveChildNav() && page.index != undefined){
-      this.nav.getActiveChildNav().select(page.index);
+    if(this.nav.getActiveChildNavs() && page.index != undefined){
+      this.nav.getActiveChildNavs()[0].select(page.index);
     }else{
        this.nav.setRoot(page.pageName, params);
     }
   }
 
   isActive(page:PageInterface){
-    let childNav = this.nav.getActiveChildNav();
+    let childNav = this.nav.getActiveChildNavs()[0];
 
     if(childNav){
       if(childNav.getSelected()&&childNav.getSelected().root===page.tabComponent){
@@ -62,6 +64,11 @@ export class MenuPage {
       return 'primary';
     }
     return;
+  }
+
+  logout(){
+  
+    this.navCtrl.setRoot(LoginPage,{}, {animate: true, direction: 'forward'});
   }
  
 }
