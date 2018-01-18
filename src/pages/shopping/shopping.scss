@@ -1,52 +1,52 @@
 page-shopping {
 
-}
-.bannerslider{
-    height:25%;
-    border:1px solid #cccccc;
-}
-.category{
-    height:10%;
-    border:1px solid #cccccc;
-}
-.acard {
-    background: #1E90FF;
-   /* border-radius: 50%;*/
-    display: inline-block;
-    height: 40px;
-    border: 1px solid #fff;
-    padding: 0;
-    margin: 1rem;
-    position: relative;
-    width: 40px;
+    .bannerslider{
+        height:25%;
+        border:1px solid #cccccc;
     }
-   .acard-1 {
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-     }
-    .acard-1:hover {
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-     }
-ion-scroll[scrollX] {
-    white-space: nowrap;
-    .scroll-item {
-    display: inline-block;
-    }}
-.col{
-    padding:0px !important;
-}
-.card-md,.card-ios {
-    width: calc(100% - 10px) !important;
-    
-}
-.col .bt{
-    text-align: center;
-    border-right:1px solid #ccc;
-}
-.col .bt.last{
-    text-align: center;
-    border-right:0px;
-}
-.col .bt ion-icon{
-    font-size:2.2em;
+    .category{
+        height:10%;
+        border:1px solid #cccccc;
+    }
+    .acard {
+        background: #1E90FF;
+       /* border-radius: 50%;*/
+        display: inline-block;
+        height: 40px;
+        border: 1px solid #fff;
+        padding: 0;
+        margin: 1rem;
+        position: relative;
+        width: 40px;
+        }
+       .acard-1 {
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+         }
+        .acard-1:hover {
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+         }
+    ion-scroll[scrollX] {
+        white-space: nowrap;
+        .scroll-item {
+        display: inline-block;
+        }}
+    .col{
+        padding:0px !important;
+    }
+    .card-md,.card-ios {
+        width: calc(100% - 10px) !important;
+        
+    }
+    .col .bt{
+        text-align: center;
+        border-right:1px solid #ccc;
+    }
+    .col .bt.last{
+        text-align: center;
+        border-right:0px;
+    }
+    .col .bt ion-icon{
+        font-size:2.2em;
+    }
 }

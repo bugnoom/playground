@@ -1,6 +1,4 @@
-import { KeysPipe } from './../pipes/loopipe/loopipe';
-import { PromotionPage } from './../pages/promotion/promotion';
-import { ProfilePage } from './../pages/profile/profile';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -12,8 +10,12 @@ import { CartlistPage } from '../pages/cartlist/cartlist';
 import { LoginPage } from '../pages/login/login';
 import { MenuPage } from '../pages/menu/menu';
 import { TabsPage } from '../pages/tabs/tabs';
+import { KeysPipe } from './../pipes/loopipe/loopipe';
+import { PromotionPage } from './../pages/promotion/promotion';
+import { ProfilePage } from './../pages/profile/profile';
 import { ShoppingPage } from '../pages/shopping/shopping';
-
+import { ServiceProvider } from '../providers/service/service';
+import { PromotionDetailPage } from '../pages/promotion-detail/promotion-detail';
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import { ShoppingPage } from '../pages/shopping/shopping';
     MenuPage,
     ProfilePage,
     PromotionPage,
+    PromotionDetailPage,
     TabsPage,
     ShoppingPage,
     KeysPipe
@@ -41,6 +44,7 @@ import { ShoppingPage } from '../pages/shopping/shopping';
     MenuPage,
     ProfilePage,
     PromotionPage,
+    PromotionDetailPage,
     TabsPage,
     ShoppingPage
 
@@ -48,7 +52,8 @@ import { ShoppingPage } from '../pages/shopping/shopping';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ServiceProvider
   ]
 })
 export class AppModule {}

@@ -7,14 +7,19 @@
     </ion-buttons>
     <ion-title mode="ios">Playground</ion-title>
     <ion-buttons right>
-      <button ion-button menuToggle>
-        <ion-icon name="search"></ion-icon>
+      <button ion-button  (click)="toggle()">
+        <ion-icon name="search" ></ion-icon>
+        
       </button>
     </ion-buttons>
+    
   </ion-navbar>
 </ion-header>
 
 <ion-content>
+    
+    <ion-searchbar *ngIf="toggled" [(ngModel)]="someValue" (ionInput)="searchThis($event)" (ionCancel)="cancelSearch($event)" (ionClear) = "cancelSearch($event)" [showCancelButton]="true"></ion-searchbar>
+
   <ion-slides class="bannerslider" autoplay="5000" loop="true">
     <ion-slide *ngFor="let slide of slides">
       {{slide.h1}}
@@ -36,7 +41,7 @@
 
   <ion-grid>
     <ion-row *ngFor="let row of grid">
-      <ion-col width-50 *ngFor="let key of row  ">
+      <ion-col width-50 *ngFor="let key of row;">
         <ion-card *ngIf="key">
           <div (click)="openCategory(key.product_id)" style="text-decoration: none; color:#000;">
 
@@ -55,8 +60,9 @@
                   </div>
                 </ion-col>
                 <ion-col class="bt last">
-                  
-                  <ion-icon name="cart-outline" md="md-cart"></ion-icon>
+                  <div (click)="addtoCart(key.product_id,$event)" >
+                  <ion-icon  [id]="'icon'+key.product_id" name="cart-outline" md="md-cart"></ion-icon>
+                </div>
                 </ion-col>
               </ion-row>
             </ion-grid>

@@ -27,10 +27,11 @@ export class MenuPage {
   @ViewChild(Nav) nav : Nav;
 
   pages : PageInterface[]=[
-    {title : 'Shopping', pageName:'Shopping',tabComponent:ShoppingPage,index:0,icon:'home'},
-    {title : 'Promotion', pageName:'Promotion',tabComponent:PromotionPage,index:1,icon:'pricetags'},
-    {title : 'Cartlist', pageName:'Cart',tabComponent:CartlistPage,index:2,icon:'cart'},
-    {title : 'Profile', pageName:'Profile',tabComponent:LoginPage,index:3,icon:'person'}
+    {title : 'Categories', pageName:'Shopping',tabComponent:ShoppingPage,index:0,icon:'list'},
+    {title : 'My Orders', pageName:'Promotion',tabComponent:PromotionPage,index:1,icon:'clipboard'},
+    {title : 'Playground News', pageName:'Cart',tabComponent:CartlistPage,index:2,icon:'document'},
+    {title : 'Setting', pageName:'Profile',tabComponent:LoginPage,index:3,icon:'cog'},
+    {title : 'Playground Store', pageName:'Profile',tabComponent:LoginPage,index:3,icon:'cafe'}
   ];
   constructor(public navCtrl: NavController) {  }
 
@@ -46,7 +47,7 @@ export class MenuPage {
     if(this.nav.getActiveChildNavs() && page.index != undefined){
       this.nav.getActiveChildNavs()[0].select(page.index);
     }else{
-       this.nav.setRoot(page.pageName, params);
+       this.nav.setRoot(page.pageName, params,{animate: true, direction: 'forward'});
     }
   }
 
@@ -67,8 +68,7 @@ export class MenuPage {
   }
 
   logout(){
-  
     this.navCtrl.setRoot(LoginPage,{}, {animate: true, direction: 'forward'});
   }
- 
+
 }

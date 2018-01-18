@@ -4,6 +4,7 @@ import { PromotionPage } from './../promotion/promotion';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ShoppingPage } from '../shopping/shopping';
+import { ServiceProvider } from '../../providers/service/service';
 
 
 /**
@@ -25,12 +26,13 @@ export class TabsPage {
   Cartlist : any = CartlistPage;
   Profile : any = LoginPage;
   myIndex : number;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  
+  constructor(public navCtrl: NavController, public navParams: NavParams,public service : ServiceProvider) {
     this.myIndex = navParams.data.tabIndex || 0;
     
   }
-
-  
+  countCartItem(){
+    return this.service.badgecount
+  }
 
 }

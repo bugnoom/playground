@@ -1,16 +1,8 @@
-
+import { CartlistPage } from './../cartlist/cartlist';
+import { ServiceProvider } from './../../providers/service/service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ActionSheetController,Platform } from 'ionic-angular';
-
-
-
-/**
- * Generated class for the ShoppingPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ActionSheetController, Platform } from 'ionic-angular';
 
 
 @IonicPage()
@@ -23,15 +15,16 @@ import { ActionSheetController,Platform } from 'ionic-angular';
 
 export class ShoppingPage {
 
-  
-
   slides: any[];
   categorys: any[];
   grid: Array<Array<string>>;
   product: any[];
+  numberToToggle: number = 0;
+  toggled: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public actionSheetCtrl: ActionSheetController, public platform : Platform) {
- 
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public platform: Platform, public service: ServiceProvider) {
+
     this.slides = [
       { h1: "Bontree" },
       { h1: "SkillCare" },
@@ -55,7 +48,8 @@ export class ShoppingPage {
       prodcut_price: 500,
       product_discount: 450,
       product_local_price: 10,
-      product_img: 'assets/imgs/logo.png'
+      product_img: 'assets/imgs/logo.png',
+      icon_cart : 'cart-outline'
     },
     {
       product_id: "2",
@@ -63,7 +57,8 @@ export class ShoppingPage {
       prodcut_price: 500,
       product_discount: 450,
       product_local_price: 10,
-      product_img: 'assets/imgs/logo.png'
+      product_img: 'assets/imgs/logo.png',
+      icon_cart : 'cart-outline'
     },
     {
       product_id: "3",
@@ -71,7 +66,8 @@ export class ShoppingPage {
       prodcut_price: 500,
       product_discount: 450,
       product_local_price: 10,
-      product_img: 'assets/imgs/logo.png'
+      product_img: 'assets/imgs/logo.png',
+      icon_cart : 'cart-outline'
     },
     {
       product_id: "4",
@@ -79,7 +75,8 @@ export class ShoppingPage {
       prodcut_price: 500,
       product_discount: 450,
       product_local_price: 10,
-      product_img: 'assets/imgs/logo.png'
+      product_img: 'assets/imgs/logo.png',
+      icon_cart : 'cart-outline'
     },
     {
       product_id: "5",
@@ -87,7 +84,8 @@ export class ShoppingPage {
       prodcut_price: 500,
       product_discount: 450,
       product_local_price: 10,
-      product_img: 'assets/imgs/logo.png'
+      product_img: 'assets/imgs/logo.png',
+      icon_cart : 'cart-outline'
     },
     {
       product_id: "6",
@@ -95,7 +93,8 @@ export class ShoppingPage {
       prodcut_price: 500,
       product_discount: 450,
       product_local_price: 10,
-      product_img: 'assets/imgs/logo.png'
+      product_img: 'assets/imgs/logo.png',
+      icon_cart : 'cart-outline'
     },
     {
       product_id: "7",
@@ -103,17 +102,18 @@ export class ShoppingPage {
       prodcut_price: 500,
       product_discount: 450,
       product_local_price: 10,
-      product_img: 'assets/imgs/logo.png'
+      product_img: 'assets/imgs/logo.png',
+      icon_cart : 'cart-outline'
     }];
 
 
-
+    this.toggled = false;
     this.grid = Array(Math.ceil(this.product.length / 2)); //MATHS!
     // this.grid = Array.from(Array(Math.ceil(this.product.length / 2)).keys());
   }
 
   ionViewDidLoad() {
-   
+
     console.log('Product list ' + this.product.length);
     let rowNum = 0;
     for (let i = 0; i < this.product.length; i += 2) {
@@ -124,27 +124,60 @@ export class ShoppingPage {
       }
 
       if (this.product[i + 1]) {
-          this.grid[rowNum][1] = this.product[i + 1];
+        this.grid[rowNum][1] = this.product[i + 1];
       }
       rowNum++;
     }
-
-  //  console.log(this.grid);
+    //  console.log(this.grid);
   }
 
+  toggle(){
+    this.toggled = this.toggled ? false : true;
+ }
 
   openCategory(id) {
+    this.navCtrl.setRoot(CartlistPage,{category_id:id},{animate: true, direction: 'forward'});
     console.log("Open Cate Id" + id)
   }
 
-  doInfinite(even){
+  doInfinite(even) {
     console.log("infinite Scroll");
     setTimeout(() => {
       even.complete();
     }, 500);
   }
 
-  
+  searchThis(even){
+    console.log(even.target.value)
+  }
+
+  cancelSearch(){
+    this.toggled = false;
+  }
+
+  showColor : string;
+  addtoCart(product_id,event) {
+   console.log(event.target.attributes["0"]);
+   event.target.attributes["0"].value = "danger"
+   console.log(event.target.attributes);
+    if(this.numberToToggle == 0){
+      this.service.badgecount += 1;
+      this.numberToToggle = 1;
+     
+
+    }else{
+      if(this.service.badgecount > 0 ){
+        this.service.badgecount -=1;
+        //this.numberToToggle = 0;
+      }
+    }  
+}
+
+
+  addtoFavorite(product_id) {
+
+  }
+
   presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Share this Products to',
@@ -173,10 +206,10 @@ export class ShoppingPage {
         }
       ]
     });
- 
+
     actionSheet.present();
   }
- 
+
 
 
 }
