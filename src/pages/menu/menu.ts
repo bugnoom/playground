@@ -1,3 +1,4 @@
+import { CategorylistPage } from './../categorylist/categorylist';
 import { LoginPage } from './../login/login';
 import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, Nav } from 'ionic-angular';
@@ -27,7 +28,7 @@ export class MenuPage {
   @ViewChild(Nav) nav : Nav;
 
   pages : PageInterface[]=[
-    {title : 'Categories', pageName:'Shopping',tabComponent:ShoppingPage,index:0,icon:'list'},
+    {title : 'Categories', pageName:'Category',tabComponent:CategorylistPage,index:4,icon:'list'},
     {title : 'My Orders', pageName:'Promotion',tabComponent:PromotionPage,index:1,icon:'clipboard'},
     {title : 'Playground News', pageName:'Cart',tabComponent:CartlistPage,index:2,icon:'document'},
     {title : 'Setting', pageName:'Profile',tabComponent:LoginPage,index:3,icon:'cog'},
@@ -47,7 +48,7 @@ export class MenuPage {
     if(this.nav.getActiveChildNavs() && page.index != undefined){
       this.nav.getActiveChildNavs()[0].select(page.index);
     }else{
-       this.nav.setRoot(page.pageName, params,{animate: true, direction: 'forward'});
+       this.nav.setRoot(page.pageName, {},{animate: true, direction: 'forward'});
     }
   }
 

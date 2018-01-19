@@ -1,3 +1,4 @@
+import { CategorylistPage } from './../categorylist/categorylist';
 import { LoginPage } from './../login/login';
 import { CartlistPage } from './../cartlist/cartlist';
 import { PromotionPage } from './../promotion/promotion';
@@ -25,6 +26,7 @@ export class TabsPage {
   Promotion : any = PromotionPage;
   Cartlist : any = CartlistPage;
   Profile : any = LoginPage;
+  Category : any = CategorylistPage;
   myIndex : number;
   
   constructor(public navCtrl: NavController, public navParams: NavParams,public service : ServiceProvider) {

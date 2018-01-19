@@ -1,3 +1,4 @@
+import { CategorylistPage } from './../pages/categorylist/categorylist';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -27,6 +28,7 @@ import { PromotionDetailPage } from '../pages/promotion-detail/promotion-detail'
     ProfilePage,
     PromotionPage,
     PromotionDetailPage,
+    CategorylistPage,
     TabsPage,
     ShoppingPage,
     KeysPipe
@@ -45,6 +47,7 @@ import { PromotionDetailPage } from '../pages/promotion-detail/promotion-detail'
     ProfilePage,
     PromotionPage,
     PromotionDetailPage,
+    CategorylistPage,
     TabsPage,
     ShoppingPage
 

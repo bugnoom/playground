@@ -1,3 +1,4 @@
+import { CategorylistPage } from './../categorylist/categorylist';
 import { CartlistPage } from './../cartlist/cartlist';
 import { ServiceProvider } from './../../providers/service/service';
 import { Component } from '@angular/core';
@@ -136,7 +137,7 @@ export class ShoppingPage {
  }
 
   openCategory(id) {
-    this.navCtrl.setRoot(CartlistPage,{category_id:id},{animate: true, direction: 'forward'});
+    this.navCtrl.setRoot(CategorylistPage,{category_id:id},{animate: true, direction: 'forward'});
     console.log("Open Cate Id" + id)
   }
 

@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar>
+      <ion-buttons left>
+        <button ion-button (click)="goBack()" class="hmenu" >
+          <ion-icon name="arrow-back"></ion-icon>
+        </button>
+           <button ion-button class="hmenu" menu-toggle="testRightMenu">
+            <ion-icon  name="list"></ion-icon>
+          </button>
+        </ion-buttons>
+      <ion-title mode="ios">Category List</ion-title>
+      <ion-buttons right>
+          <button ion-button  (click)="toggle()">
+            <ion-icon name="search" ></ion-icon>
+            
+          </button>
+        </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+      <ion-searchbar *ngIf="toggled" [(ngModel)]="someValue" (ionInput)="searchThis($event)" (ionCancel)="cancelSearch($event)" (ionClear) = "cancelSearch($event)" [showCancelButton]="true"></ion-searchbar>
+  
+  </ion-content>
+  
+  
