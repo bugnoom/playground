@@ -28,9 +28,7 @@ export class ShoppingPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public platform: Platform, public service: ServiceProvider,public translate : TranslateService,
     public appLanguages: AppLanguagesProvider) {
-      var userLang = navigator.language.split("-")[0];
-      userLang = (this.appLanguages.getLanguages().indexOf(userLang) > -1) ? userLang : 'th';
-      this.translate.use(userLang);
+     
 
     this.slides = [
       { h1: "Bontree" },
