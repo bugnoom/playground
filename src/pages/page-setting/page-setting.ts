@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { TranslateService } from 'ng2-translate';
-import { AppLanguagesProvider } from './../../providers/app-languages/app-languages';
+import { AppLanguagesProvider } from '../../providers/app-languages/app-languages';
 
 
 @IonicPage()

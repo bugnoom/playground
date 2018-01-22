@@ -11,7 +11,7 @@ export class AppLanguagesProvider {
   private languages : String[];
   
   constructor(){
-    this.languages = ['EN','TH'];
+    this.languages = ['en','th'];
   }
 
   public getLanguages() : String[]{

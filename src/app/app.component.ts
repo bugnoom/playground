@@ -32,11 +32,11 @@ export class MyApp {
 
   private configNG2() {
     // this language will be used as a fallback when a translation isn't found in the current language
-    this.translate.setDefaultLang('TH');
+    this.translate.setDefaultLang('th');
 
     // Detect current Language
     var userLang = navigator.language.split("-")[0];
-    userLang = (this.appLanguages.getLanguages().indexOf(userLang) > -1) ? userLang : 'TH';
+    userLang = (this.appLanguages.getLanguages().indexOf(userLang) > -1) ? userLang : 'th';
 
     //the lang to use, if the lang is not available, it will use the current loader to get them
     this.translate.use(userLang);

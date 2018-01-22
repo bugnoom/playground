@@ -4,6 +4,8 @@ import { ServiceProvider } from './../../providers/service/service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ActionSheetController, Platform } from 'ionic-angular';
+import { TranslateService } from 'ng2-translate';
+import { AppLanguagesProvider } from '../../providers/app-languages/app-languages';
 
 
 @IonicPage()
@@ -24,7 +26,11 @@ export class ShoppingPage {
   toggled: boolean = false;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public platform: Platform, public service: ServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public platform: Platform, public service: ServiceProvider,public translate : TranslateService,
+    public appLanguages: AppLanguagesProvider) {
+      var userLang = navigator.language.split("-")[0];
+      userLang = (this.appLanguages.getLanguages().indexOf(userLang) > -1) ? userLang : 'th';
+      this.translate.use(userLang);
 
     this.slides = [
       { h1: "Bontree" },
