@@ -1,3 +1,4 @@
+import { PageSettingPage } from './../page-setting/page-setting';
 
 import { CategorylistPage } from './../categorylist/categorylist';
 import { LoginPage } from './../login/login';
@@ -75,7 +76,7 @@ export class MenuPage {
   }
 
   opensetting(){
-    //this.navCtrl.push(SettingPage,{},{animate: true, direction: 'forward'});
+    this.navCtrl.push(PageSettingPage,{},{animate: true, direction: 'forward'});
   }
 
 }

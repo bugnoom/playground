@@ -12,7 +12,10 @@
         <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
         {{p.title}} 
         </button>
-       
+        <button ion-item menuClose  (click)="opensetting()">
+          <ion-icon item-start name="cog" [color]="isActive('PageSettingPage')"></ion-icon>
+          Setting
+          </button>
     </ion-list>
   </ion-content>
   <ion-footer>
