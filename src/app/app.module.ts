@@ -4,8 +4,9 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { HttpModule,Http } from '@angular/http';
-import {HttpClientModule, HttpClient} from '@angular/common/http';
+import {HttpModule,Http} from '@angular/http';
+import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate';
+import { AppLanguagesProvider } from '../providers/app-languages/app-languages';
 
 import { MyApp } from './app.component';
 import { CartlistPage } from '../pages/cartlist/cartlist';
@@ -20,6 +21,11 @@ import { PromotionDetailPage } from '../pages/promotion-detail/promotion-detail'
 
 import { CategorylistPage } from './../pages/categorylist/categorylist';
 
+
+
+export function createTranslateLoader(http:Http){
+  return new TranslateStaticLoader(http,'./assets/i18n','.json');
+}
 
 @NgModule({
   declarations: [
@@ -38,9 +44,12 @@ import { CategorylistPage } from './../pages/categorylist/categorylist';
   ],
   imports: [
     HttpModule,
-    HttpClientModule,
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    TranslateModule.forRoot({
+      provide : TranslateLoader,
+      deps:[Http]
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -62,7 +71,8 @@ import { CategorylistPage } from './../pages/categorylist/categorylist';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ServiceProvider
+    ServiceProvider,
+    AppLanguagesProvider
   ]
 })
 export class AppModule {}
