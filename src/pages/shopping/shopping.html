@@ -5,7 +5,7 @@
         <ion-icon name="menu"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title mode="ios">Playground</ion-title>
+    <ion-title mode="ios">{{'shopping_title'|translate}}</ion-title>
     <ion-buttons right>
       <button ion-button  (click)="toggle()">
         <ion-icon name="search" ></ion-icon>
@@ -43,7 +43,7 @@
     <ion-row *ngFor="let row of grid">
       <ion-col width-50 *ngFor="let key of row;">
         <ion-card *ngIf="key">
-          <div (click)="openCategory(key.product_id)" style="text-decoration: none; color:#000;">
+          <div (click)="openProduct(key.product_id)" style="text-decoration: none; color:#000;">
 
             <img src="{{key.product_img}}" width="90%" />
             <div class="card-title">{{key.product_name}}</div>

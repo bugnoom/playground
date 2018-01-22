@@ -1,8 +1,8 @@
 <ion-tabs [selectedIndex] = "myIndex">
-  <ion-tab [root]="Shopping" tabTitle="Shopping" tabIcon="home"></ion-tab>
-  <ion-tab [root]="Promotion" tabTitle="Promotion" tabIcon="pricetag"></ion-tab>
-  <ion-tab [root]="Cartlist" tabTitle="Cartlist" [tabBadge]="countCartItem()" tabBadgeStyle="danger" tabIcon="cart" ></ion-tab>
-  <ion-tab [root]="Profile" tabTitle="Profile" tabIcon="person"></ion-tab>
+  <ion-tab [root]="Shopping" tabTitle="{{'shopping_tab'|translate}}" tabIcon="home"></ion-tab>
+  <ion-tab [root]="Promotion" tabTitle="{{'promotion_tab'|translate}}" tabIcon="pricetag"></ion-tab>
+  <ion-tab [root]="Cartlist" tabTitle="{{'cart_tab'|translate}}" [tabBadge]="countCartItem()" tabBadgeStyle="danger" tabIcon="cart" ></ion-tab>
+  <ion-tab [root]="Profile" tabTitle="{{'profile_tab'|translate}}" tabIcon="person"></ion-tab>
   <ion-tab [root]="Category" tabTitle="Category" show="false"></ion-tab>
 
 </ion-tabs>

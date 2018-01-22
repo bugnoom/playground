@@ -4,6 +4,7 @@ import { ServiceProvider } from './../../providers/service/service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ActionSheetController, Platform } from 'ionic-angular';
+import { ProductDetailPage } from '../product-detail/product-detail';
 
 
 
@@ -140,6 +141,11 @@ export class ShoppingPage {
 
   openCategory(id) {
     this.navCtrl.setRoot(CategorylistPage,{category_id:id},{animate: true, direction: 'forward'});
+    console.log("Open Cate Id" + id)
+  }
+
+  openProduct(id){
+    this.navCtrl.setRoot(ProductDetailPage,{product_id:id},{animate: true, direction: 'forward'});
     console.log("Open Cate Id" + id)
   }
 

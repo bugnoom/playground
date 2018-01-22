@@ -1,4 +1,16 @@
 {
     "language_text":"ภาษา",
-    "shopping_title":"เพลกราวน์"
+    "shopping_title":"เพลกราวน์",
+    "setting_title": "ตั้งค่า",
+    "category_title":"สินค้าตามหมวด",
+    "myorder_title":"รายการสั่งซื้อ",
+    "playground_news_title":"ข่าวสาร",
+    "playground_shop_title" : "ค้นหาร้าน Playground",
+
+    "logout":"ออกจากระบบ",
+
+    "shopping_tab":"เลือกซื้อ",
+    "promotion_tab":"โปรโมชั่น",
+    "cart_tab":"ตระกร้า",
+    "profile_tab":"โปรไฟล์"
 }

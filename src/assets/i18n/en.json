@@ -1,4 +1,16 @@
 {
     "language_text":"Language",
-    "shopping_title":"Playground"
+    "shopping_title":"Playground",
+    "setting_title": "Setting",
+    "category_title":"Category List",
+    "myorder_title":"My Orders",
+    "playground_news_title":"Playground News",
+    "playground_shop_title" : "Playground Store",
+
+    "logout":"Logout",
+    
+    "shopping_tab":"Shopping",
+    "promotion_tab":"Promotion",
+    "cart_tab":"Cart",
+    "profile_tab":"My Profile"
 }

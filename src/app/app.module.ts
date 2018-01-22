@@ -20,6 +20,7 @@ import { ServiceProvider } from '../providers/service/service';
 import { PromotionDetailPage } from '../pages/promotion-detail/promotion-detail';
 
 import { CategorylistPage } from './../pages/categorylist/categorylist';
+import { ProductDetailPage } from '../pages/product-detail/product-detail';
 
 
 
@@ -39,6 +40,7 @@ export function createTranslateLoader(http:Http){
     CategorylistPage,
     ShoppingPage,
     PageSettingPage,
+    ProductDetailPage,
     TabsPage,
 
   ],
@@ -48,6 +50,7 @@ export function createTranslateLoader(http:Http){
     IonicModule.forRoot(MyApp),
     TranslateModule.forRoot({
       provide : TranslateLoader,
+      useFactory:(createTranslateLoader),
       deps:[Http]
     })
   ],
@@ -63,6 +66,7 @@ export function createTranslateLoader(http:Http){
     CategorylistPage,
     ShoppingPage,
     PageSettingPage,
+    ProductDetailPage,
      TabsPage
     
 

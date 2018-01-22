@@ -9,6 +9,7 @@ import { ShoppingPage } from '../shopping/shopping';
 import { PromotionPage } from '../promotion/promotion';
 
 import { CartlistPage } from '../cartlist/cartlist';
+import { TranslateService } from 'ng2-translate';
 
 
 
@@ -31,13 +32,13 @@ export class MenuPage {
   @ViewChild(Nav) nav : Nav;
 
   pages : PageInterface[]=[
-    {title : 'Shopping', pageName:'TabsPage',tabComponent:ShoppingPage,index:0,icon:'home'},
-    {title : 'Categories', pageName:'TabsPage',tabComponent:CategorylistPage,index:4,icon:'list'},
-    {title : 'My Orders', pageName:'TabsPage',tabComponent:PromotionPage,index:1,icon:'clipboard'},
-    {title : 'Playground News', pageName:'TabsPage',tabComponent:CartlistPage,index:2,icon:'document'},
-    {title : 'Playground Store', pageName:'TabsPage',tabComponent:LoginPage,index:3,icon:'cafe'}
+    {title : 'shopping_tab', pageName:'TabsPage',tabComponent:ShoppingPage,index:0,icon:'home'},
+    {title : 'category_title', pageName:'TabsPage',tabComponent:CategorylistPage,index:4,icon:'list'},
+    {title : 'myorder_title', pageName:'TabsPage',tabComponent:PromotionPage,index:1,icon:'clipboard'},
+    {title : 'playground_news_title', pageName:'TabsPage',tabComponent:CartlistPage,index:2,icon:'document'},
+    {title : 'playground_shop_title', pageName:'TabsPage',tabComponent:LoginPage,index:3,icon:'cafe'}
   ];
-  constructor(public navCtrl: NavController) {  }
+  constructor(public navCtrl: NavController,public translate:TranslateService) {  }
 
   openPage(page:PageInterface){
     let params = {};
