@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the PageSettingPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { TranslateService } from 'ng2-translate';
+import { AppLanguagesProvider } from './../../providers/app-languages/app-languages';
+
 
 @IonicPage()
 @Component({
@@ -15,7 +12,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PageSettingPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private languages: Array<String>;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,    public translate : TranslateService,
+    public appLanguages: AppLanguagesProvider) {
+
+    this.languages = appLanguages.getLanguages();
   }
 
   ionViewDidLoad() {
