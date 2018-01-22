@@ -6,8 +6,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule,Http } from '@angular/http';
 import {HttpClientModule, HttpClient} from '@angular/common/http';
-import {TranslateModule,TranslateLoader, TranslateStaticLoader} from 'ng2-translate';
-import { AppLanguagesProvider } from '../providers/app-languages/app-languages';
 
 import { MyApp } from './app.component';
 import { CartlistPage } from '../pages/cartlist/cartlist';
@@ -22,11 +20,6 @@ import { PromotionDetailPage } from '../pages/promotion-detail/promotion-detail'
 
 import { CategorylistPage } from './../pages/categorylist/categorylist';
 
-
-export function createTranslateLoader(http:Http){
-  return new TranslateStaticLoader(http,'./assets/i18n','.json');
-
-}
 
 @NgModule({
   declarations: [
@@ -47,12 +40,7 @@ export function createTranslateLoader(http:Http){
     HttpModule,
     HttpClientModule,
     BrowserModule,
-    IonicModule.forRoot(MyApp),
-    TranslateModule.forRoot({
-      provide: TranslateLoader,
-      useFactory: (createTranslateLoader),
-      deps: [Http]
-    })
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -74,8 +62,7 @@ export function createTranslateLoader(http:Http){
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ServiceProvider,
-    AppLanguagesProvider
+    ServiceProvider
   ]
 })
 export class AppModule {}
