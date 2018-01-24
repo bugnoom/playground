@@ -16,12 +16,11 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { PromotionPage } from './../pages/promotion/promotion';
 import { ProfilePage } from './../pages/profile/profile';
 import { ShoppingPage } from '../pages/shopping/shopping';
-import { ServiceProvider } from '../providers/service/service';
 import { PromotionDetailPage } from '../pages/promotion-detail/promotion-detail';
 
 import { CategorylistPage } from './../pages/categorylist/categorylist';
 import { ProductDetailPage } from '../pages/product-detail/product-detail';
-
+import { RemoteServiceProvider } from '../providers/remote-service/remote-service';
 
 
 export function createTranslateLoader(http:Http){
@@ -75,8 +74,8 @@ export function createTranslateLoader(http:Http){
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ServiceProvider,
-    AppLanguagesProvider
+    AppLanguagesProvider,
+    RemoteServiceProvider
   ]
 })
 export class AppModule {}

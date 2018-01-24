@@ -1,6 +1,6 @@
+import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
+
 import { CategorylistPage } from './../categorylist/categorylist';
-import { CartlistPage } from './../cartlist/cartlist';
-import { ServiceProvider } from './../../providers/service/service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ActionSheetController, Platform } from 'ionic-angular';
@@ -8,7 +8,8 @@ import { ProductDetailPage } from '../product-detail/product-detail';
 
 
 
-@IonicPage()
+@IonicPage() 
+
 @Component({
   selector: 'page-shopping',
   templateUrl: 'shopping.html',
@@ -26,26 +27,20 @@ export class ShoppingPage {
   toggled: boolean = false;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public platform: Platform, public service: ServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public platform: Platform,private r : RemoteServiceProvider) {
      
+    this.getCategory();
 
-    this.slides = [
-      { h1: "Bontree" },
-      { h1: "SkillCare" },
-      { h1: "Mask" },
-      { h1: "Lipstick" },
-      { h1: "ApprilSkin" }
-    ];
+    this.getSlider();
 
-    this.categorys = [
-      { id: "1", category: "Bontree" },
-      { id: "2", category: "SkillCare" },
-      { id: "3", category: "Mask" },
-      { id: "4", category: "Lipstick" },
-      { id: "5", category: "ApprilSkin" },
-      { id: "6", category: "Coushion" }
-    ]
+    this.getProduct();
+  
+    this.toggled = false;
+    this.grid = Array(Math.ceil(this.product.length / 2)); //MATHS!
+    // this.grid = Array.from(Array(Math.ceil(this.product.length / 2)).keys());
+  }
 
+  getProduct(){
     this.product = [{
       product_id: "1",
       product_name: "AAAA",
@@ -109,11 +104,28 @@ export class ShoppingPage {
       product_img: 'assets/imgs/logo.png',
       icon_cart : 'cart-outline'
     }];
+  }
 
+  getSlider(){
+    this.slides = [
+      { h1: "Bontree" },
+      { h1: "SkillCare" },
+      { h1: "Mask" },
+      { h1: "Lipstick" },
+      { h1: "ApprilSkin" }
+    ];
+  }
 
-    this.toggled = false;
-    this.grid = Array(Math.ceil(this.product.length / 2)); //MATHS!
-    // this.grid = Array.from(Array(Math.ceil(this.product.length / 2)).keys());
+  getCategory(){
+    this.r.getCategories();
+   /* this.categorys = [
+      { id: "1", category: "Bontree" },
+      { id: "2", category: "SkillCare" },
+      { id: "3", category: "Mask" },
+      { id: "4", category: "Lipstick" },
+      { id: "5", category: "ApprilSkin" },
+      { id: "6", category: "Coushion" }
+    ]*/
   }
 
   ionViewDidLoad() {
@@ -170,13 +182,13 @@ export class ShoppingPage {
    event.target.attributes["0"].value = "danger"
    console.log(event.target.attributes);
     if(this.numberToToggle == 0){
-      this.service.badgecount += 1;
+      this.r.badgecount += 1;
       this.numberToToggle = 1;
      
 
     }else{
-      if(this.service.badgecount > 0 ){
-        this.service.badgecount -=1;
+      if(this.r.badgecount > 0 ){
+        this.r.badgecount -=1;
         //this.numberToToggle = 0;
       }
     }  
