@@ -4,7 +4,7 @@ Mobile Application for connect to wordpress and woocommerce
 # INSTALL PLUGINS AND PLATFORMS
 Install all the required Cordova plugins the app needs with the following command:
 
-$ionic state restore
+ionic cordova prepare
 
 This command will actually restore all the platforms and plugins are included in the package.json file.
 
