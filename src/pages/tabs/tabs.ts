@@ -1,3 +1,4 @@
+import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { CategorylistPage } from './../categorylist/categorylist';
 import { LoginPage } from './../login/login';
 import { CartlistPage } from './../cartlist/cartlist';
@@ -5,7 +6,7 @@ import { PromotionPage } from './../promotion/promotion';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ShoppingPage } from '../shopping/shopping';
-import { ServiceProvider } from '../../providers/service/service';
+
 import { TranslateService } from 'ng2-translate';
 
 
@@ -30,7 +31,7 @@ export class TabsPage {
   Category : any = CategorylistPage;
   myIndex : number;
   
-  constructor(public navCtrl: NavController,public translate: TranslateService, public navParams: NavParams,public service : ServiceProvider) {
+  constructor(public navCtrl: NavController,public translate: TranslateService, public navParams: NavParams,public service : RemoteServiceProvider) {
     this.myIndex = navParams.data.tabIndex || 0;
     
   }

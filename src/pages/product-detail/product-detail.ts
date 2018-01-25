@@ -40,7 +40,7 @@ cancelSearch(){
 }
 
 goBack() {
-  this.navCtrl.setRoot(ShoppingPage,{},{animate: true, direction: 'back'});
+  this.navCtrl.push(ShoppingPage,{},{animate: true, direction: 'back'});
 }
 
 

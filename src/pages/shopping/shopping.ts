@@ -3,11 +3,12 @@ import { RemoteServiceProvider } from './../../providers/remote-service/remote-s
 import { CategorylistPage } from './../categorylist/categorylist';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ActionSheetController, Platform } from 'ionic-angular';
+import { ActionSheetController, Platform,LoadingController } from 'ionic-angular';
 import { ProductDetailPage } from '../product-detail/product-detail';
 
 
 
+ 
 @IonicPage() 
 
 @Component({
@@ -25,23 +26,61 @@ export class ShoppingPage {
   product: any[];
   numberToToggle: number = 0;
   toggled: boolean = false;
+  page : number = 1;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public platform: Platform,private r : RemoteServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public platform: Platform,private r : RemoteServiceProvider,loading : LoadingController) {
      
     this.getCategory();
 
     this.getSlider();
 
-    this.getProduct();
+    this.getProduct(this.page);
   
     this.toggled = false;
-    this.grid = Array(Math.ceil(this.product.length / 2)); //MATHS!
+   // this.grid = Array(Math.ceil(this.product.length / 2)); //MATHS!
     // this.grid = Array.from(Array(Math.ceil(this.product.length / 2)).keys());
   }
 
-  getProduct(){
-    this.product = [{
+  showdata(){
+    this.grid = Array(Math.ceil(this.product.length / 2))
+    let rowNum = 0;
+    for (let i = 0; i < this.product.length; i += 2) {
+      this.grid[rowNum] = Array(2);
+
+      if (this.product[i]) {
+        this.grid[rowNum][0] = this.product[i]
+      }
+
+      if (this.product[i + 1]) {
+        this.grid[rowNum][1] = this.product[i + 1];
+      }
+      rowNum++;
+    } 
+  }
+
+  getProduct(p){
+    this.r.getAllProduct(p).subscribe(
+      data=>this.product = (data),
+      error=>console.log('Error'),
+      ()=> this.showdata()
+    );
+    console.log('Product list ' + this.product);
+    /* let rowNum = 0;
+    for (let i = 0; i < this.product.length; i += 2) {
+      this.grid[rowNum] = Array(2);
+
+      if (this.product[i]) {
+        this.grid[rowNum][0] = this.product[i]
+      }
+
+      if (this.product[i + 1]) {
+        this.grid[rowNum][1] = this.product[i + 1];
+      }
+      rowNum++;
+    } */
+
+    /* this.product = [{
       product_id: "1",
       product_name: "AAAA",
       prodcut_price: 500,
@@ -103,7 +142,7 @@ export class ShoppingPage {
       product_local_price: 10,
       product_img: 'assets/imgs/logo.png',
       icon_cart : 'cart-outline'
-    }];
+    }]; */
   }
 
   getSlider(){
@@ -116,8 +155,12 @@ export class ShoppingPage {
     ];
   }
 
+  
+
   getCategory(){
-    this.r.getCategories();
+      this.r.getCategories().subscribe(data=>this.categorys = data);
+
+   // this.r.getCategories().subscribe(data=>console.log(data)); //console.log(this.categorys);
    /* this.categorys = [
       { id: "1", category: "Bontree" },
       { id: "2", category: "SkillCare" },
@@ -129,21 +172,7 @@ export class ShoppingPage {
   }
 
   ionViewDidLoad() {
-
-    console.log('Product list ' + this.product.length);
-    let rowNum = 0;
-    for (let i = 0; i < this.product.length; i += 2) {
-      this.grid[rowNum] = Array(2);
-
-      if (this.product[i]) {
-        this.grid[rowNum][0] = this.product[i]
-      }
-
-      if (this.product[i + 1]) {
-        this.grid[rowNum][1] = this.product[i + 1];
-      }
-      rowNum++;
-    }
+   
     //  console.log(this.grid);
   }
 
@@ -157,15 +186,26 @@ export class ShoppingPage {
   }
 
   openProduct(id){
-    this.navCtrl.setRoot(ProductDetailPage,{product_id:id},{animate: true, direction: 'forward'});
+    this.navCtrl.push(ProductDetailPage,{product_id:id},{animate: true, direction: 'forward'});
     console.log("Open Cate Id" + id)
   }
 
   doInfinite(even) {
     console.log("infinite Scroll");
+    this.page = this.page+1;
     setTimeout(() => {
-      even.complete();
-    }, 500);
+      this.r.getAllProduct(this.page).subscribe(
+        data=>{
+          for(let i =0; i < data.length; i++){
+            this.product.push(data[i]);}
+        },
+        error=>console.log('Error'),
+        ()=>{even.complete();
+            this.showdata();    
+        }
+      )
+     
+    }, 1000);
   }
 
   searchThis(even){
