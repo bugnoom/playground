@@ -7,7 +7,6 @@ import { ProductDetailPage } from '../product-detail/product-detail';
 
  
 @IonicPage() 
-
 @Component({
   selector: 'page-shopping',
   templateUrl: 'shopping.html',
@@ -16,9 +15,9 @@ import { ProductDetailPage } from '../product-detail/product-detail';
 export class ShoppingPage {
 
   slides: any[];
-  categorys: any[];
+  categorys: any = 0;
   grid: Array<Array<string>>;
-  product: any[];
+  product: any = 0;
   toggled: boolean = false;
   page : number = 1;
 

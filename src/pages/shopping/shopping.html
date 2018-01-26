@@ -29,6 +29,8 @@
   <ion-item>
     <ion-scroll scrollX style="height:80px;margin-top:-10px">
       <div class="scroll-item">
+          <ion-spinner name="circles" *ngIf="categorys == 0" style="top:10px;" >
+          </ion-spinner>
         <ion-col col-33 *ngFor="let category of categorys">
           <div class="acard acard-1" (click)="openCategory(category.id)">
             <img src="{{category.image.src}}" height="40" width="40">
@@ -36,10 +38,12 @@
           </div>
         </ion-col>
       </div>
-    </ion-scroll>
+    </ion-scroll> 
   </ion-item>
 
   <ion-grid>
+      <ion-spinner name="circles" *ngIf="product == 0">
+        </ion-spinner>
     <ion-row *ngFor="let row of grid">
       <ion-col width-50 *ngFor="let key of row;">
        <productloop keys="key" images="{{key.images[0].src}}" id="{{key.id}}" name="{{key.name}}" price="{{key.price}}"></productloop>
