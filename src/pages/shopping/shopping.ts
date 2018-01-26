@@ -3,10 +3,7 @@ import { RemoteServiceProvider } from './../../providers/remote-service/remote-s
 import { CategorylistPage } from './../categorylist/categorylist';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ActionSheetController, Platform,LoadingController } from 'ionic-angular';
 import { ProductDetailPage } from '../product-detail/product-detail';
-
-
 
  
 @IonicPage() 
@@ -16,20 +13,16 @@ import { ProductDetailPage } from '../product-detail/product-detail';
   templateUrl: 'shopping.html',
 })
 
-
-
 export class ShoppingPage {
 
   slides: any[];
   categorys: any[];
   grid: Array<Array<string>>;
   product: any[];
-  numberToToggle: number = 0;
   toggled: boolean = false;
   page : number = 1;
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public platform: Platform,private r : RemoteServiceProvider,loading : LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private r : RemoteServiceProvider) {
      
     this.getCategory();
 
@@ -80,69 +73,7 @@ export class ShoppingPage {
       rowNum++;
     } */
 
-    /* this.product = [{
-      product_id: "1",
-      product_name: "AAAA",
-      prodcut_price: 500,
-      product_discount: 450,
-      product_local_price: 10,
-      product_img: 'assets/imgs/logo.png',
-      icon_cart : 'cart-outline'
-    },
-    {
-      product_id: "2",
-      product_name: "BBBBB",
-      prodcut_price: 500,
-      product_discount: 450,
-      product_local_price: 10,
-      product_img: 'assets/imgs/logo.png',
-      icon_cart : 'cart-outline'
-    },
-    {
-      product_id: "3",
-      product_name: "CCCC",
-      prodcut_price: 500,
-      product_discount: 450,
-      product_local_price: 10,
-      product_img: 'assets/imgs/logo.png',
-      icon_cart : 'cart-outline'
-    },
-    {
-      product_id: "4",
-      product_name: "DDDD",
-      prodcut_price: 500,
-      product_discount: 450,
-      product_local_price: 10,
-      product_img: 'assets/imgs/logo.png',
-      icon_cart : 'cart-outline'
-    },
-    {
-      product_id: "5",
-      product_name: "FFFFF",
-      prodcut_price: 500,
-      product_discount: 450,
-      product_local_price: 10,
-      product_img: 'assets/imgs/logo.png',
-      icon_cart : 'cart-outline'
-    },
-    {
-      product_id: "6",
-      product_name: "GGGGGG",
-      prodcut_price: 500,
-      product_discount: 450,
-      product_local_price: 10,
-      product_img: 'assets/imgs/logo.png',
-      icon_cart : 'cart-outline'
-    },
-    {
-      product_id: "7",
-      product_name: "HHHHHH",
-      prodcut_price: 500,
-      product_discount: 450,
-      product_local_price: 10,
-      product_img: 'assets/imgs/logo.png',
-      icon_cart : 'cart-outline'
-    }]; */
+    
   }
 
   getSlider(){
@@ -185,10 +116,7 @@ export class ShoppingPage {
     console.log("Open Cate Id" + id)
   }
 
-  openProduct(id){
-    this.navCtrl.push(ProductDetailPage,{product_id:id},{animate: true, direction: 'forward'});
-    console.log("Open Cate Id" + id)
-  }
+  
 
   doInfinite(even) {
     console.log("infinite Scroll");
@@ -216,61 +144,7 @@ export class ShoppingPage {
     this.toggled = false;
   }
 
-  showColor : string;
-  addtoCart(product_id,event) {
-   console.log(event.target.attributes["0"]);
-   event.target.attributes["0"].value = "danger"
-   console.log(event.target.attributes);
-    if(this.numberToToggle == 0){
-      this.r.badgecount += 1;
-      this.numberToToggle = 1;
-     
-
-    }else{
-      if(this.r.badgecount > 0 ){
-        this.r.badgecount -=1;
-        //this.numberToToggle = 0;
-      }
-    }  
-}
-
-
-  addtoFavorite(product_id) {
-
-  }
-
-  presentActionSheet() {
-    let actionSheet = this.actionSheetCtrl.create({
-      title: 'Share this Products to',
-      buttons: [
-        {
-          text: 'Facebook',
-          role: 'facebook',
-          icon: !this.platform.is('ios') ? 'logo-facebook' : null,
-          handler: () => {
-            console.log('Facebook clicked');
-          }
-        },
-        {
-          text: 'Google+',
-          icon: !this.platform.is('ios') ? 'logo-googleplus' : null,
-          handler: () => {
-            console.log('Google+ clicked');
-          }
-        },
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        }
-      ]
-    });
-
-    actionSheet.present();
-  }
-
+ 
 
 
 }
