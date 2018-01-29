@@ -22,6 +22,7 @@ import { CategorylistPage } from './../pages/categorylist/categorylist';
 import { ProductDetailPage } from '../pages/product-detail/product-detail';
 import { RemoteServiceProvider } from '../providers/remote-service/remote-service';
 import { ProductloopComponent } from '../components/productloop/productloop';
+import { QrscanComponent } from '../components/qrscan/qrscan';
 
 
 export function createTranslateLoader(http:Http){
@@ -42,7 +43,8 @@ export function createTranslateLoader(http:Http){
     PageSettingPage,
     ProductDetailPage,
     TabsPage,
-    ProductloopComponent
+    ProductloopComponent,
+    QrscanComponent
 
   ],
   imports: [

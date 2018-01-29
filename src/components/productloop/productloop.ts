@@ -1,7 +1,9 @@
+import { App } from 'ionic-angular';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { ActionSheetController,Platform, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Component, Input } from '@angular/core';
 import { ProductDetailPage } from '../../pages/product-detail/product-detail';
+
 
 
 @Component({
@@ -18,7 +20,7 @@ export class ProductloopComponent {
 
   numberToToggle: number = 0;
 
-  constructor(private actionSheetCtrl : ActionSheetController, private platform : Platform, private r : RemoteServiceProvider,private navCtrl : NavController) {
+  constructor(private app : App , private actionSheetCtrl : ActionSheetController, private platform : Platform, private r : RemoteServiceProvider,private navCtrl : NavController) {
     
   }
 
@@ -41,7 +43,8 @@ export class ProductloopComponent {
 }
 
 openProduct(id){
-  this.navCtrl.push(ProductDetailPage,{product_id:id},{animate: true, direction: 'forward'});
+ 
+ this.app.getRootNav().push(ProductDetailPage,{product_id:id},{animate: true, direction: 'forward'});
   console.log("Open Cate Id" + id)
 }
 

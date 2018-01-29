@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProductDetailPage } from '../product-detail/product-detail';
 
+
  
 @IonicPage() 
 @Component({
@@ -111,11 +112,10 @@ export class ShoppingPage {
  }
 
   openCategory(id) {
-    this.navCtrl.setRoot(CategorylistPage,{category_id:id},{animate: true, direction: 'forward'});
+    this.navCtrl.push(CategorylistPage,{category_id:id},{animate: true, direction: 'forward'});
     console.log("Open Cate Id" + id)
   }
 
-  
 
   doInfinite(even) {
     console.log("infinite Scroll");

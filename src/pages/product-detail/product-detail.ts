@@ -18,6 +18,7 @@ export class ProductDetailPage {
 
   toggled : boolean = false;
   product_id : number;
+  product : any = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.product_id = navParams.get('product_id');
@@ -25,6 +26,10 @@ export class ProductDetailPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProductDetailPage');
+  }
+
+  segmentChanged(e){
+    console.log(e);
   }
 
   toggle(){

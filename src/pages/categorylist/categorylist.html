@@ -1,9 +1,9 @@
 <ion-header>
     <ion-navbar>
       <ion-buttons left>
-        <button ion-button (click)="goBack()" class="hmenu" >
+       <!-- <button ion-button (click)="goBack()" class="hmenu" >
           <ion-icon name="arrow-back"></ion-icon>
-        </button>
+        </button>-->
            <button ion-button class="hmenu" menu-toggle="testRightMenu">
             <ion-icon  name="list"></ion-icon>
           </button>
@@ -20,7 +20,18 @@
   
   <ion-content>
       <ion-searchbar *ngIf="toggled" [(ngModel)]="someValue" (ionInput)="searchThis($event)" (ionCancel)="cancelSearch($event)" (ionClear) = "cancelSearch($event)" [showCancelButton]="true"></ion-searchbar>
-  
+      <ion-grid>
+          <ion-spinner name="circles" *ngIf="product == 0">
+            </ion-spinner>
+        <ion-row *ngFor="let row of grid">
+          <ion-col width-50 *ngFor="let key of row;">
+           <productloop keys="key" images="{{key.images[0].src}}" id="{{key.id}}" name="{{key.name}}" price="{{key.price}}"></productloop>
+          </ion-col>
+        </ion-row>
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </ion-grid>
   </ion-content>
   
   

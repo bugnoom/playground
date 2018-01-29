@@ -1,13 +1,10 @@
 
 <ion-header>
-
   <ion-navbar>
-     
       <ion-title mode="ios">Product Detail {{product_id}}</ion-title>
       <ion-buttons right>
           <button ion-button  (click)="toggle()">
             <ion-icon name="search" ></ion-icon>
-            
           </button>
         </ion-buttons>
   </ion-navbar>
@@ -16,5 +13,39 @@
 
 
 <ion-content >
-    <ion-searchbar *ngIf="toggled" [(ngModel)]="someValue" (ionInput)="searchThis($event)" (ionCancel)="cancelSearch($event)" (ionClear) = "cancelSearch($event)" [showCancelButton]="true"></ion-searchbar>
+    <img src="" />
+    <ion-item>AAAAAAAA</ion-item>
+    <div padding>
+        <ion-segment [(ngModel)]="pet">
+          <ion-segment-button value="kittens">
+            Kittens
+          </ion-segment-button>
+          <ion-segment-button value="puppies">
+            Puppies
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+      
+      <div [ngSwitch]="pet">
+        <ion-list *ngSwitchCase="'puppies'">
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="img/thumbnail-puppy-1.jpg">
+            </ion-thumbnail>
+            <h2>Ruby</h2>
+          </ion-item>
+         
+        </ion-list>
+      
+        <ion-list *ngSwitchCase="'kittens'">
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="img/thumbnail-kitten-1.jpg">
+            </ion-thumbnail>
+            <h2>Luna</h2>
+          </ion-item>
+         
+        </ion-list>
+      </div>
+
 </ion-content>
