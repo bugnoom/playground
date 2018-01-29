@@ -23,7 +23,8 @@ import { ProductDetailPage } from '../pages/product-detail/product-detail';
 import { RemoteServiceProvider } from '../providers/remote-service/remote-service';
 import { ProductloopComponent } from '../components/productloop/productloop';
 import { QrscanComponent } from '../components/qrscan/qrscan';
-
+import { Camera } from '@ionic-native/camera';
+import { QRScanner } from '@ionic-native/qr-scanner';
 
 export function createTranslateLoader(http:Http){
   return new TranslateStaticLoader(http,'./assets/i18n','.json');
@@ -79,7 +80,9 @@ export function createTranslateLoader(http:Http){
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AppLanguagesProvider,
-    RemoteServiceProvider
+    RemoteServiceProvider,
+    Camera,
+    QRScanner
   ]
 })
 export class AppModule {}
