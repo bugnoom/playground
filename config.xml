@@ -3,7 +3,7 @@
     <name>playground</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="developer@playworksthailand.com" href="http://www.playworksthailand.com/">Playworks Developer Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.1.48:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
