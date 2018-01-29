@@ -1,3 +1,4 @@
+import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ShoppingPage } from '../shopping/shopping';
@@ -18,14 +19,27 @@ export class ProductDetailPage {
 
   toggled : boolean = false;
   product_id : number;
+  product_name : string = "";
   product : any = 0;
+  slides : any[];
+  product_properties : string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private r : RemoteServiceProvider) {
     this.product_id = navParams.get('product_id');
+    this.product_name = navParams.get('product_name');
+    this.r.getProduct(this.product_id).subscribe(
+      data=>this.product = (data),
+      error=>console.log('Error1111'),
+      ()=>this.slides = this.product.images
+    );
+
+    this.product_properties = "product_detail";
+    
+    
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProductDetailPage');
+       
   }
 
   segmentChanged(e){

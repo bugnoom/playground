@@ -44,7 +44,7 @@ export class ProductloopComponent {
 
 openProduct(id){
  
- this.app.getRootNav().push(ProductDetailPage,{product_id:id},{animate: true, direction: 'forward'});
+ this.app.getRootNav().push(ProductDetailPage,{product_id:id,product_name:this.name},{animate: true, direction: 'forward'});
   console.log("Open Cate Id" + id)
 }
 

@@ -28,7 +28,7 @@ export class ShoppingPage {
 
     this.getSlider();
 
-    this.getProduct(this.page);
+    this.getAllProduct(this.page);
   
     this.toggled = false;
    // this.grid = Array(Math.ceil(this.product.length / 2)); //MATHS!
@@ -52,10 +52,10 @@ export class ShoppingPage {
     } 
   }
 
-  getProduct(p){
+  getAllProduct(p){
     this.r.getAllProduct(p).subscribe(
       data=>this.product = (data),
-      error=>console.log('Error'),
+      error=>console.log('Error22'+error),
       ()=> this.showdata()
     );
     console.log('Product list ' + this.product);
@@ -90,16 +90,6 @@ export class ShoppingPage {
 
   getCategory(){
       this.r.getCategories().subscribe(data=>this.categorys = data);
-
-   // this.r.getCategories().subscribe(data=>console.log(data)); //console.log(this.categorys);
-   /* this.categorys = [
-      { id: "1", category: "Bontree" },
-      { id: "2", category: "SkillCare" },
-      { id: "3", category: "Mask" },
-      { id: "4", category: "Lipstick" },
-      { id: "5", category: "ApprilSkin" },
-      { id: "6", category: "Coushion" }
-    ]*/
   }
 
   ionViewDidLoad() {
