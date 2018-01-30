@@ -71,4 +71,15 @@ export class RemoteServiceProvider {
     } 
   }
 
+  getcartItem(id){
+    if(id){
+      var index = this.cartlist.indexOf(id,0);
+      if(index > -1){
+        return true;
+      }else{
+        return false;
+      }
+    }
+  }
+
 }

@@ -17,50 +17,68 @@ import { ShoppingPage } from '../shopping/shopping';
 })
 export class ProductDetailPage {
 
-  toggled : boolean = false;
-  product_id : number;
-  product_name : string = "";
-  product : any = 0;
-  slides : any[];
-  product_properties : string;
+  toggled: boolean = false;
+  product_id: number;
+  product_name: string = "";
+  product: any = 0;
+  slides: any[];
+  product_properties: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private r : RemoteServiceProvider) {
+  product_review: any = 0;
+  product_related: any = 0;
+
+ already_cart : boolean = false;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private r: RemoteServiceProvider) {
     this.product_id = navParams.get('product_id');
     this.product_name = navParams.get('product_name');
-    this.r.getProduct(this.product_id).subscribe(
-      data=>this.product = (data),
-      error=>console.log('Error1111'),
-      ()=>this.slides = this.product.images
-    );
-
     this.product_properties = "product_detail";
-    
-    
+
+    if(this.r.getcartItem(this.product_id)){
+      this.already_cart = true;
+    }else{
+      this.already_cart = false;
+    }
+
   }
 
   ionViewDidLoad() {
-       
+    this.loadProductDetail(this.product_id);
+    this.loadProductReview(this.product_id);
+    this.loadProductRelated(this.product_id);
   }
 
-  segmentChanged(e){
+  loadProductDetail(product_id) {
+    this.r.getProduct(product_id).subscribe(
+      data => this.product = (data),
+      error => console.log('Error1111'),
+      () => this.slides = this.product.images
+    );
+  }
+
+  loadProductReview(product_id){
+
+  }
+
+  loadProductRelated(product_id){
+
+  }
+
+  segmentChanged(e) {
     console.log(e);
   }
 
-  toggle(){
-    this.toggled = this.toggled ? false : true;
- }
+  goBack() {
+    this.navCtrl.push(ShoppingPage, {}, { animate: true, direction: 'back' });
+  }
 
- searchThis(even){
-  console.log(even.target.value)
-}
+  buyitem(id){
+    alert(id);
+  }
 
-cancelSearch(){
-  this.toggled = false;
-}
-
-goBack() {
-  this.navCtrl.push(ShoppingPage,{},{animate: true, direction: 'back'});
-}
-
+  addtocart(id){
+    this.r.addtocart(id);
+    this.already_cart = true;
+  }
 
 }

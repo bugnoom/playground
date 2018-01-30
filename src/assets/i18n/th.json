@@ -12,5 +12,13 @@
     "shopping_tab":"เลือกซื้อ",
     "promotion_tab":"โปรโมชั่น",
     "cart_tab":"ตระกร้า",
-    "profile_tab":"โปรไฟล์"
+    "profile_tab":"โปรไฟล์",
+
+    "product_detail_segment":"รายละเอียด",
+    "product_review_segment":"บทวิจารณ์",
+    "product_related_segment":"สินค้าเกี่ยวข้อง",
+
+    "addtocart":"ใส่ในตระกร้า",
+    "removetocart" : "ดูในตระกร้า",
+    "buynow" : "ชำระเงินทันที"
 }

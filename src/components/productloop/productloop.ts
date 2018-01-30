@@ -33,18 +33,13 @@ export class ProductloopComponent {
   ngOnInit() {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.getcartItem();
+   if(this.r.getcartItem(this.id)){
+    this.numberToToggle = 1;
+   }
    
   }
 
-  getcartItem(){
-    if(this.id){
-      var index = this.r.cartlist.indexOf(this.id,0);
-      if(index > -1){
-        this.numberToToggle = 1;
-      } 
-    }
-  }
+ 
 
   getFavoriteItem(){
     

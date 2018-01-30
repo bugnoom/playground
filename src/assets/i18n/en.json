@@ -12,5 +12,14 @@
     "shopping_tab":"Shopping",
     "promotion_tab":"Promotion",
     "cart_tab":"Cart",
-    "profile_tab":"My Profile"
+    "profile_tab":"My Profile",
+
+    "product_detail_segment":"Detail",
+    "product_review_segment":"Review",
+    "product_related_segment":"Related",
+
+    "addtocart":"Add to Cart",
+    "removetocart" : "Go to cart",
+    "buynow" : "Buy Now"
+
 }

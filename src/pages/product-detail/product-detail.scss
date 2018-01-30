@@ -1,10 +1,20 @@
 page-product-detail {
     .bannerslider{
-        height:35%;
-        border:1px solid #cccccc;
+        height:40%;
+        border:0px solid #cccccc;
     }
 
     .clsdescription p img{
         height:auto !important;
     }
+
+     div ins span.woocommerce-Price-amount.amount{
+     right: 10px;
+    position: relative;
+    font-size: 16pt;
+    font-weight: bold;
+    color:#d94239;
+    text-decoration: underline;
+    }
+    
 }
