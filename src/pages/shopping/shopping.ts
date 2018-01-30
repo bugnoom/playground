@@ -6,8 +6,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProductDetailPage } from '../product-detail/product-detail';
 
 
- 
-@IonicPage() 
+
+@IonicPage()
 @Component({
   selector: 'page-shopping',
   templateUrl: 'shopping.html',
@@ -20,23 +20,21 @@ export class ShoppingPage {
   grid: Array<Array<string>>;
   product: any = 0;
   toggled: boolean = false;
-  page : number = 1;
+  page: number = 1;
+  hasMoreData: boolean = true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private r : RemoteServiceProvider) {
-     
-    this.getCategory();
+  constructor(public navCtrl: NavController, public navParams: NavParams, private r: RemoteServiceProvider) {
 
-    this.getSlider();
 
-    this.getAllProduct(this.page);
-  
-    this.toggled = false;
-   // this.grid = Array(Math.ceil(this.product.length / 2)); //MATHS!
+
+    // this.toggled = false;
+    // this.grid = Array(Math.ceil(this.product.length / 2)); //MATHS!
     // this.grid = Array.from(Array(Math.ceil(this.product.length / 2)).keys());
   }
 
-  showdata(){
+  showdata() {
     this.grid = Array(Math.ceil(this.product.length / 2))
+    console.log(this.grid);
     let rowNum = 0;
     for (let i = 0; i < this.product.length; i += 2) {
       this.grid[rowNum] = Array(2);
@@ -49,14 +47,14 @@ export class ShoppingPage {
         this.grid[rowNum][1] = this.product[i + 1];
       }
       rowNum++;
-    } 
+    }
   }
 
-  getAllProduct(p){
+  getAllProduct(p) {
     this.r.getAllProduct(p).subscribe(
-      data=>this.product = (data),
-      error=>console.log('Error22'+error),
-      ()=> this.showdata()
+      data => this.product = (data),
+      error => console.log('Error22' + error),
+      () => this.showdata()
     );
     console.log('Product list ' + this.product);
     /* let rowNum = 0;
@@ -73,10 +71,10 @@ export class ShoppingPage {
       rowNum++;
     } */
 
-    
+
   }
 
-  getSlider(){
+  getSlider() {
     this.slides = [
       { h1: "Bontree" },
       { h1: "SkillCare" },
@@ -86,54 +84,66 @@ export class ShoppingPage {
     ];
   }
 
-  
 
-  getCategory(){
-      this.r.getCategories().subscribe(data=>this.categorys = data);
+
+  getCategory() {
+    this.r.getCategories().subscribe(data => this.categorys = data);
   }
 
   ionViewDidLoad() {
-   
+    this.getCategory();
+
+    this.getSlider();
+
+    this.getAllProduct(this.page);
     //  console.log(this.grid);
   }
 
-  toggle(){
+  toggle() {
     this.toggled = this.toggled ? false : true;
- }
+  }
 
   openCategory(id) {
-    this.navCtrl.push(CategorylistPage,{category_id:id},{animate: true, direction: 'forward'});
-    console.log("Open Cate Id" + id)
+    this.navCtrl.push(CategorylistPage, { category_id: id }, { animate: true, direction: 'forward' });
+   // console.log("Open Cate Id" + id)
   }
 
 
   doInfinite(even) {
-    console.log("infinite Scroll");
-    this.page = this.page+1;
+    // console.log("infinite Scroll");
+    this.page = this.page + 1;
     setTimeout(() => {
       this.r.getAllProduct(this.page).subscribe(
-        data=>{
-          for(let i =0; i < data.length; i++){
-            this.product.push(data[i]);}
+        data => {
+          // console.log(data);
+          if (data.length > 0) {
+            for (let i = 0; i < data.length; i++) {
+              this.product.push(data[i]);
+            }
+            this.showdata();
+          } else {
+            even.complete();
+          }
         },
-        error=>console.log('Error'),
-        ()=>{even.complete();
-            this.showdata();    
+        error => console.log('Error'),
+        () => {
+          even.complete();
         }
       )
-     
+
     }, 1000);
+
   }
 
-  searchThis(even){
+  searchThis(even) {
     console.log(even.target.value)
   }
 
-  cancelSearch(){
+  cancelSearch() {
     this.toggled = false;
   }
 
- 
+
 
 
 }

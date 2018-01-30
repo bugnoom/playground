@@ -1,4 +1,4 @@
-<ion-card *ngIf="keys">
+<ion-card>
   <div (click)="openProduct(id)" style="text-decoration: none; color:#000;">
 
     <img src="{{images}}" width="90%" />
@@ -24,7 +24,7 @@
       <ion-col class="bt last">
         <div (click)="addtoCart(id,$event)">
           <ion-icon [id]="'icon'+id" name="cart-outline" md="md-cart" *ngIf="numberToToggle==0" ></ion-icon>
-          <ion-icon [id]="'icon'+id" name="cart-outline" md="md-cart" *ngIf="numberToToggle>0" style="color:red" ></ion-icon>
+          <ion-icon [id]="'icon'+id" name="cart-outline" md="md-cart" *ngIf="numberToToggle>0" style="color:#d94239" ></ion-icon>
         </div>
       </ion-col>
     </ion-row>

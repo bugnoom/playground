@@ -22,14 +22,34 @@ export class ProductloopComponent {
   @Input('images') images : string;
 
   numberToToggle: number = 0;
-  language : string;
+  language : string = this.translate.currentLang;;
  
 
   constructor(private app : App , private actionSheetCtrl : ActionSheetController, private platform : Platform, private r : RemoteServiceProvider,private navCtrl : NavController, private translate : TranslateService) {
-    this.language = translate.currentLang;
+   
+   
   }
 
-  showColor : string;
+  ngOnInit() {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.getcartItem();
+   
+  }
+
+  getcartItem(){
+    if(this.id){
+      var index = this.r.cartlist.indexOf(this.id,0);
+      if(index > -1){
+        this.numberToToggle = 1;
+      } 
+    }
+  }
+
+  getFavoriteItem(){
+    
+  }
+
   addtoCart(product_id,event) {
     if(this.numberToToggle == 0){
       this.r.badgecount += 1;
