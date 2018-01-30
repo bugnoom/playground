@@ -2,25 +2,32 @@
   <div (click)="openProduct(id)" style="text-decoration: none; color:#000;">
 
     <img src="{{images}}" width="90%" />
-    <div class="card-title">{{name}}</div>
-    <div class="card-subtitle" right>{{price}}</div>
+    <div class="card-title " style="height: 52px;padding: 0 6px;text-overflow: ellipsis; overflow:hidden;    margin-bottom: 10px;">
+        <div [innerHtml]="name"></div></div>
+    <div class="card-subtitle" style="padding: 0 6px 15px;    position: relative;">
+      <div [innerHtml] = "priceHtml"></div>
+      <!-- <p style="font-size: 16px;line-height: 18px;" *ngIf="sale_price == '' && price > 0">{{regular_price}} ฿</p>
+      <p style="font-size: 16px;line-height: 18px;" *ngIf="sale_price > 0"><del>{{regular_price}} ฿</del></p>
+      <p style="position: absolute;top: -4px;right: 6px;font-size: 16px;line-height: 17px;font-weight:bold;color:#d94239;" *ngIf="sale_price > 0">Sale! <br/> {{sale_price}} ฿</p> -->
+    </div>
   </div>
-    <ion-grid style="border:1px solid #ccc;padding:3px !important;min-height:36px;">
-      <ion-row>
-        <ion-col class="bt">
-          <ion-icon name="heart-outline"></ion-icon>
-        </ion-col>
-        <ion-col class="bt">
-          <div (click)="presentActionSheet()">
-            <ion-icon name="md-share" md="md-share"></ion-icon>
-          </div>
-        </ion-col>
-        <ion-col class="bt last">
-          <div (click)="addtoCart(id,$event)" >
-          <ion-icon  [id]="'icon'+id" name="cart-outline" md="md-cart"></ion-icon>
+  <ion-grid style="border:1px solid #ccc;padding:3px !important;min-height:36px;">
+    <ion-row>
+      <ion-col class="bt">
+        <ion-icon name="heart-outline"></ion-icon>
+      </ion-col>
+      <ion-col class="bt">
+        <div (click)="presentActionSheet()">
+          <ion-icon name="md-share" md="md-share"></ion-icon>
         </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  
+      </ion-col>
+      <ion-col class="bt last">
+        <div (click)="addtoCart(id,$event)">
+          <ion-icon [id]="'icon'+id" name="cart-outline" md="md-cart" *ngIf="numberToToggle==0" ></ion-icon>
+          <ion-icon [id]="'icon'+id" name="cart-outline" md="md-cart" *ngIf="numberToToggle>0" style="color:red" ></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-card>

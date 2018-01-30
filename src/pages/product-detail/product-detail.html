@@ -13,20 +13,16 @@
 
 </ion-header>
 
-
 <ion-content>
   <ion-spinner name="circles" *ngIf="product == 0">
   </ion-spinner>
   <ion-slides class="bannerslider" *ngIf="slides && slides.length" autoplay="5000" loop="true">
-
-
     <ion-slide *ngFor="let slide of slides">
       <div class="swiper-zoom-container">
         <img data-src="{{slide.src}}" class="thumb-img" style="width:60% !important;">
       </div>
     </ion-slide>
   </ion-slides>
-
 
   <ion-grid>
     <ion-row justify-content-center align-items-center style="height: 100%">
@@ -38,7 +34,6 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
 
   <div padding>
     <ion-segment [(ngModel)]="product_properties" mode="ios">
@@ -56,11 +51,11 @@
 
   <div [ngSwitch]="product_properties">
     <ion-list *ngSwitchCase="'product_detail'">
-        <ion-item>
-      <ion-spinner name="circles" *ngIf="product == 0">
-      </ion-spinner>
-      <div [innerHtml]="product.description" class="clsdescription"></div>
-</ion-item>
+      <ion-item>
+        <ion-spinner name="circles" *ngIf="product == 0">
+        </ion-spinner>
+        <div [innerHtml]="product.description" class="clsdescription"></div>
+      </ion-item>
     </ion-list>
 
     <ion-list *ngSwitchCase="'review'">
@@ -72,7 +67,6 @@
         </ion-thumbnail>
         <h2>Luna</h2>
       </ion-item>
-
     </ion-list>
 
     <ion-list *ngSwitchCase="'product_related'">
@@ -84,13 +78,12 @@
         </ion-thumbnail>
         <h2>Luna</h2>
       </ion-item>
-
     </ion-list>
   </div>
 
 </ion-content>
 <ion-footer>
-    <ion-toolbar>
-      <ion-title>Footer</ion-title>
-    </ion-toolbar>
-  </ion-footer>
+  <ion-toolbar>
+    <ion-title>Footer</ion-title>
+  </ion-toolbar>
+</ion-footer>

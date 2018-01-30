@@ -3,7 +3,7 @@ import { RemoteServiceProvider } from './../../providers/remote-service/remote-s
 import { ActionSheetController,Platform, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Component, Input } from '@angular/core';
 import { ProductDetailPage } from '../../pages/product-detail/product-detail';
-
+import { TranslateService } from 'ng2-translate';
 
 
 @Component({
@@ -16,36 +16,40 @@ export class ProductloopComponent {
   @Input('id') id : string;
   @Input('name') name : string;
   @Input('price') price : number;
+  @Input('sale-price') sale_price : number = 0;
+  @Input('regular-price') regular_price : number;
+  @Input('priceHtml') priceHtml : string;
   @Input('images') images : string;
 
   numberToToggle: number = 0;
+  language : string;
+ 
 
-  constructor(private app : App , private actionSheetCtrl : ActionSheetController, private platform : Platform, private r : RemoteServiceProvider,private navCtrl : NavController) {
-    
+  constructor(private app : App , private actionSheetCtrl : ActionSheetController, private platform : Platform, private r : RemoteServiceProvider,private navCtrl : NavController, private translate : TranslateService) {
+    this.language = translate.currentLang;
   }
 
   showColor : string;
   addtoCart(product_id,event) {
-   console.log(event.target.attributes["0"]);
-   event.target.attributes["0"].value = "danger"
-   console.log(event.target.attributes);
     if(this.numberToToggle == 0){
       this.r.badgecount += 1;
       this.numberToToggle = 1;
-     
-
+      console.log("Add to cart id:"+product_id)
+      this.r.addtocart(product_id);
+    
     }else{
       if(this.r.badgecount > 0 ){
         this.r.badgecount -=1;
-        //this.numberToToggle = 0;
+        this.numberToToggle = 0;
+        console.log("move out cart id:"+product_id)
+        this.r.moveoutcart(product_id);
       }
     }  
+    console.log(this.r.cartlist);
 }
 
 openProduct(id){
- 
  this.app.getRootNav().push(ProductDetailPage,{product_id:id,product_name:this.name},{animate: true, direction: 'forward'});
-  console.log("Open Cate Id" + id)
 }
 
   addtoFavorite(product_id) {
