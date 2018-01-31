@@ -82,4 +82,18 @@ export class RemoteServiceProvider {
     }
   }
 
+  splitcontent(curlang,content){
+    let p = new RegExp("\[\:["+curlang+"]+\]");
+    let _sp = content.split(p);
+    let k = new RegExp("\[\:[a-zA-Z]+\]");
+    if(_sp.length > 1){
+      let s = _sp[1].split(k); 
+      content = s[0];
+    }else{
+      //console.log(_sp);
+      content = _sp[0];
+    }
+    return content;
+  }
+
 }

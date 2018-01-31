@@ -1,3 +1,4 @@
+import { TranslateService } from 'ng2-translate';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 
 import { CategorylistPage } from './../categorylist/categorylist';
@@ -24,13 +25,12 @@ export class ShoppingPage {
   hasMoreData: boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private r: RemoteServiceProvider) {
-
-
-
     // this.toggled = false;
     // this.grid = Array(Math.ceil(this.product.length / 2)); //MATHS!
     // this.grid = Array.from(Array(Math.ceil(this.product.length / 2)).keys());
   }
+
+ 
 
   showdata() {
     this.grid = Array(Math.ceil(this.product.length / 2))
@@ -97,6 +97,7 @@ export class ShoppingPage {
 
     this.getAllProduct(this.page);
     //  console.log(this.grid);
+    
   }
 
   toggle() {

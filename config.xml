@@ -21,6 +21,7 @@
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="AndroidLaunchMode" value="singleTop" />
     <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+    <preference name="AllowInlineMediaPlayback" value="true" />
     <platform name="android">
         <preference name="loadUrlTimeoutValue" value="700000" />
     </platform>

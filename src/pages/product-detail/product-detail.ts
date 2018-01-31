@@ -24,6 +24,7 @@ export class ProductDetailPage {
   product: any = 0;
   slides: any[];
   product_properties: string;
+  product_desc : string;
 
   product_review: any = 0;
   product_related: any = 0;
@@ -41,34 +42,32 @@ export class ProductDetailPage {
       this.already_cart = false;
     }
 
-  }
-
-  ionViewDidLoad() {
     this.loadProductDetail(this.product_id);
     this.loadProductReview(this.product_id);
     this.loadProductRelated(this.product_id);
-    let curlang = this.translate.currentLang ;
-    let p = new RegExp("\[\:["+curlang+"]+\]");
-    let _sp = this.product_name.split(p);
-    let k = new RegExp("\[\:[a-zA-Z]+\]");
-    if(_sp.length > 1){
-      let s = _sp[1].split(k); 
-      this.product_name = s[0];
-    }else{
-      //console.log(_sp);
-      this.product_name = _sp[0];
-    }
-    
-    
-   
 
+  }
+
+  ionViewDidLoad() {
+    
+    let curlang = this.translate.currentLang ;
+    this.product_name = this.r.splitcontent(curlang,this.product_name);
+    console.log(this.product_desc);
+    //this.product_desc = this.r.splitcontent(curlang,this.product.description)
+       
+
+  }
+
+  showdatacontent(product){
+    this.slides = this.product.images
+    this.product_desc = this.r.splitcontent(this.translate.currentLang,this.product.description)
   }
 
   loadProductDetail(product_id) {
     this.r.getProduct(product_id).subscribe(
       data => this.product = (data),
       error => console.log('Error1111'),
-      () => this.slides = this.product.images
+      () => this.showdatacontent(this.product)
     );
   }
 

@@ -22,7 +22,7 @@ export class ProductloopComponent {
   @Input('images') images : string;
 
   numberToToggle: number = 0;
-  language : string = this.translate.currentLang;;
+  language : string;
  
 
   constructor(private app : App , private actionSheetCtrl : ActionSheetController, private platform : Platform, private r : RemoteServiceProvider,private navCtrl : NavController, private translate : TranslateService) {
@@ -36,6 +36,8 @@ export class ProductloopComponent {
    if(this.r.getcartItem(this.id)){
     this.numberToToggle = 1;
    }
+   this.language  = this.translate.currentLang;
+   this.name = this.r.splitcontent(this.language,this.name);
    
   }
 
