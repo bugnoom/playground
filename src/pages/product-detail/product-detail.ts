@@ -2,6 +2,7 @@ import { RemoteServiceProvider } from './../../providers/remote-service/remote-s
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ShoppingPage } from '../shopping/shopping';
+import { TranslateService } from 'ng2-translate';
 
 /**
  * Generated class for the ProductDetailPage page.
@@ -29,7 +30,7 @@ export class ProductDetailPage {
 
  already_cart : boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private r: RemoteServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private r: RemoteServiceProvider, private translate : TranslateService) {
     this.product_id = navParams.get('product_id');
     this.product_name = navParams.get('product_name');
     this.product_properties = "product_detail";
@@ -46,6 +47,21 @@ export class ProductDetailPage {
     this.loadProductDetail(this.product_id);
     this.loadProductReview(this.product_id);
     this.loadProductRelated(this.product_id);
+    let curlang = this.translate.currentLang ;
+    let p = new RegExp("\[\:["+curlang+"]+\]");
+    let _sp = this.product_name.split(p);
+    let k = new RegExp("\[\:[a-zA-Z]+\]");
+    if(_sp.length > 1){
+      let s = _sp[1].split(k); 
+      this.product_name = s[0];
+    }else{
+      //console.log(_sp);
+      this.product_name = _sp[0];
+    }
+    
+    
+   
+
   }
 
   loadProductDetail(product_id) {

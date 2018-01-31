@@ -6,6 +6,10 @@ page-product-detail {
 
     .clsdescription p img{
         height:auto !important;
+        width:auto !important;
+    }
+    .clsdescription p{
+        white-space: normal;
     }
 
      div ins span.woocommerce-Price-amount.amount{
@@ -15,6 +19,10 @@ page-product-detail {
     font-weight: bold;
     color:#d94239;
     text-decoration: underline;
+    }
+
+    .swiper-container-horizontal > .swiper-pagination-bullets{
+        bottom: 0px !important;
     }
     
 }
