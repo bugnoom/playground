@@ -3,7 +3,7 @@
     <name>playground</name>
     <description>Playground Mobile Application</description>
     <author email="developer@playworksthailand.com" href="http://www.playworksthailand.com/">Playworks Developer Team</author>
-    <content original-src="index.html" src="http://192.168.1.48:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -22,9 +22,6 @@
     <preference name="AndroidLaunchMode" value="singleTop" />
     <preference name="AndroidPersistentFileLocation" value="Compatibility" />
     <preference name="AllowInlineMediaPlayback" value="true" />
-    <platform name="android">
-        <preference name="loadUrlTimeoutValue" value="700000" />
-    </platform>
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />

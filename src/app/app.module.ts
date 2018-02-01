@@ -71,8 +71,8 @@ export function createTranslateLoader(http:Http){
     ShoppingPage,
     PageSettingPage,
     ProductDetailPage,
-     TabsPage
-    
+     TabsPage,
+     Camera
 
   ],
   providers: [
