@@ -1,14 +1,10 @@
 import { PageSettingPage } from './../page-setting/page-setting';
 
-import { CategorylistPage } from './../categorylist/categorylist';
 import { LoginPage } from './../login/login';
 import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, Nav } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
-import { ShoppingPage } from '../shopping/shopping';
-import { PromotionPage } from '../promotion/promotion';
 
-import { CartlistPage } from '../cartlist/cartlist';
 import { TranslateService } from 'ng2-translate';
 
 

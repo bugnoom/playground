@@ -1,10 +1,8 @@
-import { TranslateService } from 'ng2-translate';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
-
 import { CategorylistPage } from './../categorylist/categorylist';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ProductDetailPage } from '../product-detail/product-detail';
+
 
 
 

@@ -1,6 +1,6 @@
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 import { Component } from '@angular/core';
-import { Camera } from '@ionic-native/camera';
+
 
 @Component({
   selector: 'qrscan',

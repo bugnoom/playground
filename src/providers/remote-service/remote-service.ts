@@ -20,7 +20,7 @@ export class RemoteServiceProvider {
   cartlist : any = [];
 
   constructor(private http: Http, public loadingCtrl : LoadingController,private translate : TranslateService) {
-    this.language = translate.currentLang;
+    this.language = this.translate.currentLang;
   }
 
   loading : any = this.loadingCtrl.create({

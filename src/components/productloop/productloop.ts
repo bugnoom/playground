@@ -1,6 +1,6 @@
 import { App } from 'ionic-angular';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
-import { ActionSheetController,Platform, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ActionSheetController,Platform } from 'ionic-angular';
 import { Component, Input } from '@angular/core';
 import { ProductDetailPage } from '../../pages/product-detail/product-detail';
 import { TranslateService } from 'ng2-translate';
@@ -25,7 +25,7 @@ export class ProductloopComponent {
   language : string;
  
 
-  constructor(private app : App , private actionSheetCtrl : ActionSheetController, private platform : Platform, private r : RemoteServiceProvider,private navCtrl : NavController, private translate : TranslateService) {
+  constructor(private app : App , private actionSheetCtrl : ActionSheetController, private platform : Platform, private r : RemoteServiceProvider, private translate : TranslateService) {
    
    
   }
@@ -42,7 +42,6 @@ export class ProductloopComponent {
   }
 
  
-
   getFavoriteItem(){
     
   }

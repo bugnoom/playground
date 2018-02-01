@@ -27,7 +27,7 @@ import { Camera } from '@ionic-native/camera';
 import { QRScanner } from '@ionic-native/qr-scanner';
 
 export function createTranslateLoader(http:Http){
-  return new TranslateStaticLoader(http,'assets/i18n','.json');
+  return new TranslateStaticLoader(http,'./assets/i18n','.json');
 }
 
 @NgModule({
