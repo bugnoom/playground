@@ -1,3 +1,4 @@
+import { QrscannerPage } from './../pages/qrscanner/qrscanner';
 import { PageSettingPage } from './../pages/page-setting/page-setting';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -22,8 +23,8 @@ import { CategorylistPage } from './../pages/categorylist/categorylist';
 import { ProductDetailPage } from '../pages/product-detail/product-detail';
 import { RemoteServiceProvider } from '../providers/remote-service/remote-service';
 import { ProductloopComponent } from '../components/productloop/productloop';
-import { QrscanComponent } from '../components/qrscan/qrscan';
 import { Camera } from '@ionic-native/camera';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { QRScanner } from '@ionic-native/qr-scanner';
 
 export function createTranslateLoader(http:Http){
@@ -45,7 +46,7 @@ export function createTranslateLoader(http:Http){
     ProductDetailPage,
     TabsPage,
     ProductloopComponent,
-    QrscanComponent
+    QrscannerPage
 
   ],
   imports: [
@@ -72,7 +73,7 @@ export function createTranslateLoader(http:Http){
     PageSettingPage,
     ProductDetailPage,
      TabsPage,
-     Camera
+     QrscannerPage
 
   ],
   providers: [
@@ -82,7 +83,8 @@ export function createTranslateLoader(http:Http){
     AppLanguagesProvider,
     RemoteServiceProvider,
     Camera,
-    QRScanner
+    QRScanner,
+    AndroidPermissions,
   ]
 })
 export class AppModule {}

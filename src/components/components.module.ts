@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { ProductloopComponent } from './productloop/productloop';
-import { QrscanComponent } from './qrscan/qrscan';
+
 @NgModule({
-	declarations: [ProductloopComponent,
-    QrscanComponent],
+	declarations: [ProductloopComponent],
 	imports: [],
-	exports: [ProductloopComponent,
-    QrscanComponent]
+	exports: [ProductloopComponent]
 })
 export class ComponentsModule {}

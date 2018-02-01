@@ -42,13 +42,14 @@ export class ProductDetailPage {
       this.already_cart = false;
     }
 
-    this.loadProductDetail(this.product_id);
-    this.loadProductReview(this.product_id);
-    this.loadProductRelated(this.product_id);
+   
 
   }
 
   ionViewDidLoad() {
+    this.loadProductDetail(this.product_id);
+    this.loadProductReview(this.product_id);
+    this.loadProductRelated(this.product_id);
     
     let curlang = this.translate.currentLang ;
     this.product_name = this.r.splitcontent(curlang,this.product_name);

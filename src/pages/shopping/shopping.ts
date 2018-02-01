@@ -1,7 +1,8 @@
+import { QrscannerPage } from './../qrscanner/qrscanner';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { CategorylistPage } from './../categorylist/categorylist';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,App } from 'ionic-angular';
 
 
 
@@ -22,7 +23,7 @@ export class ShoppingPage {
   page: number = 1;
   hasMoreData: boolean = true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private r: RemoteServiceProvider) {
+  constructor(private app : App,public navCtrl: NavController, public navParams: NavParams, private r: RemoteServiceProvider) {
     // this.toggled = false;
     // this.grid = Array(Math.ceil(this.product.length / 2)); //MATHS!
     // this.grid = Array.from(Array(Math.ceil(this.product.length / 2)).keys());
@@ -105,6 +106,11 @@ export class ShoppingPage {
   openCategory(id) {
     this.navCtrl.push(CategorylistPage, { category_id: id }, { animate: true, direction: 'forward' });
    // console.log("Open Cate Id" + id)
+  }
+
+
+  push() {
+    this.app.getRootNav().push(QrscannerPage);
   }
 
 
