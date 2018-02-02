@@ -5,8 +5,10 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import {  HttpModule,Http} from '@angular/http';
-import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate';
+
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppLanguagesProvider } from '../providers/app-languages/app-languages';
 
 import { MyApp } from './app.component';
@@ -28,8 +30,11 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { BarcodeScanner} from '@ionic-native/barcode-scanner';
 import { QrscancomponentComponent } from '../components/qrscancomponent/qrscancomponent';
 
-export function createTranslateLoader(http:Http){
-  return new TranslateStaticLoader(http,'assets/i18n','.json');
+
+export function createTranslateLoader(http : HttpClient){
+  /* return new TranslateHttpLoader(http,'./assets/i18n/','.json'); */
+  return new TranslateHttpLoader(http,'./assets/i18n/','.json');
+
 }
 
 @NgModule({
@@ -51,13 +56,16 @@ export function createTranslateLoader(http:Http){
 
   ],
   imports: [
-    HttpModule,
+    HttpClientModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
     TranslateModule.forRoot({
-      provide : TranslateLoader,
-      useFactory:(createTranslateLoader),
-      deps:[Http]
+      loader:{
+        provide : TranslateLoader,
+        useFactory:(createTranslateLoader),
+        deps:[HttpClient]
+      }
+      
     })
   ],
   bootstrap: [IonicApp],

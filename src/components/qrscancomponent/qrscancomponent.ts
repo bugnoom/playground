@@ -2,7 +2,7 @@ import { RemoteServiceProvider } from './../../providers/remote-service/remote-s
 import { ProductDetailPage } from './../../pages/product-detail/product-detail';
 import { Component, Input } from '@angular/core';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
-import { NavController, NavParams, App, LoadingController } from 'ionic-angular';
+import { NavController,  App, LoadingController } from 'ionic-angular';
 
 
 /**
@@ -23,7 +23,7 @@ export class QrscancomponentComponent {
 
   @Input('options') options : BarcodeScannerOptions;
   
-  constructor(private loadingCtrl : LoadingController,private qrscan : BarcodeScanner,private nav : NavController, private app : App, private r : RemoteServiceProvider ) {
+  constructor(private loadingCtrl : LoadingController,private qrscan : BarcodeScanner, private app : App, private r : RemoteServiceProvider ) {
        
   }
 

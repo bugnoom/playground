@@ -22,7 +22,7 @@ export class ShoppingPage {
   page: number = 1;
   hasMoreData: boolean = true;
 
-  constructor(private app : App,public navCtrl: NavController, public navParams: NavParams, private r: RemoteServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private r: RemoteServiceProvider) {
     // this.toggled = false;
     // this.grid = Array(Math.ceil(this.product.length / 2)); //MATHS!
     // this.grid = Array.from(Array(Math.ceil(this.product.length / 2)).keys());
