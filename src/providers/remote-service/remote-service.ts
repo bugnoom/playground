@@ -1,9 +1,11 @@
-import { Http, Response} from '@angular/http';
+
+import { Http, Response } from '@angular/http';
+
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import { LoadingController } from 'ionic-angular';
-import { TranslateService } from 'ng2-translate';
+import { TranslateService } from '@ngx-translate/core';
 
 
 /*
@@ -39,7 +41,7 @@ export class RemoteServiceProvider {
     var url = this.url+"?action=getCategory";
     
     return this.http.get(url)
-    .do((res : Response) => console.log(res))
+    //.do((res : Response) => console.log(res))
     .map((res : Response) => res.json())   
   }
 
@@ -47,7 +49,7 @@ export class RemoteServiceProvider {
     var url = this.url+"?action=getAllProduct&page="+page+"&lang="+this.language;
 
     return this.http.get(url)
-    .do((res : Response)=> console.log(res))
+   // .do((res : Response)=> console.log(res))
     .map((res : Response)=>res.json())
   }
 
@@ -55,7 +57,7 @@ export class RemoteServiceProvider {
     var url = this.url+"?action=getProduct&id="+id;
 
     return this.http.get(url)
-      .do((res : Response)=> console.log(res))
+    //  .do((res : Response)=> console.log(res))
       .map((res : Response) => res.json())
     
   }

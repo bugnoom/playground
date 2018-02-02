@@ -5,7 +5,7 @@ import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, Nav } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 
-import { TranslateService } from 'ng2-translate';
+import { TranslateService } from '@ngx-translate/core';
 
 
 export interface PageInterface{

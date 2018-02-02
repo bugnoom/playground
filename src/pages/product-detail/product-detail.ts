@@ -3,7 +3,7 @@ import { RemoteServiceProvider } from './../../providers/remote-service/remote-s
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ShoppingPage } from '../shopping/shopping';
-import { TranslateService } from 'ng2-translate';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Generated class for the ProductDetailPage page.

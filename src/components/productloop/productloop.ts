@@ -3,7 +3,7 @@ import { RemoteServiceProvider } from './../../providers/remote-service/remote-s
 import { ActionSheetController,Platform } from 'ionic-angular';
 import { Component, Input } from '@angular/core';
 import { ProductDetailPage } from '../../pages/product-detail/product-detail';
-import { TranslateService } from 'ng2-translate';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({

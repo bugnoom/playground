@@ -6,8 +6,7 @@ import { PromotionPage } from './../promotion/promotion';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ShoppingPage } from '../shopping/shopping';
-
-import { TranslateService } from 'ng2-translate';
+import { TranslateService } from '@ngx-translate/core';
 
 
 /**

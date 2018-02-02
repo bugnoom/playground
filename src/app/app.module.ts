@@ -1,3 +1,4 @@
+import { HttpModule } from '@angular/http';
 
 import { PageSettingPage } from './../pages/page-setting/page-setting';
 import { BrowserModule } from '@angular/platform-browser';
@@ -57,6 +58,7 @@ export function createTranslateLoader(http : HttpClient){
   ],
   imports: [
     HttpClientModule,
+    HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
     TranslateModule.forRoot({
