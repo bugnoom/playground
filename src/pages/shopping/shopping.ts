@@ -1,4 +1,4 @@
-import { QrscannerPage } from './../qrscanner/qrscanner';
+
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { CategorylistPage } from './../categorylist/categorylist';
 import { Component } from '@angular/core';
@@ -107,12 +107,7 @@ export class ShoppingPage {
     this.navCtrl.push(CategorylistPage, { category_id: id }, { animate: true, direction: 'forward' });
    // console.log("Open Cate Id" + id)
   }
-
-
-  push() {
-    this.app.getRootNav().push(QrscannerPage);
-  }
-
+ 
 
   doInfinite(even) {
     // console.log("infinite Scroll");
