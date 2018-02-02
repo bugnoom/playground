@@ -17,7 +17,7 @@
   <ion-item>
     <ion-label>{{'language_text'|translate}}</ion-label>
     <ion-select [(ngModel)]="currentLang" (ionChange)="translate.use(currentLang)" text-uppercase>
-      <ion-option *ngFor="let language of languages" [value]="language" [selected]="language===translate.currentLang" >{{language}}</ion-option>
+      <ion-option *ngFor="let language of languages" [value]="language" [selected]="language===translate.currentLang" text-uppercase >{{language}}</ion-option>
     </ion-select>
   </ion-item>
 </ion-content>
