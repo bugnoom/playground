@@ -4,7 +4,7 @@
       {{product_name}}
     </ion-title>
     <ion-buttons right>
-      <button ion-button>
+      <button ion-button (click)="showQR(product.id)">
         <ion-icon ios="ios-barcode" md="md-barcode"></ion-icon>
       </button>
     </ion-buttons>

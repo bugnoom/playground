@@ -1,4 +1,3 @@
-
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { CategorylistPage } from './../categorylist/categorylist';
 import { Component } from '@angular/core';

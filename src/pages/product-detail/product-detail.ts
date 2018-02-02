@@ -1,3 +1,4 @@
+import { BarcodeScanner,BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -31,7 +32,7 @@ export class ProductDetailPage {
 
  already_cart : boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private r: RemoteServiceProvider, private translate : TranslateService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private r: RemoteServiceProvider, private translate : TranslateService, private barcode : BarcodeScanner) {
     this.product_id = navParams.get('product_id');
     this.product_name = navParams.get('product_name');
     this.product_properties = "product_detail";
@@ -82,6 +83,13 @@ export class ProductDetailPage {
 
   segmentChanged(e) {
     console.log(e);
+  }
+
+  async showQR(id){
+    console.log(id);
+    let textURL : string = "http://www.kocomeishop.com/show/product/"+id
+    await this.barcode.encode(this.barcode.Encode.TEXT_TYPE,textURL);
+
   }
 
   goBack() {

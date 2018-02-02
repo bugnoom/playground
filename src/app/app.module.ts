@@ -25,7 +25,6 @@ import { RemoteServiceProvider } from '../providers/remote-service/remote-servic
 import { ProductloopComponent } from '../components/productloop/productloop';
 import { Camera } from '@ionic-native/camera';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
-import { QRScanner } from '@ionic-native/qr-scanner';
 import { BarcodeScanner} from '@ionic-native/barcode-scanner';
 import { QrscancomponentComponent } from '../components/qrscancomponent/qrscancomponent';
 
