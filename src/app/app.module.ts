@@ -1,4 +1,4 @@
-import { HttpModule } from '@angular/http';
+import { HttpModule,Http } from '@angular/http';
 
 import { PageSettingPage } from './../pages/page-setting/page-setting';
 import { BrowserModule } from '@angular/platform-browser';
@@ -65,7 +65,7 @@ export function createTranslateLoader(http : HttpClient){
       loader:{
         provide : TranslateLoader,
         useFactory:(createTranslateLoader),
-        deps:[HttpClient]
+        deps:[HttpClient,Http]
       }
       
     })
