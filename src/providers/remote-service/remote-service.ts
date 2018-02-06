@@ -53,6 +53,13 @@ export class RemoteServiceProvider {
     .map((res : Response)=>res.json())
   }
 
+  getAllProductByCategory(page,cate_id){
+    var url = this.url+"?action=getAllProductCategory&cate_id="+cate_id+"&page="+page+"&lang="+this.language;
+    return this.http.get(url)
+    .do((res:Response)=>console.log(res))
+    .map((res:Response)=>res.json())
+  }
+
   getProduct(id){
     var url = this.url+"?action=getProduct&id="+id;
 

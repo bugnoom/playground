@@ -33,7 +33,7 @@
           <ion-spinner name="circles" *ngIf="categorys == 0" style="top:10px;" >
           </ion-spinner>
         <ion-col col-33 *ngFor="let category of categorys">
-          <div class="acard acard-1" (click)="openCategory(category.id)">
+          <div class="acard acard-1" (click)="openCategory(category.id,category.name)">
             <img src="{{category.image.src}}" height="40" width="40">
             <p style="font-size: 0.8em;">{{category.name}}</p>
           </div>

@@ -38,17 +38,11 @@
   <ion-content>
     
     <ion-list class="list-ios">
-      <button ion-item menuClose (click)="openPage(p)" class="item-ios">
-        <ion-icon item-start name="cart"></ion-icon>
-        CATE 1
-      </button>
-      <button ion-item menuClose (click)="openPage(p)" class="item-ios">
-        <ion-icon item-start name="cart"></ion-icon>
-        CATE 1
-      </button>
-      <button ion-item menuClose (click)="openPage(p)" class="item-ios">
-        <ion-icon item-start name="cart"></ion-icon>
-        CATE 1
+      <button ion-item menuClose (click)="openPagecategory(k.id)" *ngFor="let k of categorys"  class="item-ios">
+          <ion-avatar item-start>
+              <img src="{{k.image.src}}">
+            </ion-avatar>
+        {{k.name}}
       </button>
     </ion-list>
   </ion-content>

@@ -7,4 +7,23 @@ page-categorylist {
     .hmenu .bar-buttons{
         display:block !important;
     }
+
+    .col{
+        padding:0px !important;
+    }
+    .card-md,.card-ios {
+        width: calc(100% - 10px) !important;
+        
+    }
+    .col .bt{
+        text-align: center;
+        border-right:1px solid #ccc;
+    }
+    .col .bt.last{
+        text-align: center;
+        border-right:0px;
+    }
+    .col .bt ion-icon{
+        font-size:2.2em;
+    }
 }

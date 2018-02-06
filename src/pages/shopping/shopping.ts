@@ -102,8 +102,8 @@ export class ShoppingPage {
     this.toggled = this.toggled ? false : true;
   }
 
-  openCategory(id) {
-    this.navCtrl.push(CategorylistPage, { category_id: id }, { animate: true, direction: 'forward' });
+  openCategory(id,name) {
+    this.navCtrl.push(CategorylistPage, { category_id: id ,category_name:name}, { animate: true, direction: 'forward' });
    // console.log("Open Cate Id" + id)
   }
  

@@ -7,12 +7,28 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title> {{category_title|translate}}</ion-title>
+    <ion-title  mode="ios"> {{'category_title'|translate}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content padding >
+  <ion-grid>
+    <ion-spinner name="circles" *ngIf="categorys == 0">
+      </ion-spinner>
+  <ion-row *ngFor="let row of grid">
+    <ion-col width-50 *ngFor="let key of row">
+    <div *ngIf="key" class="card-background-page">
+      
+      <ion-card (click)="openCategory(key.id,key.name)">
+        <img src="{{key.image.src}}"/>
+        <div class="card-title">{{key.name}}</div>
+      </ion-card>
+    
+     </div>
+    </ion-col>
+  </ion-row>
+  
+</ion-grid>
 </ion-content>

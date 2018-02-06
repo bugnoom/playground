@@ -1,3 +1,5 @@
+import { CategorylistPage } from './../categorylist/categorylist';
+import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { PageSettingPage } from './../page-setting/page-setting';
 
 import { LoginPage } from './../login/login';
@@ -33,7 +35,12 @@ export class MenuPage {
     {title : 'playground_news_title', pageName:'TabsPage',tabComponent:'CartlistPage',index:2,icon:'document'},
     {title : 'playground_shop_title', pageName:'TabsPage',tabComponent:'LoginPage',index:3,icon:'cafe'}
   ];
-  constructor(public navCtrl: NavController,public translate:TranslateService) {  }
+
+  categorys : any = 0;
+
+  constructor(public navCtrl: NavController,public translate:TranslateService,private r : RemoteServiceProvider) {  
+    this.getcategory();
+  }
 
   openPage(page:PageInterface){
     let params = {};
@@ -73,6 +80,18 @@ export class MenuPage {
 
   opensetting(){
     this.navCtrl.push(PageSettingPage,{},{animate: true, direction: 'forward'});
+  }
+
+  getcategory(){
+     this.r.getCategories().subscribe(
+      data =>{this.categorys = data},
+      err=>{console.log("Error get Category data")},
+      ()=>{}
+    )
+  }
+
+  openPagecategory(id){
+   // this.navCtrl.push(CategorylistPage,{},{animate: true, direction: 'forward'});
   }
 
 }
