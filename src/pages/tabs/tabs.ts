@@ -1,5 +1,6 @@
+import { ShowcategoryPage } from './../showcategory/showcategory';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
-import { CategorylistPage } from './../categorylist/categorylist';
+/* import { CategorylistPage } from './../categorylist/categorylist'; */
 import { LoginPage } from './../login/login';
 import { CartlistPage } from './../cartlist/cartlist';
 import { PromotionPage } from './../promotion/promotion';
@@ -27,7 +28,7 @@ export class TabsPage {
   Promotion : any = PromotionPage;
   Cartlist : any = CartlistPage;
   Profile : any = LoginPage;
-  Category : any = CategorylistPage;
+  Category : any = ShowcategoryPage;
   myIndex : number;
   
   constructor(public navCtrl: NavController,public translate: TranslateService, public navParams: NavParams,public service : RemoteServiceProvider) {

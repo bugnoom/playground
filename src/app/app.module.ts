@@ -1,3 +1,4 @@
+import { ShowcategoryPage } from './../pages/showcategory/showcategory';
 import { HttpModule,Http } from '@angular/http';
 
 import { PageSettingPage } from './../pages/page-setting/page-setting';
@@ -48,6 +49,7 @@ export function createTranslateLoader(http : HttpClient){
     PromotionPage,
     PromotionDetailPage,
     CategorylistPage,
+    ShowcategoryPage,
     ShoppingPage,
     PageSettingPage,
     ProductDetailPage,
@@ -80,6 +82,7 @@ export function createTranslateLoader(http : HttpClient){
     PromotionPage,
     PromotionDetailPage,
     CategorylistPage,
+    ShowcategoryPage,
     ShoppingPage,
     PageSettingPage,
     ProductDetailPage,

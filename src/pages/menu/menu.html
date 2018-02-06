@@ -1,4 +1,4 @@
-<ion-menu [content]="content">
+<ion-menu [content]="content" id="main">
 
 
   <ion-content>
@@ -33,5 +33,26 @@
   </ion-footer>
 </ion-menu>
 
+
+<ion-menu [content]="content" side="right" id="testRightmenu">
+  <ion-content>
+    
+    <ion-list class="list-ios">
+      <button ion-item menuClose (click)="openPage(p)" class="item-ios">
+        <ion-icon item-start name="cart"></ion-icon>
+        CATE 1
+      </button>
+      <button ion-item menuClose (click)="openPage(p)" class="item-ios">
+        <ion-icon item-start name="cart"></ion-icon>
+        CATE 1
+      </button>
+      <button ion-item menuClose (click)="openPage(p)" class="item-ios">
+        <ion-icon item-start name="cart"></ion-icon>
+        CATE 1
+      </button>
+    </ion-list>
+  </ion-content>
+  
+</ion-menu>
 <!-- Main Navigation -->
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

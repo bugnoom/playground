@@ -28,7 +28,7 @@ export class MenuPage {
 
   pages : PageInterface[]=[
     {title : 'shopping_tab', pageName:'TabsPage',tabComponent:'ShoppingPage',index:0,icon:'home'},
-    {title : 'category_title', pageName:'TabsPage',tabComponent:'CategorylistPage',index:4,icon:'list'},
+    {title : 'category_title', pageName:'TabsPage',tabComponent:'ShowCaegoryPage',index:4,icon:'list'},
     {title : 'myorder_title', pageName:'TabsPage',tabComponent:'PromotionPage',index:1,icon:'clipboard'},
     {title : 'playground_news_title', pageName:'TabsPage',tabComponent:'CartlistPage',index:2,icon:'document'},
     {title : 'playground_shop_title', pageName:'TabsPage',tabComponent:'LoginPage',index:3,icon:'cafe'}

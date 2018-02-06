@@ -17,7 +17,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content style="background: none transparent;">
+<ion-content>
     
     <ion-searchbar *ngIf="toggled" [(ngModel)]="someValue" (ionInput)="searchThis($event)" (ionCancel)="cancelSearch($event)" (ionClear) = "cancelSearch($event)" [showCancelButton]="true"></ion-searchbar>
 

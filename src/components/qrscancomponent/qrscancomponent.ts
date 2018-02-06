@@ -2,7 +2,7 @@ import { RemoteServiceProvider } from './../../providers/remote-service/remote-s
 import { ProductDetailPage } from './../../pages/product-detail/product-detail';
 import { Component, Input } from '@angular/core';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
-import { NavController,  App, LoadingController } from 'ionic-angular';
+import { App, LoadingController } from 'ionic-angular';
 
 
 /**
