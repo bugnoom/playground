@@ -17,7 +17,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Injectable()
 export class RemoteServiceProvider {
   badgecount : number = 0;
-  private url : string = "http://www.kocomeishop.com/mobileservices/services.php";//"http://192.168.1.48/WooService/services.php";
+  private url : string = "http://www.playground-inseoul.com/mobileservices/services.php";//"http://192.168.1.48/WooService/services.php";
   language : string;
   cartlist : any = [];
 

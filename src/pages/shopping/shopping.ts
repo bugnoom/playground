@@ -74,11 +74,11 @@ export class ShoppingPage {
 
   getSlider() {
     this.slides = [
-      { h1: "Bontree" },
-      { h1: "SkillCare" },
-      { h1: "Mask" },
-      { h1: "Lipstick" },
-      { h1: "ApprilSkin" }
+      { h1: "Bontree", img : 'http://www.playground-inseoul.com/shop/wp-content/uploads/2017/09/ads-Borntree-Goat-Milk-Tone-Up-Cream.jpg' },
+      { h1: "SkillCare",img : 'http://www.playground-inseoul.com/shop/wp-content/uploads/2017/09/ads-goldilocks.jpg' },
+      { h1: "Mask",img : 'http://www.playground-inseoul.com/shop/wp-content/uploads/2017/09/ads-Borntree-Goat-Milk-Tone-Up-Cream.jpg' },
+      { h1: "Lipstick",img : 'http://www.playground-inseoul.com/shop/wp-content/uploads/2017/09/ads-Borntree-Goat-Milk-Tone-Up-Cream.jpg' },
+      { h1: "ApprilSkin",img : 'http://www.playground-inseoul.com/shop/wp-content/uploads/2017/09/ads-Borntree-Goat-Milk-Tone-Up-Cream.jpg' }
     ];
   }
 
