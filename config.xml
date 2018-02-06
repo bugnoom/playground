@@ -100,5 +100,5 @@
         <variable name="XWALK_MULTIPLEAPK" value="true" />
     </plugin>
     <plugin name="phonegap-plugin-barcodescanner" spec="^7.0.2" />
-    <engine name="android" spec="6.3.0" />
+    <engine name="android" spec="~7.0.0" />
 </widget>
