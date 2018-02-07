@@ -1,3 +1,4 @@
+import { CatemenulistPage } from './../pages/catemenulist/catemenulist';
 import { ShowcategoryPage } from './../pages/showcategory/showcategory';
 import { HttpModule,Http } from '@angular/http';
 
@@ -49,6 +50,7 @@ export function createTranslateLoader(http : HttpClient){
     PromotionPage,
     PromotionDetailPage,
     CategorylistPage,
+    CatemenulistPage,
     ShowcategoryPage,
     ShoppingPage,
     PageSettingPage,
@@ -82,6 +84,7 @@ export function createTranslateLoader(http : HttpClient){
     PromotionPage,
     PromotionDetailPage,
     CategorylistPage,
+    CatemenulistPage,
     ShowcategoryPage,
     ShoppingPage,
     PageSettingPage,

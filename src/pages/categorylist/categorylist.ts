@@ -1,9 +1,8 @@
+import { CatemenulistPage } from './../catemenulist/catemenulist';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { ShoppingPage } from '../shopping/shopping';
-import { MenuController } from 'ionic-angular/components/app/menu-controller';
-
 
 @IonicPage()
 @Component({
@@ -21,7 +20,7 @@ export class CategorylistPage {
  category_name : string;
  
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public tmenu : MenuController,private r : RemoteServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private r : RemoteServiceProvider, private modalCtrl : ModalController) {
     this.category_id = navParams.get('category_id');
     this.category_name = navParams.get('category_name');
   
@@ -114,6 +113,7 @@ goBack() {
   }
 
   showmenu(){
-    
+    let profileModal = this.modalCtrl.create(CatemenulistPage, { category_id: this.category_id });
+    profileModal.present();
   }
 }

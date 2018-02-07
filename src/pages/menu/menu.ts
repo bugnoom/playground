@@ -1,4 +1,3 @@
-import { CategorylistPage } from './../categorylist/categorylist';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { PageSettingPage } from './../page-setting/page-setting';
 
