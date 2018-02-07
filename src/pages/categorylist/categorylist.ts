@@ -1,7 +1,8 @@
+import { TranslateService } from '@ngx-translate/core';
 import { CatemenulistPage } from './../catemenulist/catemenulist';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
 import { ShoppingPage } from '../shopping/shopping';
 
 @IonicPage()
@@ -20,7 +21,7 @@ export class CategorylistPage {
  category_name : string;
  
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private r : RemoteServiceProvider, private modalCtrl : ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private r : RemoteServiceProvider, private modalCtrl : ModalController,  private translate : TranslateService) {
     this.category_id = navParams.get('category_id');
     this.category_name = navParams.get('category_name');
   
@@ -52,11 +53,13 @@ goBack() {
   }
 
   public getproduct(cateid){
+    this.r.showloading();
     this.r.getAllProductByCategory(this.page,cateid).subscribe(
       data => {this.product = (data)},
       err=>{ console.log("Error to get Product by category" + cateid)},
       ()=>{if(this.product.length > 0){
             this.showdata()
+            this.r.hideloading();
           }
       }
     )
@@ -79,6 +82,7 @@ goBack() {
       }
       rowNum++;
     }
+   
   }
 
   refreshme(id,name){
@@ -113,7 +117,24 @@ goBack() {
   }
 
   showmenu(){
-    let profileModal = this.modalCtrl.create(CatemenulistPage, { category_id: this.category_id });
-    profileModal.present();
+    let menulist = this.modalCtrl.create(CatemenulistPage, { category_id: this.category_id });
+
+    menulist.onDidDismiss(data=>{
+     // this.getproduct(data.id)
+     console.log(data);
+    if(data){
+     this.category_id = data.id;
+     this.category_name = data.name;
+    this.product = 0;
+    this.page = 1;
+     this.getproduct(data.id);
+    }else{
+      return;
+    }
+    })
+    menulist.present();
   }
+
+
+  
 }

@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController  } from 'ionic-angular';
@@ -18,7 +19,7 @@ export class CatemenulistPage {
 
   categorys : any = 0;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private r : RemoteServiceProvider, public viewCtrl : ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private r : RemoteServiceProvider, public viewCtrl : ViewController, private translate : TranslateService) {
 
   }
 
@@ -38,11 +39,15 @@ export class CatemenulistPage {
  openPagecategory(id,name){
   //this.navCtrl.setRoot(this.navCtrl.getActive.module,{category_id:id,category_name:name},{animate: true, direction: 'back'});
  //CategorylistPage.
- this.navCtrl.setRoot(this.navCtrl.getActive().component,{category_id:id,category_name:name});
+ //this.navCtrl.setRoot(this.navCtrl.getActive().component,{category_id:id,category_name:name});
+ this.viewCtrl.dismiss(
+        {'id' : id, 'name' : name}
+   
+ )
 
 }
 
-dismiss(){
+dismis(){
   this.viewCtrl.dismiss();
 }
 

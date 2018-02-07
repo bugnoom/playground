@@ -24,12 +24,13 @@ export class RemoteServiceProvider {
   constructor(private http: Http, public loadingCtrl : LoadingController,private translate : TranslateService) {
     this.language = this.translate.currentLang;
   }
-
-  loading : any = this.loadingCtrl.create({
-    content: "Loading ..."
-  })
+   loading : any 
+  
 
   showloading(){
+  this.loading= this.loadingCtrl.create({
+      content: "Loading ..."
+    })
     this.loading.present();
   }
 
