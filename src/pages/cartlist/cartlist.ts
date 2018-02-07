@@ -20,6 +20,8 @@ export class CartlistPage {
   toggled: boolean = false;
   plist : any;
   items : any = [];
+  product_name : string;
+  total : number = 0;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private translate : TranslateService, private r : RemoteServiceProvider) {
@@ -35,32 +37,28 @@ export class CartlistPage {
 
   showitems(){
     if(this.plist.length > 0){
-      this.r.showloading()
+    
     for(let i = 0; i < this.plist.length; i++){
-      
+      this.r.showloading()
       this.r.getProduct(this.plist[i]).subscribe(
         data=>{this.items.push(data)},
         err=>{ console.log("error to get data from prodcut detail")},
-        ()=>{console.log(this.items )}
+        ()=>{ console.log(this.items )
+          this.total += (this.items.price)
+        }
       )  
-      
+       this.r.hideloading();
     }
+   
     }
-    this.r.hideloading();
+    
     
   }
 
-  toggle(){
-    this.toggled = this.toggled ? false : true;
- }
+  getproduct_name(name){
+    return this.r.splitcontent(this.translate.currentLang,name)
 
- searchThis(even){
-  console.log(even.target.value)
-}
-
-cancelSearch(){
-  this.toggled = false;
-}
+  }
 
 buyitem(){
   alert("go to purchase this item lists")

@@ -3,4 +3,13 @@ page-cartlist {
         font-size:2.8rem !important;
         margin-right:15px;
     }
+
+    ins span.woocommerce-Price-amount.amount{
+        right: 30%;
+    position: absolute;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #d94239;
+    text-decoration: underline;
+    }
 }
