@@ -4,7 +4,7 @@
        <!-- <button ion-button (click)="goBack()" class="hmenu" >
           <ion-icon name="arrow-back"></ion-icon>
         </button>-->
-           <button ion-button   menuToggle="right">
+           <button ion-button (click)="showmenu()">
             <ion-icon  name="list"></ion-icon>
           </button>
         </ion-buttons>
@@ -17,7 +17,7 @@
         </ion-buttons>
     </ion-navbar>
   </ion-header>
-  
+ 
   <ion-content>
       <ion-searchbar *ngIf="toggled" [(ngModel)]="someValue" (ionInput)="searchThis($event)" (ionCancel)="cancelSearch($event)" (ionClear) = "cancelSearch($event)" [showCancelButton]="true"></ion-searchbar>
       <ion-grid>
@@ -35,7 +35,10 @@
         </ion-infinite-scroll>
       </ion-grid>
     
+
+     
   </ion-content>
-  
+ 
+ 
   
  

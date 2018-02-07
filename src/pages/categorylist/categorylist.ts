@@ -19,12 +19,15 @@ export class CategorylistPage {
   hasMoreData: boolean = true;
  category_id : number = 0;
  category_name : string;
+ 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public tmenu : MenuController,private r : RemoteServiceProvider) {
     this.category_id = navParams.get('category_id');
     this.category_name = navParams.get('category_name');
+  
   }
 
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad CategorylistPage');
    /*  this.tmenu.enable(true, 'testRightmenu');
@@ -79,6 +82,11 @@ goBack() {
     }
   }
 
+  refreshme(id,name){
+    this.navCtrl.setRoot(this.navCtrl.getActive().component,{category_id:id,category_name:name}); 
+  }
+
+
   doInfinite(even) {
     // console.log("infinite Scroll");
     this.page = this.page + 1;
@@ -103,5 +111,9 @@ goBack() {
 
     }, 1000);
 
+  }
+
+  showmenu(){
+    
   }
 }

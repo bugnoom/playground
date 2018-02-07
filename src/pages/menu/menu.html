@@ -33,20 +33,3 @@
   </ion-footer>
 </ion-menu>
 
-
-<ion-menu [content]="content" side="right" id="testRightmenu">
-  <ion-content>
-    
-    <ion-list class="list-ios">
-      <button ion-item menuClose (click)="openPagecategory(k.id)" *ngFor="let k of categorys"  class="item-ios">
-          <ion-avatar item-start>
-              <img src="{{k.image.src}}">
-            </ion-avatar>
-        {{k.name}}
-      </button>
-    </ion-list>
-  </ion-content>
-  
-</ion-menu>
-<!-- Main Navigation -->
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
