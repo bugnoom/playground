@@ -5,7 +5,7 @@ import { LoginPage } from './../login/login';
 import { CartlistPage } from './../cartlist/cartlist';
 import { PromotionPage } from './../promotion/promotion';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { ShoppingPage } from '../shopping/shopping';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -31,10 +31,14 @@ export class TabsPage {
   Category : any = ShowcategoryPage;
   myIndex : number;
   
-  constructor(public navCtrl: NavController,public translate: TranslateService, public navParams: NavParams,public service : RemoteServiceProvider) {
-    this.myIndex = navParams.data.tabIndex || 0;
-    
+  constructor(public navCtrl: NavController,public translate: TranslateService, public navParams: NavParams,public service : RemoteServiceProvider,private app : App) {
+    this.myIndex = navParams.data.tabIndex || 0; 
   }
+
+  showcart(){
+    this.app.getRootNav().push(CartlistPage,{},{animate: true, direction: 'forward'});
+  }
+
   countCartItem(){
     return this.service.badgecount
   }

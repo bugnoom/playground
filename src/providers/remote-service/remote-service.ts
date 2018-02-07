@@ -71,7 +71,13 @@ export class RemoteServiceProvider {
   }
 
   addtocart(id){
-    this.cartlist.push(id);
+    if(this.getcartItem(id)){
+      this.badgecount -= 1;
+      return;
+    }else{
+      this.cartlist.push(id);
+    }
+    
   }
 
   moveoutcart(id){
