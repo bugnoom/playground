@@ -87,7 +87,7 @@ export class ProductDetailPage {
 
   async showQR(id){
     console.log(id);
-    let textURL : string = "http://www.kocomeishop.com/show/product/"+id
+    let textURL : string = "http://www.playground-inseoul.com/show/product/"+id
     await this.barcode.encode(this.barcode.Encode.TEXT_TYPE,textURL);
 
   }
@@ -100,8 +100,18 @@ export class ProductDetailPage {
     alert(id);
   }
 
-  addtocart(id){
-    this.r.addtocart(id);
+  addtocart(id,name,on_sale,price,regular_price,price_html,sale_price,images){
+    let product = {
+      'id' : id,
+      'name' : name,
+      'price' : price,
+      'regular_price' : regular_price,
+      'price_html' : price_html,
+      'sale_price' : sale_price,
+      'on_sale' : on_sale,
+      'images' : images
+  }
+    this.r.addtocart(product);
     this.already_cart = true;
   }
 

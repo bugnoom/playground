@@ -80,11 +80,24 @@ export class RemoteServiceProvider {
     
   }
 
-  moveoutcart(id){
-    var index = this.cartlist.indexOf(id,0);
-    if(index > -1){
-      this.cartlist.splice(index,1);
-    } 
+  moveoutcart(ids){
+    console.log(ids);
+    var a =[]
+    a.push(ids);
+      var index = this.deepIndexOf(this.cartlist,ids);
+      console.log("move index : "+index) 
+      if(index > -1){
+        this.cartlist.splice(index,1);
+      }   
+  }
+
+  //function for search index of array
+  deepIndexOf(arr,obj){
+    return arr.findIndex(function (cur){
+      return Object.keys(obj).every(function (key){
+        return obj[key] === cur[key];
+      });
+    });
   }
 
   getcartItem(id){

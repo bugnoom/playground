@@ -20,11 +20,11 @@ export class ProductloopComponent {
   @Input('regular-price') regular_price : number;
   @Input('priceHtml') priceHtml : string;
   @Input('images') images : string;
+  @Input('on_sale') on_sale : any;
 
   numberToToggle: number = 0;
   language : string;
  
-
   constructor(private app : App , private actionSheetCtrl : ActionSheetController, private platform : Platform, private r : RemoteServiceProvider, private translate : TranslateService) {
    
    
@@ -46,19 +46,30 @@ export class ProductloopComponent {
     
   }
 
-  addtoCart(product_id,event) {
+  addtoCart(id,name,on_sale,price,regular_price,price_html,sale_price,images) {
+    let product = {
+      'id' : id,
+      'name' : name,
+      'price' : price,
+      'regular_price' : regular_price,
+      'price_html' : price_html,
+      'sale_price' : sale_price,
+      'on_sale' : on_sale,
+      'images' : images
+  }
     if(this.numberToToggle == 0){
       this.r.badgecount += 1;
       this.numberToToggle = 1;
-      console.log("Add to cart id:"+product_id)
-      this.r.addtocart(product_id);
+      console.log("Add to cart id:"+id)
+     
+      this.r.addtocart(product);
     
     }else{
       if(this.r.badgecount > 0 ){
         this.r.badgecount -=1;
         this.numberToToggle = 0;
-        console.log("move out cart id:"+product_id)
-        this.r.moveoutcart(product_id);
+        console.log("move out cart id:"+id)
+        this.r.moveoutcart(product);
       }
     }  
     console.log(this.r.cartlist);

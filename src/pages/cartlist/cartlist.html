@@ -10,7 +10,7 @@
   <ion-list>
     <ion-item *ngFor="let item of items" class="item item-text-wrap">
       <ion-thumbnail item-start>
-        <img src="{{item.images[0].src}}">
+        <img src="{{item.images}}">
       </ion-thumbnail>
       <div style="white-space: pre-wrap;font-size:1.5rem;font-weight:bold;margin-bottom:10px;">{{getproduct_name(item.name)}}</div>
       <div end [innerHtml]="item.price_html" style="margin-top:10px;font-size: 1.2rem;"></div>
