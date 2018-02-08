@@ -1,9 +1,11 @@
+import { CartlistPage } from './../cartlist/cartlist';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, App, Navbar } from 'ionic-angular';
 import { ShoppingPage } from '../shopping/shopping';
 import { TranslateService } from '@ngx-translate/core';
+
 
 /**
  * Generated class for the ProductDetailPage page.
@@ -19,6 +21,8 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ProductDetailPage {
 
+  @ViewChild(Navbar) navBar : Navbar;
+
   toggled: boolean = false;
   product_id: number;
   product_name: string = "";
@@ -32,7 +36,7 @@ export class ProductDetailPage {
 
  already_cart : boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private r: RemoteServiceProvider, private translate : TranslateService, private barcode : BarcodeScanner) {
+  constructor(private app : App, public navCtrl: NavController, public navParams: NavParams, private r: RemoteServiceProvider, private translate : TranslateService, private barcode : BarcodeScanner) {
     this.product_id = navParams.get('product_id');
     this.product_name = navParams.get('product_name');
     this.product_properties = "product_detail";
@@ -55,6 +59,12 @@ export class ProductDetailPage {
     let curlang = this.translate.currentLang ;
     this.product_name = this.r.splitcontent(curlang,this.product_name);
     console.log(this.product_desc);
+
+    this.navBar.backButtonClick = (e:UIEvent)=>{
+      // todo something
+    
+      this.navCtrl.pop();
+     }
     //this.product_desc = this.r.splitcontent(curlang,this.product.description)
        
 
@@ -111,8 +121,15 @@ export class ProductDetailPage {
       'on_sale' : on_sale,
       'images' : images
   }
+  console.log(product);
     this.r.addtocart(product);
     this.already_cart = true;
   }
+
+  opencart(){
+    this.app.getRootNav().push(CartlistPage,{},{animate: true, direction: 'forward'});
+  }
+
+
 
 }

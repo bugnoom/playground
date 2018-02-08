@@ -101,7 +101,7 @@
             <button ion-button icon-right color="royal" *ngIf="!already_cart" (click)="addtocart(product_id,product_name,product.on_sale,product.price,product.regular_price,product.price_html,product.sale_price,product.images[0].src)" color="primary">
               <ion-icon name="cart" color="primary"></ion-icon>&nbsp;&nbsp; {{'addtocart'|translate}}
             </button>
-            <button ion-button icon-right color="royal" *ngIf="already_cart" color="danger">
+            <button ion-button icon-right color="royal" *ngIf="already_cart" color="danger" (click)="opencart()">
               <ion-icon name="cart" color="danger"></ion-icon>&nbsp;&nbsp; {{'removetocart'|translate}}
             </button>
           </ion-buttons>

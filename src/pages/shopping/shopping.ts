@@ -88,6 +88,7 @@ export class ShoppingPage {
     this.r.getCategories().subscribe(data => this.categorys = data);
   }
 
+  
   ionViewDidLoad() {
     this.getCategory();
 

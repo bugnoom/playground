@@ -1,3 +1,4 @@
+import { ShoppingPage } from './../../pages/shopping/shopping';
 import { App } from 'ionic-angular';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { ActionSheetController,Platform } from 'ionic-angular';
@@ -76,7 +77,7 @@ export class ProductloopComponent {
 }
 
 openProduct(id){
- this.app.getRootNav().push(ProductDetailPage,{product_id:id,product_name:this.name},{animate: true, direction: 'forward'});
+ this.app.getRootNav().push(ProductDetailPage,{product_id:id,product_name:this.name,parrentPage:this.numberToToggle},{animate: true, direction: 'forward'});
 }
 
   addtoFavorite(product_id) {
