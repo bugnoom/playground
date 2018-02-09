@@ -28,7 +28,7 @@ export class ShoppingPage {
     // this.grid = Array.from(Array(Math.ceil(this.product.length / 2)).keys());
   }
 
- 
+
 
   showdata() {
     this.grid = Array(Math.ceil(this.product.length / 2))
@@ -73,13 +73,20 @@ export class ShoppingPage {
   }
 
   getSlider() {
-    this.slides = [
+    this.r.getSlideBanner().subscribe(
+      data => {
+      this.slides = data;
+      console.log(this.slides)
+      },
+      err => { console.log(err) }
+    );
+    /* this.slides = [
       { h1: "Bontree", img : 'http://www.playground-inseoul.com/shop/wp-content/uploads/2017/09/ads-Borntree-Goat-Milk-Tone-Up-Cream.jpg' },
       { h1: "SkillCare",img : 'http://www.playground-inseoul.com/shop/wp-content/uploads/2017/09/ads-goldilocks.jpg' },
       { h1: "Mask",img : 'http://www.playground-inseoul.com/shop/wp-content/uploads/2017/09/ads-Borntree-Goat-Milk-Tone-Up-Cream.jpg' },
       { h1: "Lipstick",img : 'http://www.playground-inseoul.com/shop/wp-content/uploads/2017/09/ads-Borntree-Goat-Milk-Tone-Up-Cream.jpg' },
       { h1: "ApprilSkin",img : 'http://www.playground-inseoul.com/shop/wp-content/uploads/2017/09/ads-Borntree-Goat-Milk-Tone-Up-Cream.jpg' }
-    ];
+    ]; */
   }
 
 
@@ -88,7 +95,7 @@ export class ShoppingPage {
     this.r.getCategories().subscribe(data => this.categorys = data);
   }
 
-  
+
   ionViewDidLoad() {
     this.getCategory();
 
@@ -96,18 +103,18 @@ export class ShoppingPage {
 
     this.getAllProduct(this.page);
     //  console.log(this.grid);
-    
+
   }
 
   toggle() {
     this.toggled = this.toggled ? false : true;
   }
 
-  openCategory(id,name) {
-    this.navCtrl.push(CategorylistPage, { category_id: id ,category_name:name}, { animate: true, direction: 'forward' });
-   // console.log("Open Cate Id" + id)
+  openCategory(id, name) {
+    this.navCtrl.push(CategorylistPage, { category_id: id, category_name: name }, { animate: true, direction: 'forward' });
+    // console.log("Open Cate Id" + id)
   }
- 
+
 
   doInfinite(even) {
     // console.log("infinite Scroll");

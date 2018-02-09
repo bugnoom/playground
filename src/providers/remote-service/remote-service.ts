@@ -46,6 +46,14 @@ export class RemoteServiceProvider {
     .map((res : Response) => res.json())   
   }
 
+  getSlideBanner(){
+    var url = this.url+"?action=getSlideBanner";
+
+    return this.http.get(url)
+    .do((res:Response)=>console.log(res))
+    .map((res : Response)=>res.json());
+  }
+
   getAllProduct(page){
     var url = this.url+"?action=getAllProduct&page="+page+"&lang="+this.language;
 

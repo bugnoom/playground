@@ -24,7 +24,7 @@
     "@ionic-native/barcode-scanner": "^4.5.3",
     "@ionic-native/camera": "^4.5.3",
     "@ionic-native/core": "4.4.0",
-    "@ionic-native/file": "^4.5.2",
+    "@ionic-native/file": "^4.5.3",
     "@ionic-native/qr-scanner": "^4.5.3",
     "@ionic-native/splash-screen": "4.4.0",
     "@ionic-native/status-bar": "4.4.0",
@@ -37,12 +37,12 @@
     "cordova-plugin-camera": "^4.0.2",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-crosswalk-webview": "^2.4.0",
-    "cordova-plugin-device": "^1.1.4",
+    "cordova-plugin-device": "^1.1.7",
     "cordova-plugin-file": "^6.0.1",
     "cordova-plugin-globalization": "^1.0.9",
     "cordova-plugin-ionic-webview": "^1.1.16",
-    "cordova-plugin-splashscreen": "^4.0.3",
-    "cordova-plugin-whitelist": "^1.3.1",
+    "cordova-plugin-splashscreen": "^4.1.0",
+    "cordova-plugin-whitelist": "^1.3.3",
     "ionic-angular": "3.9.2",
     "ionic-image-loader": "^5.0.0",
     "ionic-plugin-keyboard": "^2.2.1",
@@ -56,6 +56,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.1.6",
+    "minimatch": "^3.0.4",
     "typescript": "2.4.2"
   },
   "description": "Playground Mobile Apps for ecommerce and POP commerce systems",
@@ -64,7 +65,6 @@
       "ionic-plugin-keyboard": {},
       "cordova-plugin-whitelist": {},
       "cordova-plugin-device": {},
-      "cordova-plugin-splashscreen": {},
       "cordova-plugin-globalization": {},
       "cordova-plugin-file": {},
       "cordova-plugin-android-permissions": {},
@@ -77,7 +77,8 @@
         "XWALK_MODE": "embedded",
         "XWALK_MULTIPLEAPK": "true"
       },
-      "phonegap-plugin-barcodescanner": {}
+      "phonegap-plugin-barcodescanner": {},
+      "cordova-plugin-splashscreen": {}
     },
     "platforms": [
       "android",
