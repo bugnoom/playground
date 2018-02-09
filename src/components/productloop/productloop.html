@@ -22,10 +22,7 @@
         </div>
       </ion-col>
       <ion-col class="bt last">
-        <div (click)="addtoCart(id,name,on_sale,price,regular_price,priceHtml,sale_price,images)">
-          <ion-icon [id]="'icon'+id" name="cart-outline" md="md-cart" *ngIf="numberToToggle==0" ></ion-icon>
-          <ion-icon [id]="'icon'+id" name="cart-outline" md="md-cart" *ngIf="numberToToggle>0" style="color:#d94239" ></ion-icon>
-        </div>
+        <addtocart [data]="product" [variation]="variations"></addtocart>
       </ion-col>
     </ion-row>
   </ion-grid>

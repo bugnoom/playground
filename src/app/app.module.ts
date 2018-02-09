@@ -1,3 +1,4 @@
+import { AddtocartComponent } from './../components/addtocart/addtocart';
 import { CatemenulistPage } from './../pages/catemenulist/catemenulist';
 import { ShowcategoryPage } from './../pages/showcategory/showcategory';
 import { HttpModule,Http } from '@angular/http';
@@ -57,6 +58,7 @@ export function createTranslateLoader(http : HttpClient){
     ProductDetailPage,
     TabsPage,
     ProductloopComponent,
+    AddtocartComponent,
     QrscancomponentComponent
 
   ],

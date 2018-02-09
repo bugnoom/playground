@@ -1,4 +1,3 @@
-import { ShoppingPage } from './../../pages/shopping/shopping';
 import { App } from 'ionic-angular';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { ActionSheetController,Platform } from 'ionic-angular';
@@ -25,7 +24,8 @@ export class ProductloopComponent {
 
   numberToToggle: number = 0;
   language : string;
- 
+  product : any;
+  variations: any;
   constructor(private app : App , private actionSheetCtrl : ActionSheetController, private platform : Platform, private r : RemoteServiceProvider, private translate : TranslateService) {
    
    
@@ -40,6 +40,18 @@ export class ProductloopComponent {
    this.language  = this.translate.currentLang;
    this.name = this.r.splitcontent(this.language,this.name);
    
+   this.product = {
+    'id' : this.id,
+    'name' : this.name,
+    'price' : this.price,
+    'regular_price' : this.regular_price,
+    'price_html' : this.priceHtml,
+    'sale_price' : this.sale_price,
+    'on_sale' : this.on_sale,
+    'images' : this.images
+}
+this.variations = this.keys.variations;
+
   }
 
  
@@ -47,34 +59,9 @@ export class ProductloopComponent {
     
   }
 
-  addtoCart(id,name,on_sale,price,regular_price,price_html,sale_price,images) {
-    let product = {
-      'id' : id,
-      'name' : name,
-      'price' : price,
-      'regular_price' : regular_price,
-      'price_html' : price_html,
-      'sale_price' : sale_price,
-      'on_sale' : on_sale,
-      'images' : images
-  }
-    if(this.numberToToggle == 0){
-      this.r.badgecount += 1;
-      this.numberToToggle = 1;
-      console.log("Add to cart id:"+id)
+  
      
-      this.r.addtocart(product);
-    
-    }else{
-      if(this.r.badgecount > 0 ){
-        this.r.badgecount -=1;
-        this.numberToToggle = 0;
-        console.log("move out cart id:"+id)
-        this.r.moveoutcart(product);
-      }
-    }  
-    console.log(this.r.cartlist);
-}
+   
 
 openProduct(id){
  this.app.getRootNav().push(ProductDetailPage,{product_id:id,product_name:this.name,parrentPage:this.numberToToggle},{animate: true, direction: 'forward'});

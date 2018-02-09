@@ -48,7 +48,7 @@
     <ion-row *ngFor="let row of grid">
       <ion-col width-50 *ngFor="let key of row">
       <div *ngIf="key">
-       <productloop images="{{key.images[0].src}}" id="{{key.id}}" name="{{key.name}}" price="{{key.price}}" sale-price="{{key.sale_price}}" regular-price="{{key.regular_price}}" priceHtml="{{key.price_html}}" on_sale="{{key.on_sale}}"></productloop>
+       <productloop [keys]="key" images="{{key.images[0].src}}" id="{{key.id}}" name="{{key.name}}" price="{{key.price}}" sale-price="{{key.sale_price}}" regular-price="{{key.regular_price}}" priceHtml="{{key.price_html}}" on_sale="{{key.on_sale}}"></productloop>
        </div>
       </ion-col>
     </ion-row>
