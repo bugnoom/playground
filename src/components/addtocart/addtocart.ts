@@ -18,12 +18,12 @@ export class AddtocartComponent {
 
   text: string;
   numberToToggle: number = 0;
-  language : string;
+  language: string;
 
-  @Input('data') data : any[];
-  @Input('variation') variations : any[];
+  @Input('data') data: any[];
+  @Input('variation') variations: any[];
 
-  constructor(private r : RemoteServiceProvider,public navParam : NavParams, private translate : TranslateService,private NavCtrl : NavController,private modalCtrl : ModalController) {
+  constructor(private r: RemoteServiceProvider, public navParam: NavParams, private translate: TranslateService, private NavCtrl: NavController, private modalCtrl: ModalController) {
     console.log('Hello AddtocartComponent Component');
     this.text = 'Hello World';
   }
@@ -31,64 +31,63 @@ export class AddtocartComponent {
   ngOnInit() {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-   if(this.r.getcartItem(this.data.id)){
-    this.numberToToggle = 1;
-   }
-   this.language  = this.translate.currentLang;
-   
-   console.log("Product Name : "+this.data.name);
-   console.log(this.variations);
-   
+    if (this.r.getcartItem(this.data.id)) {
+      this.numberToToggle = 1;
+    }
+    this.language = this.translate.currentLang;
+
+    console.log("Product Name : " + this.data.name);
+    console.log(this.variations);
+
   }
 
   addtoCart(data) {
-    let product = [];
-//check variations if have a variation show a modal for select a variation
-if(this.variations.length > 0){
-  //show a modal
-  let menulist = this.modalCtrl.create("ShowvariationPage", { product : this.variations });
-
-    menulist.onDidDismiss(data=>{
-     // this.getproduct(data.id)
-     console.log(data);
-    
-    })
-    menulist.present();
-
-}
-
-//and add to cart list
-this.additemtocart(product);
-
-    
-    console.log(this.r.cartlist);
-}
-
-  additemtocart(data){
     let product = {
-      'id' : data.id,
-      'name' : data.name,
-      'price' : data.price,
-      'regular_price' : data.regular_price,
-      'price_html' : data.price_html,
-      'sale_price' : data.sale_price,
-      'on_sale' : data.on_sale,
-      'images' : data.images
-  }
-    if(this.numberToToggle == 0){
-      this.r.badgecount += 1;
-      this.numberToToggle = 1;
-      console.log("Add to cart id:"+data.id)
-     
-      this.r.addtocart(product);
-    
-    }else{
-      if(this.r.badgecount > 0 ){
-        this.r.badgecount -=1;
-        this.numberToToggle = 0;
-        console.log("move out cart id:"+data.id)
-        this.r.moveoutcart(product);
+      'id': data.id,
+      'name': data.name,
+      'price': data.price,
+      'regular_price': data.regular_price,
+      'price_html': data.price_html,
+      'sale_price': data.sale_price,
+      'on_sale': data.on_sale,
+      'images': data.images
+    }
+
+    if (this.numberToToggle == 0) {
+      //check variations if have a variation show a modal for select a variation
+      if (this.variations.length > 0) {
+        let variationList = this.modalCtrl.create(ShowvariationPage, { product: this.variations });
+        variationList.onDidDismiss(data => {
+          //affter click on viriation list or cancel
+          console.log("return from modal =" + data)
+          if (data) {
+            this.addtocart(product);
+          }
+        });
+        variationList.present();
+
+      } else {
+        this.addtocart(product); //add to cart
       }
-    }  
+    } else {
+      if (this.r.badgecount > 0) {
+       this.removecart(product); // remove out cart
+      }
+    }
   }
+
+  addtocart(data){
+    this.r.badgecount += 1;
+    this.numberToToggle = 1;
+    console.log("Add to cart id:" + data.id)
+    this.r.addtocart(data);
+  }
+
+  removecart(data){
+    this.r.badgecount -= 1;
+    this.numberToToggle = 0;
+    console.log("move out cart id:" + data.id)
+    this.r.moveoutcart(data);
+  }
+
 }

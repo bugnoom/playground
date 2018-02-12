@@ -23,5 +23,7 @@
     "buynow" : "Buy Now",
 
     "check_out" : "Purchase",
-    "your_cart" : "Items in cart"
+    "your_cart" : "Items in cart",
+
+    "show_variation_title" : "Choice Option"
 }
