@@ -1,4 +1,5 @@
-import { NavController } from 'ionic-angular';
+import { ShowvariationPage } from './../../pages/showvariation/showvariation';
+import { NavController, ModalController, NavParams } from 'ionic-angular';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { Component, Input } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -22,7 +23,7 @@ export class AddtocartComponent {
   @Input('data') data : any[];
   @Input('variation') variations : any[];
 
-  constructor(private r : RemoteServiceProvider, private translate : TranslateService,private NavCtrl : NavController) {
+  constructor(private r : RemoteServiceProvider,public navParam : NavParams, private translate : TranslateService,private NavCtrl : NavController,private modalCtrl : ModalController) {
     console.log('Hello AddtocartComponent Component');
     this.text = 'Hello World';
   }
@@ -41,6 +42,29 @@ export class AddtocartComponent {
   }
 
   addtoCart(data) {
+    let product = [];
+//check variations if have a variation show a modal for select a variation
+if(this.variations.length > 0){
+  //show a modal
+  let menulist = this.modalCtrl.create("ShowvariationPage", { product : this.variations });
+
+    menulist.onDidDismiss(data=>{
+     // this.getproduct(data.id)
+     console.log(data);
+    
+    })
+    menulist.present();
+
+}
+
+//and add to cart list
+this.additemtocart(product);
+
+    
+    console.log(this.r.cartlist);
+}
+
+  additemtocart(data){
     let product = {
       'id' : data.id,
       'name' : data.name,
@@ -66,6 +90,5 @@ export class AddtocartComponent {
         this.r.moveoutcart(product);
       }
     }  
-    console.log(this.r.cartlist);
-}
+  }
 }

@@ -1,3 +1,4 @@
+import { ShowvariationPage } from './../pages/showvariation/showvariation';
 import { AddtocartComponent } from './../components/addtocart/addtocart';
 import { CatemenulistPage } from './../pages/catemenulist/catemenulist';
 import { ShowcategoryPage } from './../pages/showcategory/showcategory';
@@ -45,6 +46,7 @@ export function createTranslateLoader(http : HttpClient){
   declarations: [
     MyApp,
     CartlistPage,
+    ShowvariationPage,
     LoginPage,
     MenuPage,
     ProfilePage,
@@ -80,6 +82,7 @@ export function createTranslateLoader(http : HttpClient){
   entryComponents: [
     MyApp,
     CartlistPage,
+    ShowvariationPage,
     LoginPage,
     MenuPage,
     ProfilePage,

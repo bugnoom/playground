@@ -1,6 +1,6 @@
 import { App } from 'ionic-angular';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
-import { ActionSheetController,Platform } from 'ionic-angular';
+import { ActionSheetController, Platform } from 'ionic-angular';
 import { Component, Input } from '@angular/core';
 import { ProductDetailPage } from '../../pages/product-detail/product-detail';
 import { TranslateService } from '@ngx-translate/core';
@@ -12,60 +12,61 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ProductloopComponent {
 
-  @Input('keys') keys : any;
-  @Input('id') id : string;
-  @Input('name') name : string;
-  @Input('price') price : number;
-  @Input('sale-price') sale_price : number = 0;
-  @Input('regular-price') regular_price : number;
-  @Input('priceHtml') priceHtml : string;
-  @Input('images') images : string;
-  @Input('on_sale') on_sale : any;
+  @Input('keys') keys: any;
+  @Input('id') id: string;
+  @Input('name') name: string;
+  @Input('price') price: number;
+  @Input('sale-price') sale_price: number = 0;
+  @Input('regular-price') regular_price: number;
+  @Input('priceHtml') priceHtml: string;
+  @Input('images') images: string;
+  @Input('on_sale') on_sale: any;
 
   numberToToggle: number = 0;
-  language : string;
-  product : any;
+  language: string;
+  product: any;
   variations: any;
-  constructor(private app : App , private actionSheetCtrl : ActionSheetController, private platform : Platform, private r : RemoteServiceProvider, private translate : TranslateService) {
-   
-   
+  constructor(private app: App, private actionSheetCtrl: ActionSheetController, private platform: Platform, private r: RemoteServiceProvider, private translate: TranslateService) {
+
+
   }
 
   ngOnInit() {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-   if(this.r.getcartItem(this.id)){
-    this.numberToToggle = 1;
-   }
-   this.language  = this.translate.currentLang;
-   this.name = this.r.splitcontent(this.language,this.name);
-   
-   this.product = {
-    'id' : this.id,
-    'name' : this.name,
-    'price' : this.price,
-    'regular_price' : this.regular_price,
-    'price_html' : this.priceHtml,
-    'sale_price' : this.sale_price,
-    'on_sale' : this.on_sale,
-    'images' : this.images
-}
-this.variations = this.keys.variations;
+    if (this.r.getcartItem(this.id)) {
+      this.numberToToggle = 1;
+    }
+    this.language = this.translate.currentLang;
+    this.name = this.r.splitcontent(this.language, this.name);
+
+    this.product = {
+      'id': this.id,
+      'name': this.name,
+      'price': this.price,
+      'regular_price': this.regular_price,
+      'price_html': this.priceHtml,
+      'sale_price': this.sale_price,
+      'on_sale': this.on_sale,
+      'images': this.images
+    }
+
+    this.variations = this.keys.variations;
 
   }
 
- 
-  getFavoriteItem(){
-    
+
+  getFavoriteItem() {
+
   }
 
-  
-     
-   
 
-openProduct(id){
- this.app.getRootNav().push(ProductDetailPage,{product_id:id,product_name:this.name,parrentPage:this.numberToToggle},{animate: true, direction: 'forward'});
-}
+
+
+
+  openProduct(id) {
+    this.app.getRootNav().push(ProductDetailPage, { product_id: id, product_name: this.name, parrentPage: this.numberToToggle }, { animate: true, direction: 'forward' });
+  }
 
   addtoFavorite(product_id) {
 
