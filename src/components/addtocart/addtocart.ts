@@ -20,8 +20,8 @@ export class AddtocartComponent {
   numberToToggle: number = 0;
   language: string;
 
-  @Input('data') data: any[];
-  @Input('variation') variations: any[];
+  @Input('data') data: any = [];
+  @Input('variation') variations: any = [];
 
   constructor(private r: RemoteServiceProvider, public navParam: NavParams, private translate: TranslateService, private NavCtrl: NavController, private modalCtrl: ModalController) {
     console.log('Hello AddtocartComponent Component');
@@ -61,13 +61,13 @@ export class AddtocartComponent {
           //affter click on viriation list or cancel
           console.log("return from modal =" + data)
           if (data) {
-            this.addtocart(product);
+            this.moveincart(data.productdata);
           }
         });
         variationList.present();
 
       } else {
-        this.addtocart(product); //add to cart
+        this.moveincart(product); //add to cart
       }
     } else {
       if (this.r.badgecount > 0) {
@@ -76,7 +76,7 @@ export class AddtocartComponent {
     }
   }
 
-  addtocart(data){
+  moveincart(data){
     this.r.badgecount += 1;
     this.numberToToggle = 1;
     console.log("Add to cart id:" + data.id)

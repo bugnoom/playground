@@ -110,7 +110,7 @@ export class RemoteServiceProvider {
 
   getcartItem(id){
     if(id){
-      var index = this.cartlist.indexOf(id,0);
+      var index = this.deepIndexOf(this.cartlist,id);
       if(index > -1){
         return true;
       }else{

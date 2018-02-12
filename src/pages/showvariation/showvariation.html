@@ -14,7 +14,7 @@
     <ion-spinner name="circles" *ngIf="variation == 0">
       </ion-spinner>
       <ion-list class="list-ios">
-        <button ion-item menuClose (click)="addtocart(product)" *ngFor="let row of product" class="item-ios">
+        <button ion-item menuClose (click)="addtocart(row)" *ngFor="let row of product" class="item-ios">
           <ion-avatar item-start>
             <img src="{{row.images[0].src}}">
           </ion-avatar>
