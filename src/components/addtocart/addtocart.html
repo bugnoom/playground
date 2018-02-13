@@ -1,5 +1,14 @@
 <!-- Generated template for the AddtocartComponent component -->
-<div (click)="addtoCart(data)">
+<div (click)="addtoCart(data)" *ngIf="buttontype=='icononly'" >
   <ion-icon  name="cart-outline" md="md-cart" *ngIf="numberToToggle==0" ></ion-icon>
   <ion-icon  name="cart-outline" md="md-cart" *ngIf="numberToToggle>0" style="color:#d94239" ></ion-icon>
 </div>
+
+<ion-buttons *ngIf="buttontype=='iconandtext'" >
+    <button ion-button icon-right color="royal" *ngIf="numberToToggle==0" (click)="addtoCart(data)" color="primary">
+      <ion-icon name="cart" color="primary"></ion-icon>&nbsp;&nbsp; {{'addtocart'|translate}}
+    </button>
+    <button ion-button icon-right color="royal" *ngIf="numberToToggle>0" (click)="addtoCart(data)" color="danger">
+      <ion-icon name="cart" color="danger"></ion-icon>&nbsp;&nbsp; {{'removetocart'|translate}}
+    </button>
+  </ion-buttons>

@@ -22,7 +22,9 @@
         </div>
       </ion-col>
       <ion-col class="bt last">
-        <addtocart [data]="product" [variation]="variations"></addtocart>
+          <ion-spinner name="circles" *ngIf="product.length == 0">
+            </ion-spinner>
+        <addtocart [data]="product" [variation]="variations" buttontype="icononly" *ngIf="product.length != 0"></addtocart>
       </ion-col>
     </ion-row>
   </ion-grid>

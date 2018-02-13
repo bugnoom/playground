@@ -1,7 +1,7 @@
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { CategorylistPage } from './../categorylist/categorylist';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 
 
 
@@ -21,13 +21,40 @@ export class ShoppingPage {
   toggled: boolean = false;
   page: number = 1;
   hasMoreData: boolean = true;
+  refreshpage : boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private r: RemoteServiceProvider) {
+  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, private r: RemoteServiceProvider) {
     // this.toggled = false;
     // this.grid = Array(Math.ceil(this.product.length / 2)); //MATHS!
     // this.grid = Array.from(Array(Math.ceil(this.product.length / 2)).keys());
   }
 
+  ionViewDidEnter(){
+    console.log("Page1 Open")
+  }
+
+  ionViewDidLoad() {
+    if(this.refreshpage == true){
+      this.getAllProduct(1);
+    };
+    this.getCategory();
+
+    this.getSlider();
+
+    this.getAllProduct(this.page);
+    //  console.log(this.grid);
+
+  }
+
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      this.getAllProduct(1);
+      refresher.complete();
+    }, 1000);
+  }
 
 
   showdata() {
@@ -49,10 +76,14 @@ export class ShoppingPage {
   }
 
   getAllProduct(p) {
+    this.r.showloading();
     this.r.getAllProduct(p).subscribe(
       data => this.product = (data),
       error => console.log('Error22' + error),
-      () => this.showdata()
+      () => {
+        this.showdata();
+        this.r.hideloading()
+      }
     );
     console.log('Product list ' + this.product);
     /* let rowNum = 0;
@@ -75,8 +106,8 @@ export class ShoppingPage {
   getSlider() {
     this.r.getSlideBanner().subscribe(
       data => {
-      this.slides = data;
-      console.log(this.slides)
+        this.slides = data;
+        console.log(this.slides)
       },
       err => { console.log(err) }
     );
@@ -95,16 +126,7 @@ export class ShoppingPage {
     this.r.getCategories().subscribe(data => this.categorys = data);
   }
 
-
-  ionViewDidLoad() {
-    this.getCategory();
-
-    this.getSlider();
-
-    this.getAllProduct(this.page);
-    //  console.log(this.grid);
-
-  }
+  
 
   toggle() {
     this.toggled = this.toggled ? false : true;

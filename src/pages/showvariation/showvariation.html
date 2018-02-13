@@ -1,4 +1,3 @@
-
 <ion-header>
   <ion-navbar>
     <ion-title>{{'show_variation_title'|translate}}</ion-title>
@@ -10,8 +9,25 @@
 </ion-header>
 
 
-<ion-content padding>
-    <ion-spinner name="circles" *ngIf="variation == 0">
+<ion-content>
+
+  <ion-card *ngFor="let row of product">
+    <h2>
+      {{row.name}}
+    </h2>
+    <ion-card-content>
+      <img src="{{row.images[0].src}}" />
+    </ion-card-content>
+    <ion-row no-padding text-center>
+      <button ion-button full color="danger" (click)="addtocart(row)">
+        <ion-icon name='cart'></ion-icon>
+        Add to Cart
+      </button>
+
+    </ion-row>
+  </ion-card>
+
+  <!-- <ion-spinner name="circles" *ngIf="variation == 0">
       </ion-spinner>
       <ion-list class="list-ios">
         <button ion-item menuClose (click)="addtocart(row)" *ngFor="let row of product" class="item-ios">
@@ -20,6 +36,6 @@
           </ion-avatar>
           {{row.name}}
         </button>
-      </ion-list>
+      </ion-list> -->
 
 </ion-content>

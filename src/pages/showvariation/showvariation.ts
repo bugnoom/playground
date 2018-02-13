@@ -46,6 +46,8 @@ export class ShowvariationPage {
     
   }
 
+  
+
   addtocart(data){
     //this.navCtrl.setRoot(this.navCtrl.getActive.module,{category_id:id,category_name:name},{animate: true, direction: 'back'});
    //CategorylistPage.

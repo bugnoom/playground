@@ -4,7 +4,7 @@ import { Http, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
-import { LoadingController } from 'ionic-angular';
+import { LoadingController, ToastController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 
 
@@ -21,7 +21,8 @@ export class RemoteServiceProvider {
   language : string;
   cartlist : any = [];
 
-  constructor(private http: Http, public loadingCtrl : LoadingController,private translate : TranslateService) {
+
+  constructor(private http: Http, public loadingCtrl : LoadingController,private translate : TranslateService,public toastCtrl : ToastController) {
     this.language = this.translate.currentLang;
   }
    loading : any 
@@ -78,12 +79,22 @@ export class RemoteServiceProvider {
     
   }
 
-  addtocart(id){
-    if(this.getcartItem(id)){
+  addtocart(ids){
+    console.log(ids);
+    if(this.getcartItem(ids.id)){
       this.badgecount -= 1;
+     console.log("เจอไอดีนี้ใน  Array " + ids.id)
+     console.log("ตอนนี้ count = "+ ids.count)
       return;
     }else{
-      this.cartlist.push(id);
+      
+      this.cartlist.push(ids);
+      this.toastCtrl.create({
+        message: 'Add to Cart Success',
+        duration: 2500,
+        position: 'top'
+      }).present();
+      
     }
     
   }
@@ -92,9 +103,10 @@ export class RemoteServiceProvider {
     console.log(ids);
     var a =[]
     a.push(ids);
-      var index = this.deepIndexOf(this.cartlist,ids);
-      console.log("move index : "+index) 
-      if(index > -1){
+      //var index = this.deepIndexOf(this.cartlist,ids);
+     let index = this.cartlist.find(item => item.id === ids);
+      if(index){
+        this.badgecount -= 1;
         this.cartlist.splice(index,1);
       }   
   }
@@ -110,8 +122,9 @@ export class RemoteServiceProvider {
 
   getcartItem(id){
     if(id){
-      var index = this.deepIndexOf(this.cartlist,id);
-      if(index > -1){
+      //let  index = this.deepIndexOf(this.cartlist,id);
+      let index = this.cartlist.find(item => item.id === id);
+      if(index){
         return true;
       }else{
         return false;
@@ -119,7 +132,7 @@ export class RemoteServiceProvider {
     }
   }
 
-  splitcontent(curlang,content){
+  splitcontent(curlang,content){ //split name or content [:en] [:th]
     let p = new RegExp("\[\:["+curlang+"]+\]");
     let _sp = content.split(p);
     let k = new RegExp("\[\:[a-zA-Z]+\]");
