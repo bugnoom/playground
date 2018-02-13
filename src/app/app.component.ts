@@ -33,6 +33,7 @@ export class MyApp {
 
     // Detect current Language
     var userLang = navigator.language.split("-")[0];
+    console.log(this.appLanguages.getLanguages().indexOf(userLang))
     userLang = (this.appLanguages.getLanguages().indexOf(userLang) > -1) ? userLang : 'th';
 
     //the lang to use, if the lang is not available, it will use the current loader to get them
