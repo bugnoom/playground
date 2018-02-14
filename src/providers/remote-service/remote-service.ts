@@ -20,6 +20,7 @@ export class RemoteServiceProvider {
   private url : string = "http://www.playground-inseoul.com/mobileservices/services.php";//"http://192.168.1.48/WooService/services.php";
   language : string;
   cartlist : any = [];
+  checkcart : boolean = false;
 
 
   constructor(private http: Http, public loadingCtrl : LoadingController,private translate : TranslateService,public toastCtrl : ToastController) {

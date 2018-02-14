@@ -54,9 +54,9 @@ export class ProductDetailPage {
 
 
     this.navBar.backButtonClick = (e: UIEvent) => {
-     
-    console.log();
-    
+
+      console.log(this.navCtrl);
+      this.r.checkcart = true
       this.navCtrl.pop();
 
     }
@@ -115,7 +115,7 @@ export class ProductDetailPage {
     alert(id);
   }
 
-  
+
 
 
 }

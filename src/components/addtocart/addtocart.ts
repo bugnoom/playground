@@ -30,7 +30,7 @@ export class AddtocartComponent {
     
   }
 
-  ngOnInit() {
+  ionViewWillEnter(){
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     console.log("Check duplicate data on Init"+this.data.id)

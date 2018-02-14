@@ -31,6 +31,13 @@ export class ProductloopComponent {
 
   }
 
+  ionViewDidEnter(){
+    console.log("name :"+this.name)
+    if (this.r.getcartItem(this.keys.id)) {
+      this.numberToToggle = 1;
+    }
+  }
+
   ngOnInit() {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
@@ -38,9 +45,10 @@ export class ProductloopComponent {
     if (this.r.getcartItem(this.keys.id)) {
       this.numberToToggle = 1;
     }
+    
     this.language = this.translate.currentLang;
     this.name = this.r.splitcontent(this.language, this.name);
-
+   
     this.product = {
       'id': this.keys.id,
       'name': this.name,
