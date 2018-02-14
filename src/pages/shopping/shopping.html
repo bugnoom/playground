@@ -37,7 +37,8 @@
           </ion-spinner>
         <ion-col col-33 *ngFor="let category of categorys">
           <div class="acard acard-1" (click)="openCategory(category.id,category.name)">
-            <img src="{{category.image.src}}" height="40" width="40">
+            <img *ngIf="category.image"  src="{{category.image.src}}" height="40" width="40">
+            <img *ngIf="!category.image" src="assets/imgs/placeholder_300x300.png" width="40" height="40">
             <p style="font-size: 0.8em;">{{category.name}}</p>
           </div>
         </ion-col>

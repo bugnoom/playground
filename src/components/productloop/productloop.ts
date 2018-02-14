@@ -61,10 +61,6 @@ export class ProductloopComponent {
 
   }
 
-
-
-
-
   openProduct(id) {
     this.app.getRootNav().push(ProductDetailPage, { product_id: id, product_name: this.name, parrentPage: this.numberToToggle }, { animate: true, direction: 'forward' });
   }

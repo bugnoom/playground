@@ -127,6 +127,7 @@ export class ShoppingPage {
   }
 
   
+  
 
   toggle() {
     this.toggled = this.toggled ? false : true;

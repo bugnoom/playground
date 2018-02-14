@@ -12,4 +12,10 @@ page-cartlist {
     color: #d94239;
     text-decoration: underline;
     }
+    .item-ios ion-thumbnail img, .item-md ion-thumbnail img{
+        height: auto !important;
+    }
+    .item-ios ion-thumbnail img{
+        width:80px !important;
+    }
 }
