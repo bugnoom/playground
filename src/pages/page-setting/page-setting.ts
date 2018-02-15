@@ -19,12 +19,11 @@ export class PageSettingPage {
     public appLanguages: AppLanguagesProvider) {
 
       this.languages = appLanguages.getLanguages();
-      
-      console.log('log language = '+this.languages);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PageSettingPage'); 
+    console.log('log language = '+this.languages);
   }
 
 }

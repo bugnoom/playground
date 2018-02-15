@@ -20,7 +20,7 @@ export class ProductloopComponent {
   @Input('regular-price') regular_price: number;
   @Input('priceHtml') priceHtml: string;
   @Input('images') images: string;
-  @Input('on_sale') on_sale: any;
+  @Input('on_sale') on_sale: boolean;
 
   numberToToggle: number = 0;
   language: string;
@@ -32,7 +32,7 @@ export class ProductloopComponent {
   }
 
   ionViewDidEnter(){
-    console.log("name :"+this.name)
+    
     if (this.r.getcartItem(this.keys.id)) {
       this.numberToToggle = 1;
     }
@@ -41,7 +41,7 @@ export class ProductloopComponent {
   ngOnInit() {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-   
+    console.log("onsale :"+this.on_sale)
     if (this.r.getcartItem(this.keys.id)) {
       this.numberToToggle = 1;
     }

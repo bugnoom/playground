@@ -32,8 +32,13 @@ export class MyApp {
     this.translate.setDefaultLang('TH');
 
     // Detect current Language
-    var userLang = navigator.language.split("-")[0];
+    let userLang = navigator.language.split("-")[0];
+
+    console.log("this is language");
+    console.log(userLang);
+    console.log("find a language");
     console.log(this.appLanguages.getLanguages().indexOf(userLang))
+    
     userLang = (this.appLanguages.getLanguages().indexOf(userLang) > -1) ? userLang : 'TH';
 
     //the lang to use, if the lang is not available, it will use the current loader to get them

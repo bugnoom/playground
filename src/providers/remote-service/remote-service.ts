@@ -136,8 +136,8 @@ export class RemoteServiceProvider {
     }
   }
 
-  splitcontent(curlang,content){ //split name or content [:en] [:th]
-    let p = new RegExp("\[\:["+curlang+"]+\]");
+  splitcontent(curlang:string,content){ //split name or content [:en] [:th]
+    let p = new RegExp("\[\:["+curlang.toLowerCase()+"]+\]");
     let _sp = content.split(p);
     let k = new RegExp("\[\:[a-zA-Z]+\]");
     if(_sp.length > 1){
