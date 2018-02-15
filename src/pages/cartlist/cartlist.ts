@@ -1,7 +1,6 @@
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ShoppingPage } from '../shopping/shopping';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Navbar, Events } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 
 /**
@@ -17,16 +16,20 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: 'cartlist.html',
 })
 export class CartlistPage {
+  @ViewChild(Navbar) navBar: Navbar;
+
   toggled: boolean = false;
   plist: any;
   items: any = [];
   product_name: string;
   total: number = 0;
+  shoppong: any;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private translate: TranslateService, private r: RemoteServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private translate: TranslateService, private r: RemoteServiceProvider, public events : Events) {
     this.toggled = false;
     this.plist = this.r.cartlist;
+    this.shoppong = this.navParams.get('shoppingpage').Shopping
   }
 
   ionViewDidLoad() {
@@ -34,13 +37,21 @@ export class CartlistPage {
     console.log(this.r.cartlist);
     this.items = this.r.cartlist;
     this.sumproduct_price();
+
+    
+
+    this.navBar.backButtonClick = (e: UIEvent) => {
+      this.events.publish("reloadpage");
+      this.navCtrl.pop();
+
+    }
   }
 
-  check_coupon(id){
-    if(id.length > 3){
+  check_coupon(id) {
+    if (id.length > 3) {
       console.log("coupon code :" + id);
     }
-    
+
   }
 
   sumproduct_price() {

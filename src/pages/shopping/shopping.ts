@@ -1,7 +1,7 @@
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { CategorylistPage } from './../categorylist/categorylist';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, Events } from 'ionic-angular';
 
 
 
@@ -21,29 +21,28 @@ export class ShoppingPage {
   toggled: boolean = false;
   page: number = 1;
   hasMoreData: boolean = true;
-  refreshpage : boolean = false;
 
-  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, private r: RemoteServiceProvider) {
+ 
+ 
+
+  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, private r: RemoteServiceProvider, public events : Events) {
     // this.toggled = false;
     // this.grid = Array(Math.ceil(this.product.length / 2)); //MATHS!
     // this.grid = Array.from(Array(Math.ceil(this.product.length / 2)).keys());
+   
   }
 
-  ionViewDidEnter(){
+  
+
+  ionViewWillEnter(){
     console.log("Page1 Open")
   }
 
   ionViewDidLoad() {
-    if(this.refreshpage == true){
-      this.getAllProduct(1);
-    };
     this.getCategory();
-
     this.getSlider();
-
     this.getAllProduct(this.page);
     //  console.log(this.grid);
-
   }
 
   doRefresh(refresher) {
@@ -55,7 +54,6 @@ export class ShoppingPage {
       refresher.complete();
     }, 1000);
   }
-
 
   showdata() {
     this.grid = Array(Math.ceil(this.product.length / 2))
@@ -86,21 +84,6 @@ export class ShoppingPage {
       }
     );
     console.log('Product list ' + this.product);
-    /* let rowNum = 0;
-    for (let i = 0; i < this.product.length; i += 2) {
-      this.grid[rowNum] = Array(2);
-
-      if (this.product[i]) {
-        this.grid[rowNum][0] = this.product[i]
-      }
-
-      if (this.product[i + 1]) {
-        this.grid[rowNum][1] = this.product[i + 1];
-      }
-      rowNum++;
-    } */
-
-
   }
 
   getSlider() {
@@ -111,33 +94,20 @@ export class ShoppingPage {
       },
       err => { console.log(err) }
     );
-    /* this.slides = [
-      { h1: "Bontree", img : 'http://www.playground-inseoul.com/shop/wp-content/uploads/2017/09/ads-Borntree-Goat-Milk-Tone-Up-Cream.jpg' },
-      { h1: "SkillCare",img : 'http://www.playground-inseoul.com/shop/wp-content/uploads/2017/09/ads-goldilocks.jpg' },
-      { h1: "Mask",img : 'http://www.playground-inseoul.com/shop/wp-content/uploads/2017/09/ads-Borntree-Goat-Milk-Tone-Up-Cream.jpg' },
-      { h1: "Lipstick",img : 'http://www.playground-inseoul.com/shop/wp-content/uploads/2017/09/ads-Borntree-Goat-Milk-Tone-Up-Cream.jpg' },
-      { h1: "ApprilSkin",img : 'http://www.playground-inseoul.com/shop/wp-content/uploads/2017/09/ads-Borntree-Goat-Milk-Tone-Up-Cream.jpg' }
-    ]; */
   }
-
-
 
   getCategory() {
     this.r.getCategories().subscribe(data => this.categorys = data);
   }
 
-  
-  
-
   toggle() {
     this.toggled = this.toggled ? false : true;
   }
 
-  openCategory(id, name) {
+  openCategory(id, name) { 
     this.navCtrl.push(CategorylistPage, { category_id: id, category_name: name }, { animate: true, direction: 'forward' });
     // console.log("Open Cate Id" + id)
   }
-
 
   doInfinite(even) {
     // console.log("infinite Scroll");
@@ -162,7 +132,6 @@ export class ShoppingPage {
       )
 
     }, 1000);
-
   }
 
   searchThis(even) {
@@ -172,8 +141,6 @@ export class ShoppingPage {
   cancelSearch() {
     this.toggled = false;
   }
-
-
 
 
 }

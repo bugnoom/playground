@@ -1,8 +1,8 @@
 import { TranslateService } from '@ngx-translate/core';
 import { CatemenulistPage } from './../catemenulist/catemenulist';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, LoadingController, Navbar, Events } from 'ionic-angular';
 import { ShoppingPage } from '../shopping/shopping';
 
 @IonicPage()
@@ -11,62 +11,67 @@ import { ShoppingPage } from '../shopping/shopping';
   templateUrl: 'categorylist.html',
 })
 export class CategorylistPage {
-
-  toggled : boolean = false;
-  product : any = 0;
+  @ViewChild(Navbar) navBar: Navbar;
+  toggled: boolean = false;
+  product: any = 0;
   page: number = 1;
   grid: Array<Array<string>>;
   hasMoreData: boolean = true;
- category_id : number = 0;
- category_name : string;
- 
+  category_id: number = 0;
+  category_name: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private r : RemoteServiceProvider, private modalCtrl : ModalController,  private translate : TranslateService) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private r: RemoteServiceProvider, private modalCtrl: ModalController, private translate: TranslateService, public events: Events) {
     this.category_id = navParams.get('category_id');
     this.category_name = navParams.get('category_name');
-  
   }
 
-  
+
   ionViewDidLoad() {
+    this.navBar.backButtonClick = (e: UIEvent) => {
+      this.events.publish("reloadpage");
+      this.navCtrl.pop();
+
+    }
+
     console.log('ionViewDidLoad CategorylistPage');
-   /*  this.tmenu.enable(true, 'testRightmenu');
-    this.tmenu.enable(false, 'main'); */
+    /*  this.tmenu.enable(true, 'testRightmenu');
+     this.tmenu.enable(false, 'main'); */
     this.getproduct(this.category_id)
   }
-  
 
-  toggle(){
+
+  toggle() {
     this.toggled = this.toggled ? false : true;
- }
-
- searchThis(even){
-  console.log(even.target.value)
-}
-
-cancelSearch(){
-  this.toggled = false;
-}
-
-goBack() {
-    this.navCtrl.setRoot(ShoppingPage,{},{animate: true, direction: 'back'});
   }
 
-  public getproduct(cateid){
+  searchThis(even) {
+    console.log(even.target.value)
+  }
+
+  cancelSearch() {
+    this.toggled = false;
+  }
+
+  goBack() {
+    this.navCtrl.setRoot(ShoppingPage, {}, { animate: true, direction: 'back' });
+  }
+
+  getproduct(cateid) {
     this.r.showloading();
-    this.r.getAllProductByCategory(this.page,cateid).subscribe(
-      data => {this.product = (data)},
-      err=>{ console.log("Error to get Product by category" + cateid)},
-      ()=>{if(this.product.length > 0){
-            this.showdata()
-            this.r.hideloading();
-          }
+    this.r.getAllProductByCategory(this.page, cateid).subscribe(
+      data => { this.product = (data) },
+      err => { console.log("Error to get Product by category" + cateid) },
+      () => {
+        if (this.product.length > 0) {
+          this.showdata()
+          this.r.hideloading();
+        }
       }
     )
   }
 
   showdata() {
-  
     this.grid = Array(Math.ceil(this.product.length / 2))
     console.log(this.grid);
     let rowNum = 0;
@@ -82,19 +87,18 @@ goBack() {
       }
       rowNum++;
     }
-   
+
   }
 
-  refreshme(id,name){
-    this.navCtrl.setRoot(this.navCtrl.getActive().component,{category_id:id,category_name:name}); 
+  refreshme(id, name) {
+    this.navCtrl.setRoot(this.navCtrl.getActive().component, { category_id: id, category_name: name });
   }
-
 
   doInfinite(even) {
     // console.log("infinite Scroll");
     this.page = this.page + 1;
     setTimeout(() => {
-      this.r.getAllProductByCategory(this.page,this.category_id).subscribe(
+      this.r.getAllProductByCategory(this.page, this.category_id).subscribe(
         data => {
           // console.log(data);
           if (data.length > 0) {
@@ -111,30 +115,28 @@ goBack() {
           even.complete();
         }
       )
-
     }, 1000);
-
   }
 
-  showmenu(){
+  showmenu() {
     let menulist = this.modalCtrl.create(CatemenulistPage, { category_id: this.category_id });
 
-    menulist.onDidDismiss(data=>{
-     // this.getproduct(data.id)
-     console.log(data);
-    if(data){
-     this.category_id = data.id;
-     this.category_name = data.name;
-    this.product = 0;
-    this.page = 1;
-     this.getproduct(data.id);
-    }else{
-      return;
-    }
+    menulist.onDidDismiss(data => {
+      // this.getproduct(data.id)
+      console.log(data);
+      if (data) {
+        this.category_id = data.id;
+        this.category_name = data.name;
+        this.product = 0;
+        this.page = 1;
+        this.getproduct(data.id);
+      } else {
+        return;
+      }
     })
     menulist.present();
   }
 
 
-  
+
 }

@@ -1,5 +1,5 @@
 import { ShowvariationPage } from './../../pages/showvariation/showvariation';
-import { NavController, ModalController, NavParams,  ToastController } from 'ionic-angular';
+import { NavController, ModalController, NavParams,  ToastController, Events } from 'ionic-angular';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { Component, Input } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -24,26 +24,25 @@ export class AddtocartComponent {
   @Input('variation') variations: any = [];
   @Input('buttontype') buttontype : string;
 
-  constructor(private r: RemoteServiceProvider, public navParam: NavParams, private translate: TranslateService, private NavCtrl: NavController, private modalCtrl: ModalController, private toastCtrl : ToastController) {
+  constructor(private r: RemoteServiceProvider, public navParam: NavParams, private translate: TranslateService, private NavCtrl: NavController, private modalCtrl: ModalController, private toastCtrl : ToastController, public events : Events) {
     console.log("Constructor event on addtocart component")
-    
-    
   }
 
-  ngOnInit() {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    console.log(this.data);
-    console.log("in stock is : "+this.data.in_stock)
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    console.log("Check duplicate data on Init"+this.data.id)
-    console.log(this.r.getcartItem(this.data.id.toString()))
+  checkcartitem(){
     if (this.r.getcartItem(this.data.id.toString())) {
       this.numberToToggle = 1;
       console.log("do true and numberTotogle = "+ this.numberToToggle)
     }else{
       this.numberToToggle = 0;
     }
+  }
+
+  ngOnInit() {
+    this.events.subscribe('reloadpage',()=>{
+     this.checkcartitem();
+    })
+    
+    this.checkcartitem();
     this.language = this.translate.currentLang;
 
     console.log("Product Name : " + this.data.name);

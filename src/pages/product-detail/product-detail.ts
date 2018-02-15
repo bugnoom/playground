@@ -3,7 +3,7 @@ import { CartlistPage } from './../cartlist/cartlist';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, App, Navbar } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App, Navbar, Events } from 'ionic-angular';
 import { ShoppingPage } from '../shopping/shopping';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -35,7 +35,7 @@ export class ProductDetailPage {
   product_review: any = 0;
   product_related: any = 0;
 
-  constructor(private app: App, public navCtrl: NavController, public navParams: NavParams, private r: RemoteServiceProvider, private translate: TranslateService, private barcode: BarcodeScanner) {
+  constructor(private app: App, public navCtrl: NavController, public navParams: NavParams, private r: RemoteServiceProvider, private translate: TranslateService, private barcode: BarcodeScanner,public events : Events) {
     this.product_id = navParams.get('product_id');
     this.product_name = navParams.get('product_name');
     this.product_properties = "product_detail";
@@ -53,8 +53,8 @@ export class ProductDetailPage {
 
     this.navBar.backButtonClick = (e: UIEvent) => {
 
-      console.log(this.navCtrl);
-      this.r.checkcart = true
+      console.log(this.navParams.get('shoppingpage'));
+      this.events.publish("reloadpage");
       this.navCtrl.pop();
 
     }

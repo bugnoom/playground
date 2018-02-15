@@ -32,11 +32,11 @@ export class TabsPage {
   myIndex : number;
   
   constructor(public navCtrl: NavController,public translate: TranslateService, public navParams: NavParams,public service : RemoteServiceProvider,private app : App) {
-    this.myIndex = navParams.data.tabIndex || 0; 
+    this.myIndex = navParams.data.tabIndex || 0;
   }
 
   showcart(){
-    this.app.getRootNav().push(CartlistPage,{},{animate: true, direction: 'forward'});
+    this.app.getRootNav().push(CartlistPage,{shoppingpage : this},{animate: true, direction: 'forward'});
   }
 
   countCartItem(){

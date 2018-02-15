@@ -22,6 +22,7 @@ export class ProductloopComponent {
   @Input('images') images: string;
   @Input('on_sale') on_sale: boolean;
 
+
   numberToToggle: number = 0;
   language: string;
   product: any;
