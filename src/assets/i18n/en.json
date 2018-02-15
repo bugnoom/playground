@@ -25,5 +25,9 @@
     "check_out" : "Purchase",
     "your_cart" : "Items in cart",
 
-    "show_variation_title" : "Choice Option"
+    "show_variation_title" : "Choice Option",
+
+    "amount": "Amount",
+    "coupon_code_here" : "Input Coupon Code Here",
+    "sub_total" : "Total Price"
 }

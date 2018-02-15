@@ -32,39 +32,27 @@ export class CartlistPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CartlistPage');
     console.log(this.r.cartlist);
-    this.items =this.r.cartlist;
-   // this.showitems();
+    this.items = this.r.cartlist;
+    this.sumproduct_price();
   }
 
-  showitems() {
-    if (this.plist.length > 0) {
-
-      for (let i = 0; i < this.plist.length; i++) {
-        this.r.showloading()
-        this.r.getProduct(this.plist[i].id).subscribe(
-          data => {
-            this.items.push(data);
-          },
-          err => { console.log("error to get data from prodcut detail") },
-          () => {
-            console.log(this.items)
-          }
-        )
-        this.r.hideloading();
-      }
-
+  check_coupon(id){
+    if(id.length > 3){
+      console.log("coupon code :" + id);
     }
-
-
+    
   }
 
-  sumproduct_price(price){
-    return this.total += price;
+  sumproduct_price() {
+    this.total = 0;
+    for (let i = 0; i < this.plist.length; i++) {
+      let ans = this.plist[i].sale_price * this.plist[i].count;
+      this.total += ans;
+    }
   }
 
   getproduct_name(name) {
     return this.r.splitcontent(this.translate.currentLang, name)
-
   }
 
   buyitem() {
@@ -77,8 +65,7 @@ export class CartlistPage {
 
   removethis(id) {
     this.r.moveoutcart(id);
-    this.showitems();
-
+    this.sumproduct_price();
   }
 
 

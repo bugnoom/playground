@@ -6,9 +6,14 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list class="list-ios">
-    <ion-item *ngFor="let item of items" class="item item-text-wrap">
+<ion-content *ngIf="plist.length <= 0">
+  <h1 text-center>Not have items</h1>
+
+</ion-content>
+
+<ion-content *ngIf="plist.length > 0">
+  <ion-list class="list-ios" *ngFor="let item of items">
+    <ion-item class="item item-text-wrap">
       <ion-thumbnail item-start>
         <img src="{{item.images}}">
       </ion-thumbnail>
@@ -17,33 +22,42 @@
       <button ion-button icon-only clear item-end (click)="removethis(item.id)">
         <ion-icon name="close-circle" color="danger"></ion-icon>
       </button>
+
     </ion-item>
+    <ion-item>
+      <ion-label color="primary" fixed>{{'amount' | translate}}</ion-label>
+      <ion-input type="tel" placeholder="Tel Input" [(ngModel)]="item.count" (ionChange)="sumproduct_price()"></ion-input>
+    </ion-item>
+
+
   </ion-list>
 
 </ion-content>
 <ion-footer>
   <ion-grid>
-    <ion-row justify-content-center align-items-center>
-      <ion-col col-3>
-        : Coupon Code here :
-      </ion-col>
-      <ion-col col-9>
-        <input type="text" />
+    <ion-row *ngIf="plist.length > 0">
+      <ion-col>
+        <ion-row justify-content-center align-items-center>
+          <ion-item>
+            <ion-label color="primary" floating>{{'coupon_code_here' | translate}}</ion-label>
+            <ion-input type="tel" [(ngModel)]="coupon" (ionChange)="check_coupon(coupon)"></ion-input>
+          </ion-item>
+        </ion-row>
+        <ion-row justify-content-center align-items-center>
+          <ion-item-divider>
+            <ion-label color="primary" style="font-size:1.6rem;">{{'sub_total' | translate}} </ion-label>Total
+            <ion-note item-end color="danger" style="font-size:1.6rem;font-weight:bold;padding-right:5px;">{{total}}
+              <ion-icon ios="logo-bitcoin" md="logo-bitcoin" color="danger"></ion-icon>
+            </ion-note>>
+          </ion-item-divider>
+        </ion-row>
       </ion-col>
     </ion-row>
-    <ion-row justify-content-center align-items-center>
-        <ion-col col-3>
-          : Total :
-        </ion-col>
-        <ion-col col-9>
-          {{total}}
-        </ion-col>
-      </ion-row>
     <ion-row justify-content-center align-items-center>
       <ion-col col-6>
         <ion-toolbar>
           <ion-buttons>
-            <button ion-button icon-right color="royal" (click)="buyitem()" color="secondary">
+            <button ion-button icon-right color="royal" (click)="buyitem()" color="secondary" *ngIf="plist.length > 0">
               <ion-icon ios="logo-bitcoin" md="logo-bitcoin" color="secondary"></ion-icon>&nbsp;&nbsp; {{'check_out'|translate}}
             </button>
           </ion-buttons>

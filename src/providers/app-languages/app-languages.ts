@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 /*
@@ -11,8 +10,8 @@ export class AppLanguagesProvider {
 
   private languages : String[];
   
-  constructor(public http: HttpClient){
-    this.languages = ['en','th'];
+  constructor(){
+    this.languages = ['EN','TH'];
   }
 
   public getLanguages() : String[]{

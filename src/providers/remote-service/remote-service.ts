@@ -103,10 +103,13 @@ export class RemoteServiceProvider {
   moveoutcart(ids){
     console.log(ids);
     var a =[]
-    a.push(ids);
-      //var index = this.deepIndexOf(this.cartlist,ids);
-     let index = this.cartlist.find(item => item.id === ids);
-      if(index){
+    a.push({ids});
+      //var index = this.deepIndexOf(this.cartlist,{ids});
+     let index = this.cartlist.findIndex(item => item.id === ids);
+      //let index = this.cartlist[].indexOf(ids);
+      console.log("index remove")
+      console.log(index);
+      if(index > -1){
         this.badgecount -= 1;
         this.cartlist.splice(index,1);
       }   
@@ -124,8 +127,8 @@ export class RemoteServiceProvider {
   getcartItem(id){
     if(id){
       //let  index = this.deepIndexOf(this.cartlist,id);
-      let index = this.cartlist.find(item => item.id === id);
-      if(index){
+      let index = this.cartlist.findIndex(item => item.id === id);
+      if(index > -1){
         return true;
       }else{
         return false;
