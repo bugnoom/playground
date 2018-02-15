@@ -26,11 +26,14 @@ export class AddtocartComponent {
 
   constructor(private r: RemoteServiceProvider, public navParam: NavParams, private translate: TranslateService, private NavCtrl: NavController, private modalCtrl: ModalController, private toastCtrl : ToastController) {
     console.log("Constructor event on addtocart component")
-    console.log(this.data);
+    
     
   }
 
-  ionViewWillEnter(){
+  ngOnInit() {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    console.log(this.data);
+    console.log("in stock is : "+this.data.in_stock)
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     console.log("Check duplicate data on Init"+this.data.id)

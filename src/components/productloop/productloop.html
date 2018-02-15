@@ -1,4 +1,5 @@
 <ion-card>
+    <span class="soldout" *ngIf="!keys.in_stock" >SOLD OUT</span>
   <div (click)="openProduct(id)" style="text-decoration: none; color:#000;">
 
     <div style="min-height:165px"><img src="{{images}}" width="90%" /></div>

@@ -35,8 +35,6 @@ export class ProductDetailPage {
   product_review: any = 0;
   product_related: any = 0;
 
-  already_cart: boolean = false;
-
   constructor(private app: App, public navCtrl: NavController, public navParams: NavParams, private r: RemoteServiceProvider, private translate: TranslateService, private barcode: BarcodeScanner) {
     this.product_id = navParams.get('product_id');
     this.product_name = navParams.get('product_name');
@@ -60,14 +58,6 @@ export class ProductDetailPage {
       this.navCtrl.pop();
 
     }
-
-
-    //this.product_desc = this.r.splitcontent(curlang,this.product.description)
-    /* if(this.r.getcartItem(this.product_id)){
-      this.already_cart = true;
-    }else{
-      this.already_cart = false;
-    } */
   }
 
   showdatacontent(product) {
@@ -105,10 +95,6 @@ export class ProductDetailPage {
     let textURL: string = "http://www.playground-inseoul.com/show/product/" + id
     await this.barcode.encode(this.barcode.Encode.TEXT_TYPE, textURL);
 
-  }
-
-  goBack() {
-    this.navCtrl.push(ShoppingPage, {}, { animate: true, direction: 'back' });
   }
 
   buyitem(id) {

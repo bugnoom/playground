@@ -57,7 +57,8 @@ export class ProductloopComponent {
       'price_html': this.priceHtml,
       'sale_price': this.sale_price,
       'on_sale': this.on_sale,
-      'images': this.keys.images
+      'images': this.keys.images,
+      'in_stock' : this.keys.in_stock
     }
 
     this.variations = this.keys.variations;
