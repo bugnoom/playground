@@ -1,3 +1,4 @@
+import { ShippingPage } from './../pages/shipping/shipping';
 import { ShowvariationPage } from './../pages/showvariation/showvariation';
 import { AddtocartComponent } from './../components/addtocart/addtocart';
 import { CatemenulistPage } from './../pages/catemenulist/catemenulist';
@@ -59,6 +60,7 @@ export function createTranslateLoader(http : HttpClient){
     PageSettingPage,
     ProductDetailPage,
     TabsPage,
+    ShippingPage,
     ProductloopComponent,
     AddtocartComponent,
     QrscancomponentComponent
@@ -94,7 +96,8 @@ export function createTranslateLoader(http : HttpClient){
     ShoppingPage,
     PageSettingPage,
     ProductDetailPage,
-     TabsPage
+    TabsPage,
+    ShippingPage
     
 
   ],

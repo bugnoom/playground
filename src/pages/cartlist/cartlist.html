@@ -1,14 +1,11 @@
 <ion-header>
   <ion-navbar>
-
     <ion-title mode="ios">{{'your_cart'|translate}}</ion-title>
-
   </ion-navbar>
 </ion-header>
 
 <ion-content *ngIf="plist.length <= 0">
   <h1 text-center>Not have items</h1>
-
 </ion-content>
 
 <ion-content *ngIf="plist.length > 0">
@@ -22,27 +19,26 @@
       <button ion-button icon-only clear item-end (click)="removethis(item.id)">
         <ion-icon name="close-circle" color="danger"></ion-icon>
       </button>
-
     </ion-item>
-    <ion-item>
-      <ion-label color="primary" fixed>{{'amount' | translate}}</ion-label>
-      <ion-input type="tel" placeholder="Tel Input" [(ngModel)]="item.count" (ionChange)="sumproduct_price()"></ion-input>
-    </ion-item>
-
-
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4>
+          <ion-item>
+            <ion-input type="number" placeholder="{{'amount' | translate}}" [(ngModel)]="item.count" (ionChange)="sumproduct_price()"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+        <!--   <button ion-button color="secondary" round (click)="openApplyCoupon">{{'coupon_code_here' | translate}}</button> -->
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+   
   </ion-list>
-
 </ion-content>
 <ion-footer>
   <ion-grid>
     <ion-row *ngIf="plist.length > 0">
       <ion-col>
-        <ion-row justify-content-center align-items-center>
-          <ion-item>
-            <ion-label color="primary" floating>{{'coupon_code_here' | translate}}</ion-label>
-            <ion-input type="tel" [(ngModel)]="coupon" (ionChange)="check_coupon(coupon)"></ion-input>
-          </ion-item>
-        </ion-row>
         <ion-row justify-content-center align-items-center>
           <ion-item-divider>
             <ion-label color="primary" style="font-size:1.6rem;">{{'sub_total' | translate}} </ion-label>Total

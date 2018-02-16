@@ -9,9 +9,9 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content padding>
 
-  <ion-card *ngFor="let row of product">
+  <ion-card *ngFor="let row of product" padding>
     <h2>
       {{row.name}}
     </h2>
@@ -19,7 +19,7 @@
       <img src="{{row.images[0].src}}" />
     </ion-card-content>
     <ion-row no-padding text-center>
-      <button ion-button full color="danger" (click)="addtocart(row)">
+      <button ion-button full [color]="setColor" (click)="addtocart(row)">
         <ion-icon name='cart'></ion-icon>
         Add to Cart
       </button>

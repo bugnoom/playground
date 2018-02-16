@@ -1,5 +1,3 @@
-import { AddtocartComponent } from './../../components/addtocart/addtocart';
-import { CartlistPage } from './../cartlist/cartlist';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { Component, ViewChild } from '@angular/core';
@@ -92,7 +90,7 @@ export class ProductDetailPage {
 
   async showQR(id) {
     console.log(id);
-    let textURL: string = "http://www.playground-inseoul.com/show/product/" + id
+    let textURL: string = this.r.baseURL + "show/product/" + id
     await this.barcode.encode(this.barcode.Encode.TEXT_TYPE, textURL);
 
   }

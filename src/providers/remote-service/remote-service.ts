@@ -17,18 +17,16 @@ import { TranslateService } from '@ngx-translate/core';
 @Injectable()
 export class RemoteServiceProvider {
   badgecount : number = 0;
-  private url : string = "http://kocomeishop.com/mobileservices/services.php";//http://www.playground-inseoul.com/mobileservices/services.php";//"http://192.168.1.48/WooService/services.php";
+  baseURL : string = "http://www.playground-inseoul.com/";
+  private url : string = this.baseURL + "mobileservices/services.php";//http://www.playground-inseoul.com/mobileservices/services.php";//"http://192.168.1.48/WooService/services.php";
   language : string;
   cartlist : any = [];
-  checkcart : boolean = false;
-
+  loading : any 
 
   constructor(private http: Http, public loadingCtrl : LoadingController,private translate : TranslateService,public toastCtrl : ToastController) {
     this.language = this.translate.currentLang;
   }
-   loading : any 
-  
-
+   
   showloading(){
   this.loading= this.loadingCtrl.create({
       content: "Loading ..."
@@ -88,7 +86,6 @@ export class RemoteServiceProvider {
      console.log("ตอนนี้ count = "+ ids.count)
       return;
     }else{
-      
       this.cartlist.push(ids);
       this.toastCtrl.create({
         message: 'Add to Cart Success',

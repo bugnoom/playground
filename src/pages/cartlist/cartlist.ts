@@ -1,3 +1,4 @@
+import { ShippingPage } from './../shipping/shipping';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Navbar, Events } from 'ionic-angular';
@@ -37,21 +38,11 @@ export class CartlistPage {
     console.log(this.r.cartlist);
     this.items = this.r.cartlist;
     this.sumproduct_price();
-
-    
-
     this.navBar.backButtonClick = (e: UIEvent) => {
       this.events.publish("reloadpage");
       this.navCtrl.pop();
 
     }
-  }
-
-  check_coupon(id) {
-    if (id.length > 3) {
-      console.log("coupon code :" + id);
-    }
-
   }
 
   sumproduct_price() {
@@ -67,7 +58,9 @@ export class CartlistPage {
   }
 
   buyitem() {
-    alert("go to purchase this item lists")
+    //open for customer add shipping detail page 
+    // send tatal price via parameter
+   this.navCtrl.push(ShippingPage,{},{ animate: true, direction: 'forward' })
   }
 
   to_shopping() {

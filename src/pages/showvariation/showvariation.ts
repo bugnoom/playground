@@ -19,7 +19,7 @@ export class ShowvariationPage {
   
   data : any[];
   product : any = [];
-
+  setColor : string = "danger";
 
   constructor(public navCtrl: NavController,public viewCtrl : ViewController, public navParams: NavParams, private r : RemoteServiceProvider, private translate : TranslateService) {
   }
@@ -28,12 +28,15 @@ export class ShowvariationPage {
     console.log('ionViewDidLoad ShowvariationPage');
     this.data = this.navParams.get('product');
     //console.log(this.data.length);
+    this.r.showloading();
     this.getitems(this.data);
+    this.r.hideloading();
   }
 
   getitems(data){
    // console.log("NUMBER = "+data.length);
-    for(let i = 0; i < data.length; i++){
+   
+   /*  for(let i = 0; i < data.length; i++){
       this.r.getProduct(data[i]).subscribe(
         productdata => {
           this.product.push(productdata);
@@ -41,6 +44,23 @@ export class ShowvariationPage {
         },
         err =>{console.log(err);},
         () => {}
+      )
+    } */
+    for(let row of this.data){
+      console.log("Row : "+row)
+     
+      this.r.getProduct(row).subscribe(
+        productdata => {
+          this.product.push(productdata)
+        },
+        err =>{console.log(err);},
+        () => {
+          if(this.r.getcartItem(row.toString())){
+            this.setColor="secondary"
+          }else{
+            this.setColor="danger";
+          }
+        }
       )
     }
     
