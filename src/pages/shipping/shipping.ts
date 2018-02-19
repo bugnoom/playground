@@ -1,3 +1,5 @@
+import { LoginPage } from './../login/login';
+import { UserloginProvider } from './../../providers/userlogin/userlogin';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -16,10 +18,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ShippingPage {
   
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private login : UserloginProvider) {
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad() { 
+   
     console.log('ionViewDidLoad ShippingPage');
   }
 

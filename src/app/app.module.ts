@@ -1,3 +1,4 @@
+import { NativeStorage } from '@ionic-native/native-storage';
 import { ShippingPage } from './../pages/shipping/shipping';
 import { ShowvariationPage } from './../pages/showvariation/showvariation';
 import { AddtocartComponent } from './../components/addtocart/addtocart';
@@ -35,6 +36,7 @@ import { Camera } from '@ionic-native/camera';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { BarcodeScanner} from '@ionic-native/barcode-scanner';
 import { QrscancomponentComponent } from '../components/qrscancomponent/qrscancomponent';
+import { UserloginProvider } from '../providers/userlogin/userlogin';
 
 
 export function createTranslateLoader(http : HttpClient){
@@ -108,8 +110,10 @@ export function createTranslateLoader(http : HttpClient){
     AppLanguagesProvider,
     RemoteServiceProvider,
     Camera,
+    NativeStorage,
     BarcodeScanner,
     AndroidPermissions,
+    UserloginProvider,
   ]
 })
 export class AppModule {}

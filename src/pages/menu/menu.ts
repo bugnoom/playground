@@ -28,11 +28,11 @@ export class MenuPage {
   @ViewChild(Nav) nav : Nav;
 
   pages : PageInterface[]=[
-    {title : 'shopping_tab', pageName:'TabsPage',tabComponent:'ShoppingPage',index:0,icon:'home'},
-    {title : 'category_title', pageName:'TabsPage',tabComponent:'ShowCaegoryPage',index:4,icon:'list'},
-    {title : 'myorder_title', pageName:'TabsPage',tabComponent:'PromotionPage',index:1,icon:'clipboard'},
-    {title : 'playground_news_title', pageName:'TabsPage',tabComponent:'CartlistPage',index:2,icon:'document'},
-    {title : 'playground_shop_title', pageName:'TabsPage',tabComponent:'LoginPage',index:3,icon:'cafe'}
+    {title : 'shopping_tab', pageName:'ShoppingPage',tabComponent:'ShoppingPage',index:0,icon:'home'},
+    {title : 'category_title', pageName:'ShowCaegoryPage',tabComponent:'ShowCaegoryPage',index:4,icon:'list'},
+    {title : 'myorder_title', pageName:'PromotionPage',tabComponent:'PromotionPage',index:1,icon:'clipboard'},
+    {title : 'playground_news_title', pageName:'CartlistPage',tabComponent:'CartlistPage',index:2,icon:'document'},
+    {title : 'playground_shop_title', pageName:'LoginPage',tabComponent:'LoginPage',index:3,icon:'cafe'}
   ];
 
  
@@ -48,7 +48,7 @@ export class MenuPage {
 
     //the index is equal to the order of our tabs
     if(page.index){
-      params = {tabIndex : page.index};
+      params = {tabIndex : page.index,page, prepage : page.pageName};
     }
 
     //the active child nav 

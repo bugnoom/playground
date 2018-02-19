@@ -1,3 +1,4 @@
+import { UserloginProvider } from './../userlogin/userlogin';
 
 import { Http, Response } from '@angular/http';
 
@@ -23,7 +24,7 @@ export class RemoteServiceProvider {
   cartlist : any = [];
   loading : any 
 
-  constructor(private http: Http, public loadingCtrl : LoadingController,private translate : TranslateService,public toastCtrl : ToastController) {
+  constructor(private http: Http, public loadingCtrl : LoadingController,private translate : TranslateService,public toastCtrl : ToastController, private login : UserloginProvider) {
     this.language = this.translate.currentLang;
   }
    
@@ -145,6 +146,16 @@ export class RemoteServiceProvider {
       content = _sp[0];
     }
     return content;
+  }
+
+/// Account login Zone
+  accountLogin(){
+    let log = {username:'test',password:'1234'}
+    this.login.setlogin(log);
+  }
+
+  createAccount(){
+
   }
 
 }
