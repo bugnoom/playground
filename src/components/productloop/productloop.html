@@ -2,12 +2,12 @@
     <span class="soldout" *ngIf="!keys.in_stock" >SOLD OUT</span>
   <div (click)="openProduct(id)" style="text-decoration: none; color:#000;">
 
-    <div style="min-height:165px"><img src="{{images}}" width="90%" /></div>
+    <div style="height:20rem;position:relative;overflow=hidden"><img src="{{images}}" width="90%" /></div>
     <div class="card-title " style="height: 52px;padding: 0 6px;text-overflow: ellipsis; overflow:hidden;    margin-bottom: 10px;">
         <div [innerHtml]="name"></div></div>
     <div class="card-subtitle" style="padding: 0 6px 15px;    position: relative;">
-      <div [innerHtml] = "priceHtml" *ngIf="on_sale" ></div>
-      <div *ngIf="!on_sale">A</div> 
+      <div [innerHtml] = "priceHtml" ></div>
+      
       
       <!-- <p style="font-size: 16px;line-height: 18px;" *ngIf="sale_price == '' && price > 0">{{regular_price}} ฿</p>
       <p style="font-size: 16px;line-height: 18px;" *ngIf="sale_price > 0"><del>{{regular_price}} ฿</del></p>
