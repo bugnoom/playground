@@ -29,5 +29,10 @@
 
     "amount": "จำนวน",
     "coupon_code_here" : "ใส่รหัสส่วนลดที่นี่",
-    "sub_total" : "ราคารวม"
+    "sub_total" : "ราคารวม",
+
+    "login_txt" : "เข้าสู่ระบบ",
+    "register_txt" : "สร้างบัญชีใหม่",
+    "or_txt" : "หรือ",
+    "loginby_txt" : "เข้าระบบด้วย"
 }

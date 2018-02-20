@@ -29,5 +29,10 @@
 
     "amount": "Amount",
     "coupon_code_here" : "Input Coupon Code Here",
-    "sub_total" : "Total Price"
+    "sub_total" : "Total Price",
+
+    "login_txt" : "LOGIN",
+    "register_txt" : "Sign up",
+    "or_txt" : "Or",
+    "loginby_txt" : "Login by"
 }

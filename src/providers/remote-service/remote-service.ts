@@ -148,14 +148,6 @@ export class RemoteServiceProvider {
     return content;
   }
 
-/// Account login Zone
-  accountLogin(){
-    let log = {username:'test',password:'1234'}
-    this.login.setlogin(log);
-  }
 
-  createAccount(){
-
-  }
 
 }

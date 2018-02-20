@@ -28,15 +28,21 @@ export class QrscancomponentComponent {
   }
 
  
-  async qrscanner(){
-    this.results = await this.qrscan.scan();
-  
-    this.testNav = this.app.getRootNavById('n4');
-    var t = this.results.text.split('/');
-    var id = t[t.length-1];
-
-    //console.log("get ID :"+id)
-    this.getproductName(id);
+  qrscanner(){
+     this.qrscan.scan()
+    .then((barcodedata)=>{
+      if(!barcodedata.cancelled){
+        console.log(barcodedata);
+        this.testNav = this.app.getRootNavById('n4');
+        let t = barcodedata.text.split('/');
+        let id = t[t.length-1];
+    
+        //console.log("get ID :"+id)
+        this.getproductName(id);
+      }
+     
+    },err => {console.log("Cancel",err);})
+    
    // console.log(this.product_name);
     //this.testNav.push(ProductDetailPage,{product_id:id,product_name:name});
     

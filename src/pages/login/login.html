@@ -14,24 +14,28 @@
 
 
 <ion-content padding>
-  <ion-list>
+  <ion-grid style="justify-content:center;">
+    <ion-grid style="justify-content:top;width:55%;height:auto"> 
+      <img src="assets/imgs/logo.png" />
+      </ion-grid>
+  <br /><br />
+    <form (ngSubmit)="loginForm()">
+      <ion-item style="margin-bottom:5px;border-radius:10px;">
 
-    <ion-item>
-      <ion-label floating>Username</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
+        <ion-input type="email" [(ngModel)]="email" name="email" placeholder="Email address"></ion-input>
+      </ion-item>
+      <ion-item style="margin-bottom:10px;border-radius:10px;">
+        <ion-input type="password" [(ngModel)]="password" name="password" placeholder="Password"></ion-input>
+      </ion-item>
+      <button ion-button type="submit" color="secondary" style="font-weight: bold;border-radius:10px;" block>{{'login_txt' | translate}}</button>
+    </form>
 
-    <ion-item>
-      <ion-label floating>Password</ion-label>
-      <ion-input type="password"></ion-input>
-    </ion-item>
 
-  </ion-list>
-  <div padding>
-    <button ion-button block (click)="doLogin()">Login</button>
-  </div>
+    <p style="font-size:100%;color:#000;text-align:center;"><a (click)="register()" style="color:primary;text-decoration:underline">{{'register_txt' | translate}}</a> {{'or_txt' | translate}} <a style="color:#000;text-decoration:none;">{{'loginby_txt' | translate}}</a></p>
+    <button ion-button block color="primary" (click)="fblogin()">
+        <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>&nbsp; 
+      Facebook Login</button>
+  </ion-grid>
 
-  <div padding>
-    Or
-  </div>
+
 </ion-content>

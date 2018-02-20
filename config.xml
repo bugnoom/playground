@@ -26,6 +26,10 @@
     <platform name="android">
         <allow-intent href="market:*" />
         <preference name="loadUrlTimeoutValue" value="60000" />
+        <config-file parent="/*" target="./res/values/strings.xml">
+            <string name="fb_app_id">208638756382298</string>
+            <string name="fb_app_name">Playground in Seoul</string>
+        </config-file>
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
         <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />
@@ -83,9 +87,12 @@
     </platform>
     <allow-navigation href="*" />
     <allow-navigation href="http://192.168.1.52:8100" />
+    <platform name="android">
+        <framework src="com.facebook.android:facebook-android-sdk:4.25.0" />
+    </platform>
+    <allow-navigation href="http://192.168.1.52:8101" />
     <engine name="android" spec="7.0.0" />
     <engine name="ios" spec="4.5.4" />
-    <engine name="browser" spec="5.0.3" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
     <plugin name="cordova-plugin-device" spec="^1.1.7" />
@@ -98,4 +105,8 @@
     <plugin name="cordova-plugin-splashscreen" spec="^4.1.0" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
     <plugin name="cordova-plugin-nativestorage" spec="^2.3.0" />
+    <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
+        <variable name="APP_ID" value="208638756382298" />
+        <variable name="APP_NAME" value="Playground in Seoul" />
+    </plugin>
 </widget>

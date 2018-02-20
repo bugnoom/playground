@@ -12,6 +12,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Facebook } from '@ionic-native/facebook'
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -114,6 +115,7 @@ export function createTranslateLoader(http : HttpClient){
     BarcodeScanner,
     AndroidPermissions,
     UserloginProvider,
+    Facebook
   ]
 })
 export class AppModule {}
