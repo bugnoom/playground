@@ -27,7 +27,7 @@
       <ion-item style="margin-bottom:10px;border-radius:10px;">
         <ion-input type="password" [(ngModel)]="password" name="password" placeholder="Password"></ion-input>
       </ion-item>
-      <button ion-button type="submit" color="secondary" style="font-weight: bold;border-radius:10px;" block>{{'login_txt' | translate}}</button>
+      <button ion-button type="button" (click)="doLogin()" color="secondary" style="font-weight: bold;border-radius:10px;" block>{{'login_txt' | translate}}</button>
     </form>
 
 

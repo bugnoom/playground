@@ -1,4 +1,3 @@
-import { NativeStorage } from '@ionic-native/native-storage';
 import { ShippingPage } from './../pages/shipping/shipping';
 import { ShowvariationPage } from './../pages/showvariation/showvariation';
 import { AddtocartComponent } from './../components/addtocart/addtocart';
@@ -111,7 +110,6 @@ export function createTranslateLoader(http : HttpClient){
     AppLanguagesProvider,
     RemoteServiceProvider,
     Camera,
-    NativeStorage,
     BarcodeScanner,
     AndroidPermissions,
     UserloginProvider,
