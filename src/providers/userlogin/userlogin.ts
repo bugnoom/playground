@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { NativeStorage } from '@ionic-native/native-storage';
+import { Storage } from '@ionic/storage';
+import { RemoteServiceProvider } from '../remote-service/remote-service';
+
 
 /*
   Generated class for the UserloginProvider provider.
@@ -11,53 +13,40 @@ import { NativeStorage } from '@ionic-native/native-storage';
 @Injectable()
 export class UserloginProvider {
 
-  data: any;
-  logedin: any;
+  
 
-  name: string;
-  gender: string;
-  picture: string;
-  email: string;
-  id: number;
-  fb: number = 0;
-
-  constructor(public http: HttpClient, public nativestorage: NativeStorage) {
+  constructor(public http: HttpClient, public storage : Storage, public r : RemoteServiceProvider) {
     console.log('Hello UserloginProvider Provider');
   }
 
-  checklogin() {
-    this.nativestorage.getItem('logedin').then(
-      data => { this.logedin = data },
-      erro => { console.log(erro) }
-    );
-    console.log(this.logedin);
-  }
+   checklogin(user : any) {
+    /*  //get data from database
+     let customer = this.r.getCustomer(user);
+     if(customer){ //if can get data
+        //set data to storage
+        this.storage.set();
+        //go to page return true;
+     }else{
+       let create = this.r.createCustomer(user);
+       if(create){
+         this.storage.set();
+         // go to page return true
+       }else{
+         //toast error and return to login page return false
+       } 
+     }*/
+     
+    
+     //else
+     //create data to server
+     // go to page
+    
+  } 
 
-  setfblogin() {
-    // variable object is a value to add to stroage, format look like {} example : {name:"test",pass:"12234"}
-    this.nativestorage.setItem('logedin',{user:'abc',pass : 'aaa'});
-    /* this.nativestorage.setItem('logedin', {
-      name: this.name, gender: this.gender, picture: this.picture, email: this.email, id: this.id,
-    }).then(
-      (data) => {
-        console.log("login success", data);
-        this.nativestorage.setItem('logedin', { fb: this.fb }).then(
-          (data) => { console.log("login success"); },
-          err => { console.log("fb error", err); return false }
-        )
-        return true
-      },
-      err => { console.log("Error to login", err); return false }
-    ) */
-
-  }
-
-  setfrmlogin(a) {
-
-  }
-
-  userRegister(data) {
-    // user register and send data to Webservice API for register
+  setlogin(user : any) {
+   for(let key in user){
+     this.storage.set(key,user[key]);
+   }
   }
 
 }

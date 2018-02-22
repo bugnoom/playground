@@ -32,7 +32,7 @@ export class CartlistPage {
   constructor(private login : UserloginProvider, public navCtrl: NavController, public navParams: NavParams, private translate: TranslateService, private r: RemoteServiceProvider, public events : Events) {
     this.toggled = false;
     this.plist = this.r.cartlist;
-    this.login.checklogin();
+   // this.login.checklogin();
   }
 
   ionViewDidLoad() {

@@ -1,9 +1,12 @@
+import { RegsiterPage } from './../regsiter/regsiter';
+import { UserloginProvider } from './../../providers/userlogin/userlogin';
 import { ProfilePage } from './../profile/profile';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { RemoteServiceProvider } from '../../providers/remote-service/remote-service';
 import { ShippingPage } from '../shipping/shipping';
-import { Facebook } from '@ionic-native/facebook'
+import { Facebook } from '@ionic-native/facebook';
+
 
 
 /**
@@ -22,8 +25,13 @@ export class LoginPage {
 
   page: string;
   private FB_APP_ID: number = 208638756382298;
+  user = {
+    email: "",
+    password: "",
+    fb : 0
+  }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public r: RemoteServiceProvider, private fb: Facebook) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public r: RemoteServiceProvider, private fb: Facebook, private userlogin: UserloginProvider,private toastCtrl : ToastController) {
     this.fb.browserInit(this.FB_APP_ID, 'v2.12')
   }
 
@@ -34,25 +42,32 @@ export class LoginPage {
   }
 
   doLogin() {
-    let data = { username: 'Test', password: "aa" };
-    
+    console.log("email is and password", this.user.email, this.user.password);
+    if (this.user.email == "" || this.user.password == "") {
+      alert("Please input email or password");
+    } else {
+      if(this.userlogin.checklogin(this.user)){
+        //go to page;
+        console.log('Login Success')
+      }
+    }
+
     // this.login.setfrmlogin(data);
     /* if(this.page == "shipping"){
       this.navCtrl.setRoot(ShippingPage);
     } */
-    this.navCtrl.pop();
+    //this.navCtrl.pop();
 
   }
 
   fblogin() {
-
     let permission = new Array<string>();
-
     permission = ['public_profile', 'email'];
 
     //remote.showloading();
+    let env = this
 
-    this.fb.login(permission).then( (resp) => {
+    this.fb.login(permission).then((resp) => {
       console.log("REST = ", resp);
       let userId = resp.authResponse.userID;
       let params = new Array<string>();
@@ -62,18 +77,31 @@ export class LoginPage {
         user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
         //now we have the users info, let's save it in the NativeStorage
         console.log("user detail", user);
+        user.fb = 1;
+       if(env.userlogin.checklogin(user)){
+         //go to page
+         console.log("Login success");
+       }else{
+        env.toastCtrl.create({
+          message: this.translate.instant("login_incorrect"),
+          duration: 2500,
+          position: 'top'
+        }).present();
+       }
+
       })
-    },  (error) => {
+    }, (error) => {
       console.log("error", error);
       alert(JSON.stringify(error));
     })
   }
 
   register() {
-   
+    this.navCtrl.push(RegsiterPage, {}, {});
   }
 
-  openpreviouspage(){
+  openpreviouspage() {
     console.log("open page is ", this.page)
+
   }
 }

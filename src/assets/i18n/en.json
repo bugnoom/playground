@@ -34,5 +34,6 @@
     "login_txt" : "LOGIN",
     "register_txt" : "Sign up",
     "or_txt" : "Or",
-    "loginby_txt" : "Login by"
+    "loginby_txt" : "Login by",
+    "login_incorrect" : "Error Username and password incorrect! Please check and try again"
 }

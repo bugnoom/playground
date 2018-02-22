@@ -1,3 +1,4 @@
+import { RegsiterPage } from './../pages/regsiter/regsiter';
 import { ShippingPage } from './../pages/shipping/shipping';
 import { ShowvariationPage } from './../pages/showvariation/showvariation';
 import { AddtocartComponent } from './../components/addtocart/addtocart';
@@ -11,7 +12,8 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { Facebook } from '@ionic-native/facebook'
+import { Facebook } from '@ionic-native/facebook';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -63,6 +65,7 @@ export function createTranslateLoader(http : HttpClient){
     ProductDetailPage,
     TabsPage,
     ShippingPage,
+    RegsiterPage,
     ProductloopComponent,
     AddtocartComponent,
     QrscancomponentComponent
@@ -80,6 +83,10 @@ export function createTranslateLoader(http : HttpClient){
         deps:[HttpClient,Http]
       }
       
+    }),
+    IonicStorageModule.forRoot({
+      name: 'playground_db',
+         driverOrder: ['indexeddb', 'sqlite', 'websql']
     })
   ],
   bootstrap: [IonicApp],
@@ -99,7 +106,8 @@ export function createTranslateLoader(http : HttpClient){
     PageSettingPage,
     ProductDetailPage,
     TabsPage,
-    ShippingPage
+    ShippingPage,
+    RegsiterPage
     
 
   ],

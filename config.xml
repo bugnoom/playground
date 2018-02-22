@@ -108,4 +108,5 @@
         <variable name="APP_ID" value="208638756382298" />
         <variable name="APP_NAME" value="Playground in Seoul" />
     </plugin>
+    <plugin name="cordova-sqlite-storage" spec="^2.2.1" />
 </widget>
