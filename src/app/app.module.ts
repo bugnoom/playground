@@ -4,7 +4,7 @@ import { ShowvariationPage } from './../pages/showvariation/showvariation';
 import { AddtocartComponent } from './../components/addtocart/addtocart';
 import { CatemenulistPage } from './../pages/catemenulist/catemenulist';
 import { ShowcategoryPage } from './../pages/showcategory/showcategory';
-import { HttpModule,Http } from '@angular/http';
+import { HttpModule, Http } from '@angular/http';
 
 import { PageSettingPage } from './../pages/page-setting/page-setting';
 import { BrowserModule } from '@angular/platform-browser';
@@ -36,14 +36,14 @@ import { RemoteServiceProvider } from '../providers/remote-service/remote-servic
 import { ProductloopComponent } from '../components/productloop/productloop';
 import { Camera } from '@ionic-native/camera';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
-import { BarcodeScanner} from '@ionic-native/barcode-scanner';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { QrscancomponentComponent } from '../components/qrscancomponent/qrscancomponent';
 import { UserloginProvider } from '../providers/userlogin/userlogin';
 
 
-export function createTranslateLoader(http : HttpClient){
+export function createTranslateLoader(http: HttpClient) {
   /* return new TranslateHttpLoader(http,'./assets/i18n/','.json'); */
-  return new TranslateHttpLoader(http,'./assets/i18n/','.json');
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 
 }
 
@@ -77,16 +77,16 @@ export function createTranslateLoader(http : HttpClient){
     BrowserModule,
     IonicModule.forRoot(MyApp),
     TranslateModule.forRoot({
-      loader:{
-        provide : TranslateLoader,
-        useFactory:(createTranslateLoader),
-        deps:[HttpClient,Http]
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient, Http]
       }
-      
+
     }),
     IonicStorageModule.forRoot({
       name: 'playground_db',
-         driverOrder: ['indexeddb', 'sqlite', 'websql']
+      driverOrder: ['indexeddb', 'sqlite', 'websql']
     })
   ],
   bootstrap: [IonicApp],
@@ -108,13 +108,13 @@ export function createTranslateLoader(http : HttpClient){
     TabsPage,
     ShippingPage,
     RegsiterPage
-    
+
 
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     AppLanguagesProvider,
     RemoteServiceProvider,
     Camera,
@@ -124,4 +124,4 @@ export function createTranslateLoader(http : HttpClient){
     Facebook
   ]
 })
-export class AppModule {}
+export class AppModule { }

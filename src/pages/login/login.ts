@@ -1,3 +1,5 @@
+import { Storage } from '@ionic/storage';
+import { TranslateService } from '@ngx-translate/core';
 import { RegsiterPage } from './../regsiter/regsiter';
 import { UserloginProvider } from './../../providers/userlogin/userlogin';
 import { ProfilePage } from './../profile/profile';
@@ -28,11 +30,11 @@ export class LoginPage {
   user = {
     email: "",
     password: "",
-    fb : 0
+    fb: 0
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public r: RemoteServiceProvider, private fb: Facebook, private userlogin: UserloginProvider,private toastCtrl : ToastController) {
-    this.fb.browserInit(this.FB_APP_ID, 'v2.12')
+  constructor(public navCtrl: NavController, public navParams: NavParams, public r: RemoteServiceProvider, private fb: Facebook, private userlogin: UserloginProvider, private toastCtrl: ToastController, public translate : TranslateService, public storageCtrl : Storage) {
+    //this.fb.browserInit(this.FB_APP_ID, 'v2.12')
   }
 
   ionViewDidLoad() {
@@ -46,7 +48,7 @@ export class LoginPage {
     if (this.user.email == "" || this.user.password == "") {
       alert("Please input email or password");
     } else {
-      if(this.userlogin.checklogin(this.user)){
+      if (this.userlogin.checklogin(this.user)) {
         //go to page;
         console.log('Login Success')
       }
@@ -73,25 +75,32 @@ export class LoginPage {
       let params = new Array<string>();
 
       //Getting name and gender properties
-      this.fb.api("/me?fields=id,name,email,birthday,about,age_range,first_name,gender,last_name", params).then(function (user) {
+      this.fb.api("/me?fields=id,name,email,birthday,about,first_name,gender,last_name", params).then(function (user) {
         user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
         //now we have the users info, let's save it in the NativeStorage
         console.log("user detail", user);
         user.fb = 1;
-       if(env.userlogin.checklogin(user)){
-         //go to page
-         console.log("Login success");
-       }else{
-        env.toastCtrl.create({
-          message: this.translate.instant("login_incorrect"),
-          duration: 2500,
-          position: 'top'
-        }).present();
-       }
-
+        user.fbid = userId;
+        //console.log('check Login is ',env.userlogin.checklogin(user))
+        env.userlogin.checklogin(user).subscribe(
+          (data) => {
+            console.log('recieve data', data);
+            // add data to local storage
+            this.logedin = true;
+           
+          },
+          (err) => {
+            console.log('error', err);
+            env.toastCtrl.create({
+              message: env.translate.instant("login_incorrect"),
+              duration: 2500,
+              position: 'top'
+            }).present(); 
+          }
+        ) 
       })
     }, (error) => {
-      console.log("error", error);
+      console.log("error fb login", error);
       alert(JSON.stringify(error));
     })
   }

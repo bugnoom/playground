@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
 import { Storage } from '@ionic/storage';
 import { RemoteServiceProvider } from '../remote-service/remote-service';
 
@@ -13,40 +15,41 @@ import { RemoteServiceProvider } from '../remote-service/remote-service';
 @Injectable()
 export class UserloginProvider {
 
-  
+  logedin: boolean = false;
+  header: any = { 'Content-Type': 'application/json' }
 
-  constructor(public http: HttpClient, public storage : Storage, public r : RemoteServiceProvider) {
+
+  constructor(public http: HttpClient, public storage: Storage, public r: RemoteServiceProvider) {
     console.log('Hello UserloginProvider Provider');
   }
 
-   checklogin(user : any) {
-    /*  //get data from database
-     let customer = this.r.getCustomer(user);
-     if(customer){ //if can get data
-        //set data to storage
-        this.storage.set();
-        //go to page return true;
-     }else{
-       let create = this.r.createCustomer(user);
-       if(create){
-         this.storage.set();
-         // go to page return true
-       }else{
-         //toast error and return to login page return false
-       } 
-     }*/
-     
-    
-     //else
-     //create data to server
-     // go to page
-    
-  } 
+  //#### ======= User function API ===#
+  registerAccount(accountdata) {
+    let data = JSON.stringify(accountdata);
+    let url = this.r.url + "?action=registerAccount";
+    this.http.post(url, data).subscribe(
+      ((data: Response) => console.log(data['_body'])),
+      err => console.log("errlr", err),
+      () => console.log('finally show this', data['_body'])
+    )
+  }
 
-  setlogin(user : any) {
-   for(let key in user){
-     this.storage.set(key,user[key]);
-   }
+  checkfacebooklogin(fb_id) {
+
+  }
+
+  getCustomer(user) {
+
+  }
+
+  checklogin(user) {
+    let url = "";
+    if (user.fb == 0) {
+      url = this.r.url + "?action=checkLogin";
+    } else {
+      url = this.r.url + "?action=checkFBLogin";
+    }
+    return this.http.post(url, user, this.header)
   }
 
 }

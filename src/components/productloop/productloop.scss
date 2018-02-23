@@ -11,8 +11,23 @@ productloop {
         font-size: 12px;
         z-index: 9;
     }
+
+    /* Larger than a phone */
+@media (min-width: 567px) {
+    img.product_images{
+        width:auto;height:20rem;margin:auto;
+    }
+  }
+  
+  /* Small devices such as phone */
+  @media (max-width: 567px) {
+    img.product_images{
+        width:auto;margin:auto;
+    }
+  }
     
 }
+
 .card-subtitle ins span.woocommerce-Price-amount.amount{
     right: 10px;
 position: absolute;

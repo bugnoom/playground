@@ -17,7 +17,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class RemoteServiceProvider {
   badgecount: number = 0;
   baseURL: string = "http://www.playground-inseoul.com/";
-  private url: string = this.baseURL + "mobileservices/services.php";//http://www.playground-inseoul.com/mobileservices/services.php";//"http://192.168.1.48/WooService/services.php";
+   url: string = this.baseURL + "mobileservices/services.php";//http://www.playground-inseoul.com/mobileservices/services.php";//"http://192.168.1.48/WooService/services.php";
   language: string;
   cartlist: any = [];
   loading: any
@@ -39,7 +39,6 @@ export class RemoteServiceProvider {
 
   getCategories() {
     var url = this.url + "?action=getCategory";
-
     return this.http.get(url)
       //.do((res : Response) => console.log(res))
       .map((res: Response) => res.json())
@@ -47,7 +46,6 @@ export class RemoteServiceProvider {
 
   getSlideBanner() {
     var url = this.url + "?action=getSlideBanner";
-
     return this.http.get(url)
       .do((res: Response) => console.log(res))
       .map((res: Response) => res.json());
@@ -55,7 +53,6 @@ export class RemoteServiceProvider {
 
   getAllProduct(page) {
     var url = this.url + "?action=getAllProduct&page=" + page + "&lang=" + this.language;
-
     return this.http.get(url)
       // .do((res : Response)=> console.log(res))
       .map((res: Response) => res.json())
@@ -70,7 +67,6 @@ export class RemoteServiceProvider {
 
   getProduct(id) {
     var url = this.url + "?action=getProduct&id=" + id;
-
     return this.http.get(url)
       //  .do((res : Response)=> console.log(res))
       .map((res: Response) => res.json())
@@ -146,15 +142,6 @@ export class RemoteServiceProvider {
     return content;
   }
 
-  // User function API
-
-  getCustomer(user) {
-    if(user.fb == 0){
-
-    }else{
-      
-    }
-    
-  }
+  
 
 }
