@@ -34,21 +34,36 @@ export class LoginPage {
     fb: 0
   }
 
-  constructor(public events : Events, public navCtrl: NavController, public navParams: NavParams, public r: RemoteServiceProvider, private fb: Facebook, private userlogin: UserloginProvider, private toastCtrl: ToastController, public translate : TranslateService, public storageCtrl : Storage) {
+  constructor(public events: Events, public navCtrl: NavController, public navParams: NavParams, public r: RemoteServiceProvider, private fb: Facebook, private userlogin: UserloginProvider, private toastCtrl: ToastController, public translate: TranslateService, public storageCtrl: Storage) {
     //this.fb.browserInit(this.FB_APP_ID, 'v2.12')
   }
 
   ionViewDidLoad() {
-  this.storageCtrl.get('logedin').then(
-    data =>{
-      if(data == '1'){
-        this.openpreviouspage()
-        //this.navCtrl.setRoot(ProfilePage,{},{});
-      }else{
-        return false;
-      }
-    },
-  ).catch(err => {console.log("error",err);})
+    this.storageCtrl.get('logedin').then(
+      data => {
+        if (data == '1') {
+          this.openpreviouspage()
+          //this.navCtrl.setRoot(ProfilePage,{},{});
+        } else {
+          return false;
+        }
+      },
+    ).catch(err => { console.log("error", err); })
+
+
+    this.events.subscribe('checklogin', () => {
+      this.storageCtrl.get('logedin').then(
+        data => {
+          if (data == '1') {
+            this.openpreviouspage()
+            //this.navCtrl.setRoot(ProfilePage,{},{});
+          } else {
+            return false;
+          }
+        },
+      ).catch(err => { console.log("error", err); })
+    })
+
     console.log('ionViewDidLoad LoginPage');
     console.log(this.navParams);
     this.page = this.navParams.get('page');
@@ -62,36 +77,36 @@ export class LoginPage {
       alert("Please input email or password");
     } else {
       env.userlogin.checklogin(env.user).subscribe(
-          (resp) => {
-            if(resp['data'].status == "200"){
-              console.log("Success Email",resp);
-              //Add data to Storage
-              env.userlogin.addtostorage(resp,env.user.fb);
-              
-              // Redirect to Page
-              env.openpreviouspage();
-            }else{
-              console.log("can't login",resp);
-              env.toastCtrl.create({
-                message: env.translate.instant("login_incorrect"),
-                duration: 2500,
-                position: 'top'
-              }).present(); 
-            }
-            
-          },
-          (err) =>{
-            console.log("can't login",err);
+        (resp) => {
+          if (resp['data'].status == "200") {
+            console.log("Success Email", resp);
+            //Add data to Storage
+            env.userlogin.addtostorage(resp, env.user.fb);
+
+            // Redirect to Page
+            env.openpreviouspage();
+          } else {
+            console.log("can't login", resp);
             env.toastCtrl.create({
               message: env.translate.instant("login_incorrect"),
               duration: 2500,
               position: 'top'
-            }).present(); 
-        },() =>{env.r.hideloading()}
-        )
-        console.log('Login Success')
-       
-      
+            }).present();
+          }
+
+        },
+        (err) => {
+          console.log("can't login", err);
+          env.toastCtrl.create({
+            message: env.translate.instant("login_incorrect"),
+            duration: 2500,
+            position: 'top'
+          }).present();
+        }, () => { env.r.hideloading() }
+      )
+      console.log('Login Success')
+
+
     }
 
     // this.login.setfrmlogin(data);
@@ -127,7 +142,7 @@ export class LoginPage {
           (data) => {
             console.log('recieve data', data);
             // add data to local storage
-            env.userlogin.addtostorage(data,env.user.fb);
+            env.userlogin.addtostorage(data, env.user.fb);
             env.openpreviouspage();
           },
           (err) => {
@@ -136,10 +151,10 @@ export class LoginPage {
               message: env.translate.instant("login_incorrect"),
               duration: 2500,
               position: 'top'
-            }).present(); 
+            }).present();
           },
-          () => {env.r.hideloading()}
-        ) 
+          () => { env.r.hideloading() }
+        )
       })
     }, (error) => {
       console.log("error fb login", error);
@@ -147,21 +162,21 @@ export class LoginPage {
         message: env.translate.instant("login_incorrect"),
         duration: 2500,
         position: 'top'
-      }).present(); 
+      }).present();
     })
   }
 
   register() {
-    this.navCtrl.push(RegsiterPage, {page : this.page}, {});
+    this.navCtrl.push(RegsiterPage, { page: this.page }, {});
   }
 
   openpreviouspage() {
-    if(this.page){
+    if (this.page) {
       console.log("open page is ", this.page)
-    }else{
-      this.navCtrl.setRoot(ProfilePage,{},{});
+    } else {
+      this.navCtrl.setRoot(ProfilePage, {}, {});
     }
-    
+
 
   }
 }

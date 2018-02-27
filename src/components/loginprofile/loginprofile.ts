@@ -20,15 +20,16 @@ export class LoginprofileComponent {
   logedin: string;
 
   constructor(private storageCtrl: Storage, private navCtrl: NavController, private events: Events) {
-    
-  }
-
-  ngOnInit(){
-    this.events.subscribe('checklogin', () => {
-     this.showDetail();
-    })
     this.showDetail();
   }
+
+  ionViewWillEnter(){
+    this.events.subscribe('checklogin:changed', () => {
+      this.showDetail();
+     })
+  }
+
+  
 
   showDetail(){
     this.storageCtrl.get('pic').then(data => { this.image = data });

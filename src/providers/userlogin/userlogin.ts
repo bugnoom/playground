@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import { Storage } from '@ionic/storage';
 import { RemoteServiceProvider } from '../remote-service/remote-service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 /*
@@ -18,9 +19,10 @@ export class UserloginProvider {
 
   logedin: boolean = false;
   header: any = { 'Content-Type': 'application/json' }
+  logintext: string;
 
 
-  constructor(public http: Http, public storageCtrl: Storage, public r: RemoteServiceProvider,private events : Events) {
+  constructor(public http: Http, public storageCtrl: Storage, public r: RemoteServiceProvider,private events : Events, private translate : TranslateService) {
     console.log('Hello UserloginProvider Provider');
   }
 
@@ -35,6 +37,16 @@ export class UserloginProvider {
     )
   }
 
+  logintextCtrl(){
+    this.storageCtrl.get('logedin').then((data)=>{
+      if(data =='1'){
+        this.logintext = this.translate.instant('logout');
+      }else{
+        this.logintext = this.translate.instant('login_txt');
+      }
+    })
+  }
+
   checkfacebooklogin(fb_id) {
 
   }
@@ -44,18 +56,20 @@ export class UserloginProvider {
   }
 
   addtostorage(data,fb){
+    this.events.publish("checklogin:changed");
     if(fb == 0){
       this.storageCtrl.set('id',data['id'])
       this.storageCtrl.set('pic',data['avatar_url'])
       this.storageCtrl.set('logedin','1');
       this.storageCtrl.set('fullname',data['first_name']+" "+data['last_name']);
+      
     }else{
       this.storageCtrl.set('id',data['id'])
       this.storageCtrl.set('logedin','1');
     this.storageCtrl.set('pic',data['avatar_url'])
     this.storageCtrl.set('fullname',data['fullname'])
     }
-    this.events.publish("checklogin");
+    
     
   }
 

@@ -1,3 +1,4 @@
+import { UserloginProvider } from './../../providers/userlogin/userlogin';
 import { Storage } from '@ionic/storage';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { PageSettingPage } from './../page-setting/page-setting';
@@ -31,39 +32,27 @@ export class MenuPage {
     {title : 'category_title', pageName:'ShowCaegoryPage',tabComponent:'ShowCaegoryPage',index:4,icon:'list'},
     {title : 'myorder_title', pageName:'PromotionPage',tabComponent:'PromotionPage',index:1,icon:'clipboard'},
     {title : 'playground_news_title', pageName:'CartlistPage',tabComponent:'CartlistPage',index:2,icon:'document'},
-    {title : 'playground_shop_title', pageName:'LoginPage',tabComponent:'LoginPage',index:3,icon:'cafe'}
+    {title : 'playground_shop_title', pageName:'ShopLocationPage',tabComponent:'ShopLocationPage',index:5,icon:'cafe'}
   ];
 
   loginpage : PageInterface[] = [
       {title : 'login_txt', pageName:'LoginPage',tabComponent:'LoginPage',index:3,icon:'cafe'}
     ];
-
     logintext: string;
-
-
- 
-
-  constructor(public navCtrl: NavController,public translate:TranslateService,private r : RemoteServiceProvider, public storageCtrl : Storage,private events : Events) {  
-    this.events.subscribe('checklogin',()=>{
-      this.storageCtrl.get('logedin').then((data)=>{
-        if(data =='1'){
-          this.logintext = this.translate.instant('logout');
-        }else{
-          this.logintext = this.translate.instant('login_txt');
-        }
-      })
-     })
-
-     this.storageCtrl.get('logedin').then((data)=>{
-      if(data =='1'){
-        this.logintext = this.translate.instant('logout');
-      }else{
-        this.logintext = this.translate.instant('login_txt');
-      }
-    })
     
+
+  constructor(public navCtrl: NavController,public translate:TranslateService,private r : RemoteServiceProvider, public storageCtrl : Storage,private events : Events, private userlogin : UserloginProvider) {  
+   
   }
 
+  showlogintext(){
+    this.events.subscribe('checklogin:changed',()=>{
+      this.logintext = this.userlogin.logintext;
+    })
+    this.logintext = this.userlogin.logintext;
+
+  }
+  
   openPage(page:PageInterface){
     let params = {};
 
@@ -103,15 +92,17 @@ export class MenuPage {
       (data)=>{
         if(data == '1'){
           env.storageCtrl.clear();
+          this.events.publish("checklogin:changed");
           //env.openPage(loginpage);
-          this.nav.getActiveChildNavs()[0].select(loginpage.index);
+          env.nav.getActiveChildNavs()[0].select(3);
           //this.navCtrl.push(LoginPage,{}, {animate: true, direction: 'forward'});
         }else{
-          env.openPage(loginpage);
+          //env.openPage(loginpage);
+          env.nav.getActiveChildNavs()[0].select(3);
           //this.navCtrl.push(LoginPage,{}, {animate: true, direction: 'forward'});
-          this.nav.getActiveChildNavs()[0].select(loginpage.index);
+          //this.nav.getActiveChildNavs()[0].select(loginpage.index);
         }
-        this.events.publish("checklogin");
+       
         env.r.hideloading();
       }
     )

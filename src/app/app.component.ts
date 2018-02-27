@@ -1,5 +1,6 @@
+import { UserloginProvider } from './../providers/userlogin/userlogin';
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,8 +14,9 @@ import { MenuPage } from '../pages/menu/menu';
 })
 export class MyApp {
   rootPage:any = MenuPage;
+  
 
-  constructor(platform: Platform,private translate: TranslateService, private appLanguages: AppLanguagesProvider, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform,private translate: TranslateService, private appLanguages: AppLanguagesProvider, statusBar: StatusBar, splashScreen: SplashScreen,private events : Events,  private userlogin : UserloginProvider) {
     platform.ready().then(() => {
 
      this.configNG2();
