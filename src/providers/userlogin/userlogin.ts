@@ -1,4 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import { Events } from 'ionic-angular';
+import { Http, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
@@ -19,7 +20,7 @@ export class UserloginProvider {
   header: any = { 'Content-Type': 'application/json' }
 
 
-  constructor(public http: HttpClient, public storage: Storage, public r: RemoteServiceProvider) {
+  constructor(public http: Http, public storageCtrl: Storage, public r: RemoteServiceProvider,private events : Events) {
     console.log('Hello UserloginProvider Provider');
   }
 
@@ -42,14 +43,35 @@ export class UserloginProvider {
 
   }
 
+  addtostorage(data,fb){
+    if(fb == 0){
+      this.storageCtrl.set('id',data['id'])
+      this.storageCtrl.set('pic',data['avatar_url'])
+      this.storageCtrl.set('logedin','1');
+      this.storageCtrl.set('fullname',data['first_name']+" "+data['last_name']);
+    }else{
+      this.storageCtrl.set('id',data['id'])
+      this.storageCtrl.set('logedin','1');
+    this.storageCtrl.set('pic',data['avatar_url'])
+    this.storageCtrl.set('fullname',data['fullname'])
+    }
+    this.events.publish("checklogin");
+    
+  }
+
+
   checklogin(user) {
     let url = "";
     if (user.fb == 0) {
       url = this.r.url + "?action=checkLogin";
+      this.header = "";
     } else {
       url = this.r.url + "?action=checkFBLogin";
     }
-    return this.http.post(url, user, this.header)
+    return this.http.post(url, user)
+    .map((res: Response) => res.json())
   }
+
+  
 
 }

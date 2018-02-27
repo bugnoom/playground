@@ -1,3 +1,4 @@
+import { LoginprofileComponent } from './../components/loginprofile/loginprofile';
 import { RegsiterPage } from './../pages/regsiter/regsiter';
 import { ShippingPage } from './../pages/shipping/shipping';
 import { ShowvariationPage } from './../pages/showvariation/showvariation';
@@ -68,7 +69,8 @@ export function createTranslateLoader(http: HttpClient) {
     RegsiterPage,
     ProductloopComponent,
     AddtocartComponent,
-    QrscancomponentComponent
+    QrscancomponentComponent,
+    LoginprofileComponent
 
   ],
   imports: [

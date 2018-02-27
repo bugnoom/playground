@@ -1,3 +1,4 @@
+import { Storage } from '@ionic/storage';
 import { LoginPage } from './../login/login';
 import { UserloginProvider } from './../../providers/userlogin/userlogin';
 import { ShippingPage } from './../shipping/shipping';
@@ -29,7 +30,7 @@ export class CartlistPage {
   shoppong: any;
 
 
-  constructor(private login : UserloginProvider, public navCtrl: NavController, public navParams: NavParams, private translate: TranslateService, private r: RemoteServiceProvider, public events : Events) {
+  constructor(private login : UserloginProvider, public navCtrl: NavController, public navParams: NavParams, private translate: TranslateService, private r: RemoteServiceProvider, public events : Events, private storageCtrl : Storage) {
     this.toggled = false;
     this.plist = this.r.cartlist;
    // this.login.checklogin();
@@ -62,14 +63,16 @@ export class CartlistPage {
   buyitem() {
     //open for customer add shipping detail page 
     // send tatal price via parameter
-    
-
-    
-    if(!this.login.logedin){
-      this.navCtrl.push(LoginPage,{prepage : "shipping"},{ animate: true, direction: 'forward' });
-    }else{
-      this.navCtrl.push(ShippingPage,{},{ animate: true, direction: 'forward' })
+  this.storageCtrl.get('logedin').then(
+    (data) => {
+      if(data == '0'){
+        this.navCtrl.push(LoginPage,{prepage : "shipping"},{ animate: true, direction: 'forward' });
+      }else{
+        this.navCtrl.push(ShippingPage,{},{ animate: true, direction: 'forward' })
+      }
     }
+  )
+    
   
   }
 

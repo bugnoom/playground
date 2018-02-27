@@ -2,15 +2,7 @@
 
 
   <ion-content>
-    <ion-item style="margin:10px 0px;" class="userAvatar">
-      <ion-avatar item-start>
-        <img src="assets/imgs/logo.png">
-      </ion-avatar>
-      <h2>User Name</h2>
-      <button ion-button clear icon-only item-end>
-        <ion-icon ios="ios-construct" md="md-construct"></ion-icon>
-      </button>
-    </ion-item>
+    <loginprofile></loginprofile>
 
     <ion-list class="list-ios">
       <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)" class="item-ios">
@@ -25,9 +17,9 @@
   </ion-content>
   <ion-footer>
     <ion-list class="list-ios">
-      <button ion-item menuClose (click)="logout()">
+      <button ion-item menuClose (click)="logout(loginpage)">
         <ion-icon item-star name="log-out"></ion-icon>
-        {{'logout'|translate}}
+        {{logintext}}
       </button>
     </ion-list>
   </ion-footer>

@@ -1,9 +1,10 @@
+import { Storage } from '@ionic/storage';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { PageSettingPage } from './../page-setting/page-setting';
 
 import { LoginPage } from './../login/login';
 import { Component,ViewChild } from '@angular/core';
-import { IonicPage, NavController, Nav } from 'ionic-angular';
+import { IonicPage, NavController, Nav, Events } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -35,10 +36,34 @@ export class MenuPage {
     {title : 'playground_shop_title', pageName:'LoginPage',tabComponent:'LoginPage',index:3,icon:'cafe'}
   ];
 
+  loginpage : PageInterface[] = [
+      {title : 'playground_shop_title', pageName:'LoginPage',tabComponent:'LoginPage',index:3,icon:'cafe'}
+    ];
+
+    logintext: string;
+
+
  
 
-  constructor(public navCtrl: NavController,public translate:TranslateService,private r : RemoteServiceProvider) {  
-   
+  constructor(public navCtrl: NavController,public translate:TranslateService,private r : RemoteServiceProvider, public storageCtrl : Storage,private events : Events) {  
+    this.events.subscribe('checklogin',()=>{
+      this.storageCtrl.get('logedin').then((data)=>{
+        if(data =='1'){
+          this.logintext = this.translate.instant('logout');
+        }else{
+          this.logintext = this.translate.instant('login_txt');
+        }
+      })
+     })
+
+     this.storageCtrl.get('logedin').then((data)=>{
+      if(data =='1'){
+        this.logintext = this.translate.instant('logout');
+      }else{
+        this.logintext = this.translate.instant('login_txt');
+      }
+    })
+    
   }
   
  
@@ -75,8 +100,25 @@ export class MenuPage {
     return;
   }
 
-  logout(){
-    this.navCtrl.setRoot(LoginPage,{}, {animate: true, direction: 'forward'});
+  logout(page:PageInterface){
+     
+   let env = this
+    this.r.showloading();
+    this.storageCtrl.get('logedin').then(
+      (data)=>{
+        if(data == '1'){
+          env.storageCtrl.clear();
+          //env.openPage(page);
+          this.navCtrl.push(LoginPage,{}, {animate: true, direction: 'forward'});
+        }else{
+          //env.openPage(page);
+          this.navCtrl.push(LoginPage,{}, {animate: true, direction: 'forward'});
+        }
+        this.events.publish("checklogin");
+        env.r.hideloading();
+      }
+    )
+   
   }
 
   opensetting(){
