@@ -1,8 +1,6 @@
 import { Storage } from '@ionic/storage';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { PageSettingPage } from './../page-setting/page-setting';
-
-import { LoginPage } from './../login/login';
 import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, Nav, Events } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
@@ -37,7 +35,7 @@ export class MenuPage {
   ];
 
   loginpage : PageInterface[] = [
-      {title : 'playground_shop_title', pageName:'LoginPage',tabComponent:'LoginPage',index:3,icon:'cafe'}
+      {title : 'login_txt', pageName:'LoginPage',tabComponent:'LoginPage',index:3,icon:'cafe'}
     ];
 
     logintext: string;
@@ -65,8 +63,6 @@ export class MenuPage {
     })
     
   }
-  
- 
 
   openPage(page:PageInterface){
     let params = {};
@@ -75,7 +71,6 @@ export class MenuPage {
     if(page.index){
       params = {tabIndex : page.index,page, prepage : page.pageName};
     }
-
     //the active child nav 
     if(this.nav.getActiveChildNavs() && page.index != undefined){
       this.nav.getActiveChildNavs()[0].select(page.index);
@@ -100,7 +95,7 @@ export class MenuPage {
     return;
   }
 
-  logout(page:PageInterface){
+  logout(loginpage:PageInterface){
      
    let env = this
     this.r.showloading();
@@ -108,11 +103,13 @@ export class MenuPage {
       (data)=>{
         if(data == '1'){
           env.storageCtrl.clear();
-          //env.openPage(page);
-          this.navCtrl.push(LoginPage,{}, {animate: true, direction: 'forward'});
+          //env.openPage(loginpage);
+          this.nav.getActiveChildNavs()[0].select(loginpage.index);
+          //this.navCtrl.push(LoginPage,{}, {animate: true, direction: 'forward'});
         }else{
-          //env.openPage(page);
-          this.navCtrl.push(LoginPage,{}, {animate: true, direction: 'forward'});
+          env.openPage(loginpage);
+          //this.navCtrl.push(LoginPage,{}, {animate: true, direction: 'forward'});
+          this.nav.getActiveChildNavs()[0].select(loginpage.index);
         }
         this.events.publish("checklogin");
         env.r.hideloading();
