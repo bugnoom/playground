@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { RegsiterPage } from './../regsiter/regsiter';
 import { UserloginProvider } from './../../providers/userlogin/userlogin';
 import { ProfilePage } from './../profile/profile';
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, Events } from 'ionic-angular';
 import { RemoteServiceProvider } from '../../providers/remote-service/remote-service';
 import { ShippingPage } from '../shipping/shipping';
@@ -34,31 +34,40 @@ export class LoginPage {
     fb: 0
   }
 
-  constructor(public events: Events, public navCtrl: NavController, public navParams: NavParams, public r: RemoteServiceProvider, private fb: Facebook, private userlogin: UserloginProvider, private toastCtrl: ToastController, public translate: TranslateService, public storageCtrl: Storage) {
+  constructor(public events: Events, public navCtrl: NavController, public navParams: NavParams, public r: RemoteServiceProvider, private fb: Facebook, private userlogin: UserloginProvider, private toastCtrl: ToastController, public translate: TranslateService, public storageCtrl: Storage,private ngzone : NgZone) {
     //this.fb.browserInit(this.FB_APP_ID, 'v2.12')
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter(){
+    this.events.subscribe('checklogin:changed',()=>{
+      this.userlogin.logintextCtrl();
+    })
+    this.userlogin.logintextCtrl();
+
     this.storageCtrl.get('logedin').then(
       data => {
         if (data == '1') {
           this.openpreviouspage()
           //this.navCtrl.setRoot(ProfilePage,{},{});
         } else {
+          this.ngzone.run(data=>{
           return false;
+            //this.navCtrl.setRoot(this.navCtrl.getActive().component);
+          });
+          //this.navCtrl.setRoot(this.navCtrl.getActive().component);
         }
       },
     ).catch(err => { console.log("error", err); })
 
 
-    this.events.subscribe('checklogin', () => {
+    this.events.subscribe('reloadscreen', () => {
       this.storageCtrl.get('logedin').then(
         data => {
           if (data == '1') {
-            this.openpreviouspage()
+            //this.openpreviouspage()
             //this.navCtrl.setRoot(ProfilePage,{},{});
           } else {
-            return false;
+            this.navCtrl.pop();
           }
         },
       ).catch(err => { console.log("error", err); })
@@ -174,7 +183,7 @@ export class LoginPage {
     if (this.page) {
       console.log("open page is ", this.page)
     } else {
-      this.navCtrl.setRoot(ProfilePage, {}, {});
+      this.navCtrl.push(ProfilePage, {}, {});
     }
 
 

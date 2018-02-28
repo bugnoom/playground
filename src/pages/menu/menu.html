@@ -2,7 +2,7 @@
 
 
   <ion-content>
-    <loginprofile></loginprofile>
+    <loginprofile logedin="checklogin()"></loginprofile>
 
     <ion-list class="list-ios">
       <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)" class="item-ios">
@@ -19,7 +19,7 @@
     <ion-list class="list-ios">
       <button ion-item menuClose (click)="logout(loginpage)">
         <ion-icon item-star name="log-out"></ion-icon>
-        {{showlogintext}}
+        {{showlogintext()}}
       </button>
     </ion-list>
   </ion-footer>

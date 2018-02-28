@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, Events } from 'ionic-angular';
+import { UserloginProvider } from '../../providers/userlogin/userlogin';
 
 /**
  * Generated class for the ProfilePage page.
@@ -15,11 +16,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ProfilePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl : ViewController,private events : Events, private userlogin : UserloginProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
   }
+  ionViewWillEnter() {
+    this.viewCtrl.showBackButton(false);
+    this.events.subscribe('checklogin:changed',()=>{
+      this.userlogin.logintextCtrl();
+     
+    })
+    
+    this.userlogin.logintextCtrl();
+}
 
 }

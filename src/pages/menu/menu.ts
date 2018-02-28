@@ -39,17 +39,31 @@ export class MenuPage {
       {title : 'login_txt', pageName:'LoginPage',tabComponent:'LoginPage',index:3,icon:'cafe'}
     ];
     logintext: string;
+    logedin : string = "0";
     
 
   constructor(public navCtrl: NavController,public translate:TranslateService,private r : RemoteServiceProvider, public storageCtrl : Storage,private events : Events, private userlogin : UserloginProvider) {  
-   
+   this.userlogin.logintextCtrl();
+  }
+
+  checklogin(){
+    this.events.subscribe('checklogin:changed',()=>{
+      if(this.userlogin.logedin){
+        this.logedin = '1';
+      }else{
+        this.logedin = '';
+      }
+      return this.logedin;
+    })   
+   return this.logedin
   }
 
   showlogintext(){
     this.events.subscribe('checklogin:changed',()=>{
-      this.logintext = this.userlogin.logintext;
+  
+      return this.userlogin.logintext;
     })
-    this.logintext = this.userlogin.logintext;
+   return  this.userlogin.logintext;
 
   }
   
@@ -90,9 +104,11 @@ export class MenuPage {
     this.r.showloading();
     this.storageCtrl.get('logedin').then(
       (data)=>{
+        console.log("login data",data);
         if(data == '1'){
           env.storageCtrl.clear();
           this.events.publish("checklogin:changed");
+          this.events.publish("reloadscreen");
           //env.openPage(loginpage);
           env.nav.getActiveChildNavs()[0].select(3);
           //this.navCtrl.push(LoginPage,{}, {animate: true, direction: 'forward'});

@@ -1,3 +1,4 @@
+import { UserloginProvider } from './../../providers/userlogin/userlogin';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { CategorylistPage } from './../categorylist/categorylist';
 import { Component } from '@angular/core';
@@ -25,7 +26,7 @@ export class ShoppingPage {
  
  
 
-  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, private r: RemoteServiceProvider, public events : Events) {
+  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, private r: RemoteServiceProvider, public events : Events, private userlogin : UserloginProvider) {
     // this.toggled = false;
     // this.grid = Array(Math.ceil(this.product.length / 2)); //MATHS!
     // this.grid = Array.from(Array(Math.ceil(this.product.length / 2)).keys());
@@ -36,6 +37,7 @@ export class ShoppingPage {
 
   ionViewWillEnter(){
     console.log("Page1 Open")
+    
   }
 
   ionViewDidLoad() {

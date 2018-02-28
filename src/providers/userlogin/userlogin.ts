@@ -40,12 +40,16 @@ export class UserloginProvider {
   logintextCtrl(){
     this.storageCtrl.get('logedin').then((data)=>{
       if(data =='1'){
+        this.logedin = true;
         this.logintext = this.translate.instant('logout');
       }else{
+        this.logedin = false;
         this.logintext = this.translate.instant('login_txt');
       }
     })
   }
+
+
 
   checkfacebooklogin(fb_id) {
 

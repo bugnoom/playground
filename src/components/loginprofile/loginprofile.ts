@@ -1,6 +1,6 @@
 import { NavController, Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 /**
  * Generated class for the LoginprofileComponent component.
@@ -14,16 +14,17 @@ import { Component } from '@angular/core';
 })
 export class LoginprofileComponent {
 
+  @Input("logedin") logedin : string;
   text: string;
   image: string;
   name: string;
-  logedin: string;
+ 
 
   constructor(private storageCtrl: Storage, private navCtrl: NavController, private events: Events) {
     this.showDetail();
   }
 
-  ionViewWillEnter(){
+  ngIonInit(){
     this.events.subscribe('checklogin:changed', () => {
       this.showDetail();
      })
