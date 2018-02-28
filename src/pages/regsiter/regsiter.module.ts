@@ -4,7 +4,7 @@ import { RegsiterPage } from './regsiter';
 
 @NgModule({
   declarations: [
-    RegsiterPage,
+   
   ],
   imports: [
     IonicPageModule.forChild(RegsiterPage),

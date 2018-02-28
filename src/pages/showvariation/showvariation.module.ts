@@ -4,7 +4,7 @@ import { ShowvariationPage } from './showvariation';
 
 @NgModule({
   declarations: [
-    ShowvariationPage,
+    
   ],
   imports: [
     IonicPageModule.forChild(ShowvariationPage),

@@ -4,7 +4,7 @@ import { PromotionDetailPage } from './promotion-detail';
 
 @NgModule({
   declarations: [
-    PromotionDetailPage,
+    
   ],
   imports: [
     IonicPageModule.forChild(PromotionDetailPage),

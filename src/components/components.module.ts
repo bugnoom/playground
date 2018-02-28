@@ -5,14 +5,8 @@ import { AddtocartComponent } from './addtocart/addtocart';
 import { LoginprofileComponent } from './loginprofile/loginprofile';
 
 @NgModule({
-	declarations: [ProductloopComponent,
-    QrscancomponentComponent,
-    AddtocartComponent,
-    LoginprofileComponent],
+	declarations: [],
 	imports: [],
-	exports: [ProductloopComponent,
-    QrscancomponentComponent,
-    AddtocartComponent,
-    LoginprofileComponent]
+	exports: []
 })
 export class ComponentsModule {}
